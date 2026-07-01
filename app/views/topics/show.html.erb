@@ -1,0 +1,72 @@
+<div class="container" style="max-width: 800px;">
+  
+  <div style="margin-bottom: 1.5rem;">
+    <%= link_to "← Back to Feed", root_path(tab: @topic.announcement? ? 'announcements' : 'topics'), class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" %>
+  </div>
+
+  <!-- Thread Card -->
+  <article class="thread-card" style="<%= @topic.announcement? ? 'border-left: 4px solid var(--warning);' : '' %>">
+    <div class="thread-meta">
+      <div>
+        Posted by <strong><%= @topic.user.full_name %></strong> 
+        <span class="badge badge-<%= @topic.user.role %>"><%= @topic.user.role %></span>
+        <span>•</span>
+        <span><%= time_ago_in_words(@topic.created_at) %> ago</span>
+      </div>
+      <div>
+        <span class="badge badge-<%= @topic.topic_type %>"><%= @topic.topic_type %></span>
+      </div>
+    </div>
+    
+    <h1 class="thread-title"><%= @topic.title %></h1>
+    <div class="thread-content"><%= @topic.content %></div>
+    
+    <div class="thread-actions">
+      <% upvoted = @topic.upvotes.exists?(user: current_user) %>
+      <%= button_to topic_upvote_path(@topic), method: :post, class: "btn btn-secondary #{upvoted ? 'upvoted' : ''}", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" do %>
+        ▲ <%= upvoted ? 'Upvoted' : 'Upvote' %> (<%= @topic.upvotes_count %>)
+      <% end %>
+    </div>
+  </article>
+
+  <!-- Comments Section -->
+  <section>
+    <h2 class="comment-section-title">Comments (<%= @topic.comments.count %>)</h2>
+
+    <!-- Post Comment Form -->
+    <div class="creator-card" style="margin-bottom: 2rem;">
+      <h3 class="creator-title" style="font-size: 1rem; margin-bottom: 0.75rem;">Add a comment</h3>
+      <%= form_with model: [ @topic, @comment ], local: true do |form| %>
+        <div class="form-group">
+          <%= form.text_area :content, required: true, rows: 3, placeholder: "Share your thoughts on this...", class: "form-input" %>
+        </div>
+        <div style="display: flex; justify-content: flex-end;">
+          <%= form.submit "Post Comment", class: "btn btn-primary", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Comments List -->
+    <% persisted_comments = @topic.comments.select(&:persisted?) %>
+    <% if persisted_comments.any? %>
+      <% persisted_comments.each do |comment| %>
+        <div class="comment-card">
+          <div class="comment-meta">
+            <strong><%= comment.user&.full_name || 'Unknown Resident' %></strong>
+            <span class="badge badge-<%= comment.user&.role || 'resident' %>" style="font-size: 0.55rem; padding: 0.1rem 0.3rem;"><%= (comment.user&.role || 'resident').humanize %></span>
+            <span style="color: var(--text-muted);">•</span>
+            <span style="color: var(--text-muted);"><%= time_ago_in_words(comment.created_at) %> ago</span>
+          </div>
+          <div class="comment-body">
+            <%= comment.content %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div style="text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem;">
+        No comments yet. Start the discussion!
+      </div>
+    <% end %>
+  </section>
+
+</div>
