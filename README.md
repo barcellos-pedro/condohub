@@ -48,6 +48,12 @@ Run the test suite:
 bin/rails test
 ```
 
+Reset the test database and reload fixture data:
+
+```bash
+env RAILS_ENV=test bin/rails db:seed:replant
+```
+
 Run the full CI-style checks:
 
 ```bash
@@ -58,8 +64,9 @@ bin/ci
 
 - app/controllers contains the main request handling for sessions, topics, services, and the dashboard
 - app/models holds the core domain models such as Condominium, User, Topic, Comment, Upvote, and ServiceListing
+- app/javascript/controllers contains Stimulus controllers loaded through `config/importmap.rb`
 - test contains controller, model, mailer, and integration tests
-- config/routes.rb defines the intentionally narrow route set used by the app
+- config/routes.rb defines the intentionally narrow locale-scoped route set used by the app
 
 ## Notes for contributors
 
