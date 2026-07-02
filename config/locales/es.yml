@@ -1,0 +1,154 @@
+es:
+  layouts:
+    application:
+      title: "CondoHub — El Portal del Residente"
+      app_name: "CondoHub"
+      log_out: "Cerrar Sesión"
+
+  dashboard:
+    index:
+      no_address: "Sin dirección especificada"
+      discussions_tab: "💬 Discusiones"
+      announcements_tab: "📢 Anuncios"
+      services_tab: "🛠️ Servicios Locales"
+      sandbox_mode: "Modo Sandbox"
+      switch_persona: "← Cambiar Persona"
+      resident_discussions: "💬 Discusiones de Residentes"
+      share_something: "Comparte algo con el vecindario"
+      title_placeholder: "Título de tu publicación..."
+      content_placeholder: "¿Qué tienes en mente? Escríbelo aquí..."
+      post_discussion: "Publicar Discusión"
+      posted_by: "Publicado por"
+      ago: "hace"
+      comments: "comentarios"
+      no_discussions: "Aún no hay discusiones. ¡Sé el primero en iniciar una conversación!"
+      management_announcements: "📢 Anuncios de la Administración"
+      official_only: "Solo Oficial"
+      publish_heading: "📢 Publicar Nuevo Anuncio Oficial"
+      announcement_title_placeholder: "Título del Anuncio..."
+      announcement_content_placeholder: "Escribe los detalles del anuncio oficial..."
+      publish_announcement: "Publicar Anuncio"
+      announcements_readonly: "🔒 Los Anuncios Oficiales son de solo lectura para residentes. Solo los administradores pueden publicar aquí."
+      published_by: "Publicado por"
+      trusted_services: "🛠️ Servicios Locales de Confianza"
+      recommend_service: "Recomienda un proveedor de servicio confiable"
+      provider_name_label: "Nombre del Proveedor/Empresa"
+      provider_name_placeholder: "Ej.: Servicios de Plomería de Juan"
+      category_label: "Categoría"
+      category_placeholder: "Ej.: Plomería, Electricista, Limpieza"
+      contact_info_label: "Información de Contacto (Teléfono o Email)"
+      contact_info_placeholder: "+55 (11) 99999-9999 o juan@gmail.com"
+      reason_label: "¿Por qué lo recomiendas?"
+      reason_placeholder: "Describe la calidad de su trabajo, precio, disponibilidad..."
+      submit_recommendation: "Enviar Recomendación"
+      contact_label: "Contacto:"
+      recommended_by: "Recomendado por"
+      vouch: "👍 Recomendar"
+      vouches: "recomendaciones"
+      no_services: "Aún no hay servicios recomendados. ¡Siéntete libre de recomendar el tuyo!"
+      no_announcements: "Aún no se han publicado anuncios oficiales."
+
+  sessions:
+    new:
+      title: "CondoHub"
+      subtitle: "Inicia sesión en tu portal de residente"
+      email_label: "Dirección de Email"
+      email_placeholder: "alex@condohub.com"
+      password_label: "Contraseña"
+      password_placeholder: "••••••••"
+      forgot_password: "¿Olvidaste tu contraseña?"
+      sign_in: "Iniciar Sesión"
+      sandbox_title: "🛠️ Sandbox de Desarrollo: Probador de Personas"
+      sandbox_description: "Cambia instantáneamente entre roles y condominios con un clic para probar el aislamiento multiinquilino y las reglas de permiso."
+
+  topics:
+    show:
+      back_to_feed: "← Volver al Feed"
+      posted_by: "Publicado por"
+      ago: "hace"
+      upvote: "Votar"
+      upvoted: "Votado"
+      comments_title: "Comentarios"
+      add_comment: "Añadir comentario"
+      comment_placeholder: "Comparte tus pensamientos sobre esto..."
+      post_comment: "Publicar Comentario"
+      unknown_user: "Residente Desconocido"
+      no_comments: "Aún no hay comentarios. ¡Inicia la discusión!"
+
+  passwords:
+    new:
+      title: "¿Olvidaste tu contraseña?"
+      email_placeholder: "Ingresa tu dirección de email"
+      submit: "Enviar instrucciones de restablecimiento"
+    edit:
+      title: "Actualizar tu contraseña"
+      password_placeholder: "Ingresa la nueva contraseña"
+      password_confirmation_placeholder: "Repite la nueva contraseña"
+      submit: "Guardar"
+
+  errors:
+    not_found:
+      message: "Lo sentimos, no pudimos encontrar la página que buscas."
+      back: "Volver al Inicio"
+    internal_server_error:
+      message: "Algo salió mal. Estamos trabajando para solucionarlo."
+      back: "Volver al Inicio"
+    unprocessable_entity:
+      message: "No se pudo procesar tu solicitud. Verifica los datos e inténtalo de nuevo."
+      back: "Volver al Inicio"
+
+  flash:
+    sessions:
+      rate_limit: "Inténtalo de nuevo más tarde."
+      auth_failure: "Prueba con otro correo electrónico o contraseña."
+      impersonation_unavailable: "La suplantación solo está disponible en entorno de desarrollo local."
+      impersonation_success: "Suplantando a %{name} (%{role}) exitosamente."
+    topics:
+      create_success: "Publicación creada exitosamente."
+    comments:
+      create_success: "Comentario publicado exitosamente."
+    upvotes:
+      removed: "Voto eliminado."
+      success: "¡Tema votado!"
+    service_listings:
+      create_success: "¡Recomendación de servicio añadida!"
+      vouch_success: "¡Recomendación para %{title} registrada!"
+    passwords:
+      rate_limit: "Inténtalo de nuevo más tarde."
+      create_success: "Instrucciones de restablecimiento enviadas (si el usuario con ese email existe)."
+      update_success: "Contraseña restablecida exitosamente."
+      update_failure: "Las contraseñas no coinciden."
+      token_invalid: "El enlace de restablecimiento de contraseña es inválido o ha expirado."
+
+  passwords_mailer:
+    reset:
+      subject: "Restablece tu contraseña"
+      instructions: "Puedes restablecer tu contraseña en la"
+      link_text: "página de restablecimiento de contraseña"
+      expiry: "Este enlace expirará en %{time}."
+
+  pwa:
+    manifest:
+      description: "Aplicación web para que residentes de condominios compartan actualizaciones, discutan temas comunitarios y recomienden servicios locales."
+
+  roles:
+    resident: "Residente"
+    admin: "Administrador"
+
+  topic_types:
+    discussion: "Discusión"
+    announcement: "Anuncio"
+
+  locales:
+    en: "English"
+    pt-BR: "Português (Brasil)"
+    es: "Español"
+    ko: "한국어"
+
+  activerecord:
+    errors:
+      models:
+        topic:
+          attributes:
+            topic_type:
+              admins_only: "Los anuncios solo pueden ser creados por la administración."

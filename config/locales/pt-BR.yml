@@ -1,0 +1,154 @@
+pt-BR:
+  layouts:
+    application:
+      title: "CondoHub — O Portal do Morador"
+      app_name: "CondoHub"
+      log_out: "Sair"
+
+  dashboard:
+    index:
+      no_address: "Nenhum endereço informado"
+      discussions_tab: "💬 Discussões"
+      announcements_tab: "📢 Avisos"
+      services_tab: "🛠️ Serviços Locais"
+      sandbox_mode: "Modo Sandbox"
+      switch_persona: "← Trocar Persona"
+      resident_discussions: "💬 Discussões dos Moradores"
+      share_something: "Compartilhe algo com a vizinhança"
+      title_placeholder: "Título da sua publicação..."
+      content_placeholder: "O que você está pensando? Escreva aqui..."
+      post_discussion: "Publicar Discussão"
+      posted_by: "Postado por"
+      ago: "atrás"
+      comments: "comentários"
+      no_discussions: "Nenhuma discussão ainda. Seja o primeiro a iniciar uma conversa!"
+      management_announcements: "📢 Avisos da Administração"
+      official_only: "Somente Oficial"
+      publish_heading: "📢 Publicar Novo Aviso Oficial"
+      announcement_title_placeholder: "Título do Aviso..."
+      announcement_content_placeholder: "Escreva os detalhes do aviso oficial..."
+      publish_announcement: "Publicar Aviso"
+      announcements_readonly: "🔒 Avisos Oficiais são somente leitura para moradores. Apenas administradores podem publicar aqui."
+      published_by: "Publicado por"
+      trusted_services: "🛠️ Serviços Locais Confiáveis"
+      recommend_service: "Recomende um prestador de serviço confiável"
+      provider_name_label: "Nome do Prestador/Empresa"
+      provider_name_placeholder: "Ex.: Serviços Hidráulicos do João"
+      category_label: "Categoria"
+      category_placeholder: "Ex.: Hidráulica, Eletricista, Limpeza"
+      contact_info_label: "Informações de Contato (Telefone ou Email)"
+      contact_info_placeholder: "+55 (11) 99999-9999 ou joao@gmail.com"
+      reason_label: "Por que você recomenda?"
+      reason_placeholder: "Descreva a qualidade do trabalho, preço, disponibilidade..."
+      submit_recommendation: "Enviar Recomendação"
+      contact_label: "Contato:"
+      recommended_by: "Recomendado por"
+      vouch: "👍 Recomendar"
+      vouches: "recomendações"
+      no_services: "Nenhum serviço recomendado ainda. Sinta-se à vontade para recomendar o seu!"
+      no_announcements: "Nenhum aviso oficial publicado ainda."
+
+  sessions:
+    new:
+      title: "CondoHub"
+      subtitle: "Entre no seu portal do morador"
+      email_label: "Endereço de Email"
+      email_placeholder: "alex@condohub.com"
+      password_label: "Senha"
+      password_placeholder: "••••••••"
+      forgot_password: "Esqueceu a senha?"
+      sign_in: "Entrar"
+      sandbox_title: "🛠️ Sandbox de Desenvolvimento: Teste de Troca de Persona"
+      sandbox_description: "Troque instantaneamente entre funções e condomínios com um clique para testar o isolamento de multi-inquilinos e regras de permissão."
+
+  topics:
+    show:
+      back_to_feed: "← Voltar ao Feed"
+      posted_by: "Postado por"
+      ago: "atrás"
+      upvote: "Curtir"
+      upvoted: "Curtiu"
+      comments_title: "Comentários"
+      add_comment: "Adicionar comentário"
+      comment_placeholder: "Compartilhe seus pensamentos sobre isso..."
+      post_comment: "Comentar"
+      unknown_user: "Morador Desconhecido"
+      no_comments: "Nenhum comentário ainda. Inicie a discussão!"
+
+  passwords:
+    new:
+      title: "Esqueceu sua senha?"
+      email_placeholder: "Digite seu endereço de email"
+      submit: "Enviar instruções de redefinição"
+    edit:
+      title: "Atualizar sua senha"
+      password_placeholder: "Digite a nova senha"
+      password_confirmation_placeholder: "Repita a nova senha"
+      submit: "Salvar"
+
+  errors:
+    not_found:
+      message: "Desculpe, não encontramos a página que você está procurando."
+      back: "Voltar ao Início"
+    internal_server_error:
+      message: "Algo deu errado. Estamos trabalhando para corrigir."
+      back: "Voltar ao Início"
+    unprocessable_entity:
+      message: "Não foi possível processar sua solicitação. Verifique os dados e tente novamente."
+      back: "Voltar ao Início"
+
+  flash:
+    sessions:
+      rate_limit: "Tente novamente mais tarde."
+      auth_failure: "Tente outro endereço de email ou senha."
+      impersonation_unavailable: "A troca de persona só está disponível em ambiente de desenvolvimento local."
+      impersonation_success: "Personificando %{name} (%{role}) com sucesso."
+    topics:
+      create_success: "Publicação criada com sucesso."
+    comments:
+      create_success: "Comentário publicado com sucesso."
+    upvotes:
+      removed: "Curtida removida."
+      success: "Tópico curtido!"
+    service_listings:
+      create_success: "Recomendação de serviço adicionada!"
+      vouch_success: "Recomendação para %{title} registrada!"
+    passwords:
+      rate_limit: "Tente novamente mais tarde."
+      create_success: "Instruções de redefinição de senha enviadas (se o usuário com esse email existir)."
+      update_success: "Senha redefinida com sucesso."
+      update_failure: "As senhas não conferem."
+      token_invalid: "O link de redefinição de senha é inválido ou expirou."
+
+  passwords_mailer:
+    reset:
+      subject: "Redefina sua senha"
+      instructions: "Você pode redefinir sua senha na"
+      link_text: "página de redefinição de senha"
+      expiry: "Este link expirará em %{time}."
+
+  pwa:
+    manifest:
+      description: "Aplicativo web para moradores de condomínios compartilharem atualizações, discutirem tópicos da comunidade e recomendarem serviços locais."
+
+  roles:
+    resident: "Morador"
+    admin: "Administrador"
+
+  topic_types:
+    discussion: "Discussão"
+    announcement: "Aviso"
+
+  locales:
+    en: "English"
+    pt-BR: "Português (Brasil)"
+    es: "Español"
+    ko: "한국어"
+
+  activerecord:
+    errors:
+      models:
+        topic:
+          attributes:
+            topic_type:
+              admins_only: "Avisos só podem ser criados pela administração."

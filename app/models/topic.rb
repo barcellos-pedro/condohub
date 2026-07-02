@@ -24,7 +24,7 @@ class Topic < ApplicationRecord
 
   def announcements_only_by_admins
     if user.nil? || !user.admin?
-      errors.add(:topic_type, "Announcements can only be created by management (admins).")
+      errors.add(:topic_type, :admins_only)
     end
   end
 end

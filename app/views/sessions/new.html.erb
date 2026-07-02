@@ -1,30 +1,30 @@
 <div class="login-card">
-  <h1 class="login-title">CondoHub</h1>
-  <p class="login-subtitle">Sign in to your resident portal</p>
+  <h1 class="login-title"><%= t(".title") %></h1>
+  <p class="login-subtitle"><%= t(".subtitle") %></p>
 
   <%= form_with url: session_path, local: true do |form| %>
     <div class="form-group">
-      <%= form.label :email_address, "Email Address", class: "form-label" %>
-      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "alex@condohub.com", class: "form-input", value: params[:email_address] %>
+      <%= form.label :email_address, t(".email_label"), class: "form-label" %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: t(".email_placeholder"), class: "form-input", value: params[:email_address] %>
     </div>
 
     <div class="form-group">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-        <%= form.label :password, "Password", class: "form-label", style: "margin-bottom: 0;" %>
-        <%= link_to "Forgot password?", new_password_path, style: "font-size: 0.75rem;" %>
+        <%= form.label :password, t(".password_label"), class: "form-label", style: "margin-bottom: 0;" %>
+        <%= link_to t(".forgot_password"), new_password_path, style: "font-size: 0.75rem;" %>
       </div>
-      <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "••••••••", maxlength: 72, class: "form-input" %>
+      <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: t(".password_placeholder"), maxlength: 72, class: "form-input" %>
     </div>
 
-    <%= form.submit "Sign In", class: "btn btn-primary", style: "width: 100%; margin-top: 0.5rem; padding: 0.8rem;" %>
+    <%= form.submit t(".sign_in"), class: "btn btn-primary", style: "width: 100%; margin-top: 0.5rem; padding: 0.8rem;" %>
   <% end %>
 </div>
 
 <% if @show_impersonation %>
   <div class="impersonation-section">
-    <h2 class="impersonation-title">🛠️ Developer Sandbox: Testing Persona Switcher</h2>
+    <h2 class="impersonation-title"><%= t(".sandbox_title") %></h2>
     <p style="color: var(--text-secondary); text-align: center; font-size: 0.85rem; margin-bottom: 1.5rem;">
-      Instantly switch roles and condominiums with one click to test multi-tenancy isolation and permission rules.
+      <%= t(".sandbox_description") %>
     </p>
 
     <div class="condo-switcher-grid">
@@ -35,7 +35,7 @@
             <% condo.users.order(:role, :first_name).each do |user| %>
               <%= button_to impersonate_session_path(user_id: user.id), method: :post, class: "persona-btn" do %>
                 <span><strong><%= user.full_name %></strong></span>
-                <span class="badge badge-<%= user.role %>"><%= user.role %></span>
+                <span class="badge badge-<%= user.role %>"><%= t("roles.#{user.role}") %></span>
               <% end %>
             <% end %>
           </div>

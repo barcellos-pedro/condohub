@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to topic_path(@topic), notice: 'Comment posted successfully.'
+      redirect_to topic_path(@topic), notice: t("flash.comments.create_success")
     else
       redirect_to topic_path(@topic), alert: @comment.errors.full_messages.to_sentence
     end

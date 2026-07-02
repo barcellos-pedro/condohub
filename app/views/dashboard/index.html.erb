@@ -4,26 +4,26 @@
     <!-- Sidebar -->
     <aside class="sidebar-card">
       <h2 class="condo-card-title"><%= current_condominium.name %></h2>
-      <p class="condo-card-address">📍 <%= current_condominium.address.presence || "No address specified" %></p>
+      <p class="condo-card-address">📍 <%= current_condominium.address.presence || t(".no_address") %></p>
       
       <nav class="tab-nav">
         <%= link_to root_path(tab: 'topics'), class: "tab-link #{@tab == 'topics' ? 'active' : ''}" do %>
-          💬 Discussions
+          <%= t(".discussions_tab") %>
         <% end %>
         
         <%= link_to root_path(tab: 'announcements'), class: "tab-link #{@tab == 'announcements' ? 'active' : ''}" do %>
-          📢 Announcements
+          <%= t(".announcements_tab") %>
         <% end %>
         
         <%= link_to root_path(tab: 'services'), class: "tab-link #{@tab == 'services' ? 'active' : ''}" do %>
-          🛠️ Local Services
+          <%= t(".services_tab") %>
         <% end %>
       </nav>
       
       <% if Rails.env.development? %>
         <div style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-          <span style="display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700;">Sandbox Mode</span>
-          <%= link_to "← Switch Persona", new_session_path, class: "btn btn-secondary", style: "width: 100%; font-size: 0.8rem; padding: 0.5rem;" %>
+          <span style="display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700;"><%= t(".sandbox_mode") %></span>
+          <%= link_to t(".switch_persona"), new_session_path, class: "btn btn-secondary", style: "width: 100%; font-size: 0.8rem; padding: 0.5rem;" %>
         </div>
       <% end %>
     </aside>
@@ -34,25 +34,25 @@
       <% if @tab == 'topics' %>
         <!-- TAB: DISCUSSIONS -->
         <div class="feed-header">
-          <h1 class="feed-title">💬 Resident Discussions</h1>
+          <h1 class="feed-title"><%= t(".resident_discussions") %></h1>
         </div>
 
         <!-- Create new topic form -->
         <div class="creator-card">
-          <h3 class="creator-title">Share something with the neighborhood</h3>
+          <h3 class="creator-title"><%= t(".share_something") %></h3>
           <%= form_with model: @new_topic, url: topics_path, local: true do |form| %>
             <%= form.hidden_field :topic_type, value: 'discussion' %>
             
             <div class="form-group">
-              <%= form.text_field :title, required: true, placeholder: "Title of your post...", class: "form-input" %>
+              <%= form.text_field :title, required: true, placeholder: t(".title_placeholder"), class: "form-input" %>
             </div>
             
             <div class="form-group">
-              <%= form.text_area :content, required: true, rows: 3, placeholder: "What's on your mind? Type it here...", class: "form-input" %>
+              <%= form.text_area :content, required: true, rows: 3, placeholder: t(".content_placeholder"), class: "form-input" %>
             </div>
             
             <div style="display: flex; justify-content: flex-end;">
-              <%= form.submit "Post Discussion", class: "btn btn-primary" %>
+              <%= form.submit t(".post_discussion"), class: "btn btn-primary" %>
             </div>
           <% end %>
         </div>
@@ -70,16 +70,16 @@
               </div>
               <div class="post-main">
                 <div class="post-meta">
-                  Posted by <span class="post-author"><%= topic.user.full_name %></span>
-                  <span class="badge badge-<%= topic.user.role %>"><%= topic.user.role %></span>
+                  <%= t(".posted_by") %> <span class="post-author"><%= topic.user.full_name %></span>
+                  <span class="badge badge-<%= topic.user.role %>"><%= t("roles.#{topic.user.role}") %></span>
                   <span>•</span>
-                  <span><%= time_ago_in_words(topic.created_at) %> ago</span>
+                  <span><%= time_ago_in_words(topic.created_at) %> <%= t(".ago") %></span>
                 </div>
                 <h2 class="post-title"><%= link_to topic.title, topic_path(topic) %></h2>
                 <p class="post-body-snippet"><%= truncate(topic.content, length: 180) %></p>
                 <div class="post-footer">
                   <%= link_to topic_path(topic), class: "post-footer-link" do %>
-                    💬 <%= topic.comments.count %> comments
+                    💬 <%= topic.comments.count %> <%= t(".comments") %>
                   <% end %>
                 </div>
               </div>
@@ -87,40 +87,40 @@
           <% end %>
         <% else %>
           <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-            No discussions yet. Be the first to start a conversation!
+            <%= t(".no_discussions") %>
           </div>
         <% end %>
 
       <% elsif @tab == 'announcements' %>
         <!-- TAB: ANNOUNCEMENTS -->
         <div class="feed-header">
-          <h1 class="feed-title">📢 Management Announcements</h1>
-          <span class="badge badge-announcement" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">Official Only</span>
+          <h1 class="feed-title"><%= t(".management_announcements") %></h1>
+          <span class="badge badge-announcement" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;"><%= t(".official_only") %></span>
         </div>
 
         <!-- Create new announcement (Admins only) -->
         <% if current_user.admin? %>
           <div class="creator-card" style="border-left: 4px solid var(--warning);">
-            <h3 class="creator-title" style="color: var(--warning);">📢 Publish New Official Announcement</h3>
+            <h3 class="creator-title" style="color: var(--warning);"><%= t(".publish_heading") %></h3>
             <%= form_with model: @new_topic, url: topics_path, local: true do |form| %>
               <%= form.hidden_field :topic_type, value: 'announcement' %>
               
               <div class="form-group">
-                <%= form.text_field :title, required: true, placeholder: "Announcement Heading...", class: "form-input" %>
+                <%= form.text_field :title, required: true, placeholder: t(".announcement_title_placeholder"), class: "form-input" %>
               </div>
               
               <div class="form-group">
-                <%= form.text_area :content, required: true, rows: 4, placeholder: "Write the details of the official announcement...", class: "form-input" %>
+                <%= form.text_area :content, required: true, rows: 4, placeholder: t(".announcement_content_placeholder"), class: "form-input" %>
               </div>
               
               <div style="display: flex; justify-content: flex-end;">
-                <%= form.submit "Publish Announcement", class: "btn btn-primary", style: "background: var(--warning); color: black;" %>
+                <%= form.submit t(".publish_announcement"), class: "btn btn-primary", style: "background: var(--warning); color: black;" %>
               </div>
             <% end %>
           </div>
         <% else %>
           <div class="creator-card" style="background: rgba(245, 158, 11, 0.03); border: 1px dashed rgba(245, 158, 11, 0.2); text-align: center; color: var(--warning); font-size: 0.9rem;">
-            🔒 Official Announcements are read-only for residents. Only building managers (Staff) can post here.
+            <%= t(".announcements_readonly") %>
           </div>
         <% end %>
 
@@ -137,16 +137,16 @@
               </div>
               <div class="post-main">
                 <div class="post-meta">
-                  Published by <span class="post-author"><%= announcement.user.full_name %></span>
-                  <span class="badge badge-admin">Staff</span>
+                  <%= t(".published_by") %> <span class="post-author"><%= announcement.user.full_name %></span>
+                  <span class="badge badge-admin"><%= t("roles.admin") %></span>
                   <span>•</span>
-                  <span><%= time_ago_in_words(announcement.created_at) %> ago</span>
+                  <span><%= time_ago_in_words(announcement.created_at) %> <%= t(".ago") %></span>
                 </div>
                 <h2 class="post-title"><%= link_to announcement.title, topic_path(announcement) %></h2>
                 <p class="post-body-snippet" style="color: var(--text-primary);"><%= truncate(announcement.content, length: 250) %></p>
                 <div class="post-footer">
                   <%= link_to topic_path(announcement), class: "post-footer-link" do %>
-                    💬 <%= announcement.comments.count %> comments
+                    💬 <%= announcement.comments.count %> <%= t(".comments") %>
                   <% end %>
                 </div>
               </div>
@@ -154,45 +154,45 @@
           <% end %>
         <% else %>
           <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-            No official announcements posted yet.
+            <%= t(".no_announcements") %>
           </div>
         <% end %>
 
       <% elsif @tab == 'services' %>
         <!-- TAB: LOCAL SERVICES -->
         <div class="feed-header">
-          <h1 class="feed-title">🛠️ Trusted Local Services</h1>
+          <h1 class="feed-title"><%= t(".trusted_services") %></h1>
         </div>
 
         <!-- Recommend new service form -->
         <div class="creator-card">
-          <h3 class="creator-title">Recommend a trusted service provider</h3>
+          <h3 class="creator-title"><%= t(".recommend_service") %></h3>
           <%= form_with model: @new_service, url: service_listings_path, local: true do |form| %>
             
             <div class="condo-switcher-grid" style="gap: 1rem; margin-bottom: 1rem;">
               <div class="form-group" style="margin-bottom: 0;">
-                <%= form.label :title, "Provider/Business Name", class: "form-label" %>
-                <%= form.text_field :title, required: true, placeholder: "E.g., Joao's Plumbing Services", class: "form-input" %>
+                <%= form.label :title, t(".provider_name_label"), class: "form-label" %>
+                <%= form.text_field :title, required: true, placeholder: t(".provider_name_placeholder"), class: "form-input" %>
               </div>
               
               <div class="form-group" style="margin-bottom: 0;">
-                <%= form.label :category, "Category", class: "form-label" %>
-                <%= form.text_field :category, required: true, placeholder: "E.g., Plumbing, Electrician, Cleaning", class: "form-input" %>
+                <%= form.label :category, t(".category_label"), class: "form-label" %>
+                <%= form.text_field :category, required: true, placeholder: t(".category_placeholder"), class: "form-input" %>
               </div>
             </div>
 
             <div class="form-group">
-              <%= form.label :contact_info, "Contact Information (Phone or Email)", class: "form-label" %>
-              <%= form.text_field :contact_info, required: true, placeholder: "+55 (11) 99999-9999 or joao@gmail.com", class: "form-input" %>
+              <%= form.label :contact_info, t(".contact_info_label"), class: "form-label" %>
+              <%= form.text_field :contact_info, required: true, placeholder: t(".contact_info_placeholder"), class: "form-input" %>
             </div>
             
             <div class="form-group">
-              <%= form.label :description, "Why do you recommend them?", class: "form-label" %>
-              <%= form.text_area :description, required: true, rows: 2, placeholder: "Describe their work quality, price, availability...", class: "form-input" %>
+              <%= form.label :description, t(".reason_label"), class: "form-label" %>
+              <%= form.text_area :description, required: true, rows: 2, placeholder: t(".reason_placeholder"), class: "form-input" %>
             </div>
             
             <div style="display: flex; justify-content: flex-end;">
-              <%= form.submit "Submit Recommendation", class: "btn btn-primary" %>
+              <%= form.submit t(".submit_recommendation"), class: "btn btn-primary" %>
             </div>
           <% end %>
         </div>
@@ -206,23 +206,23 @@
                 <h2 class="service-title"><%= service.title %></h2>
                 <p class="service-desc"><%= service.description %></p>
                 <div class="service-contact">
-                  <span>📞 <strong>Contact:</strong> <%= service.contact_info %></span>
+                  <span>📞 <strong><%= t(".contact_label") %></strong> <%= service.contact_info %></span>
                   <span>•</span>
-                  <span>Recommended by <strong><%= service.user.full_name %></strong></span>
+                  <span><%= t(".recommended_by") %> <strong><%= service.user.full_name %></strong></span>
                 </div>
               </div>
               
               <div class="service-vouch">
                 <%= button_to vouch_service_listing_path(service), method: :post, class: "btn btn-vouch" do %>
-                  👍 Vouch
+                  <%= t(".vouch") %>
                 <% end %>
-                <span style="font-size: 0.8rem; font-weight: 700; color: var(--success);"><%= service.upvotes_count %> vouches</span>
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--success);"><%= service.upvotes_count %> <%= t(".vouches") %></span>
               </div>
             </div>
           <% end %>
         <% else %>
           <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-            No recommended services listed yet. Feel free to list yours!
+            <%= t(".no_services") %>
           </div>
         <% end %>
 

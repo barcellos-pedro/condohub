@@ -9,7 +9,7 @@ class TopicsController < ApplicationController
     @topic.user = current_user
 
     if @topic.save
-      redirect_to root_path(tab: @topic.topic_type == "announcement" ? "announcements" : "topics"), notice: "Post created successfully."
+      redirect_to root_path(tab: @topic.topic_type == "announcement" ? "announcements" : "topics"), notice: t("flash.topics.create_success")
     else
       redirect_to root_path(tab: @topic.topic_type == "announcement" ? "announcements" : "topics"), alert: @topic.errors.full_messages.to_sentence
     end

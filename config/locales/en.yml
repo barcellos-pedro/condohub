@@ -1,31 +1,154 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  layouts:
+    application:
+      title: "CondoHub — The Resident Portal"
+      app_name: "CondoHub"
+      log_out: "Log Out"
+
+  dashboard:
+    index:
+      no_address: "No address specified"
+      discussions_tab: "💬 Discussions"
+      announcements_tab: "📢 Announcements"
+      services_tab: "🛠️ Local Services"
+      sandbox_mode: "Sandbox Mode"
+      switch_persona: "← Switch Persona"
+      resident_discussions: "💬 Resident Discussions"
+      share_something: "Share something with the neighborhood"
+      title_placeholder: "Title of your post..."
+      content_placeholder: "What's on your mind? Type it here..."
+      post_discussion: "Post Discussion"
+      posted_by: "Posted by"
+      ago: "ago"
+      comments: "comments"
+      no_discussions: "No discussions yet. Be the first to start a conversation!"
+      management_announcements: "📢 Management Announcements"
+      official_only: "Official Only"
+      publish_heading: "📢 Publish New Official Announcement"
+      announcement_title_placeholder: "Announcement Heading..."
+      announcement_content_placeholder: "Write the details of the official announcement..."
+      publish_announcement: "Publish Announcement"
+      announcements_readonly: "🔒 Official Announcements are read-only for residents. Only building managers (Staff) can post here."
+      published_by: "Published by"
+      trusted_services: "🛠️ Trusted Local Services"
+      recommend_service: "Recommend a trusted service provider"
+      provider_name_label: "Provider/Business Name"
+      provider_name_placeholder: "E.g., Joao's Plumbing Services"
+      category_label: "Category"
+      category_placeholder: "E.g., Plumbing, Electrician, Cleaning"
+      contact_info_label: "Contact Information (Phone or Email)"
+      contact_info_placeholder: "+55 (11) 99999-9999 or joao@gmail.com"
+      reason_label: "Why do you recommend them?"
+      reason_placeholder: "Describe their work quality, price, availability..."
+      submit_recommendation: "Submit Recommendation"
+      contact_label: "Contact:"
+      recommended_by: "Recommended by"
+      vouch: "👍 Vouch"
+      vouches: "vouches"
+      no_services: "No recommended services listed yet. Feel free to list yours!"
+      no_announcements: "No official announcements posted yet."
+
+  sessions:
+    new:
+      title: "CondoHub"
+      subtitle: "Sign in to your resident portal"
+      email_label: "Email Address"
+      email_placeholder: "alex@condohub.com"
+      password_label: "Password"
+      password_placeholder: "••••••••"
+      forgot_password: "Forgot password?"
+      sign_in: "Sign In"
+      sandbox_title: "🛠️ Developer Sandbox: Testing Persona Switcher"
+      sandbox_description: "Instantly switch roles and condominiums with one click to test multi-tenancy isolation and permission rules."
+
+  topics:
+    show:
+      back_to_feed: "← Back to Feed"
+      posted_by: "Posted by"
+      ago: "ago"
+      upvote: "Upvote"
+      upvoted: "Upvoted"
+      comments_title: "Comments"
+      add_comment: "Add a comment"
+      comment_placeholder: "Share your thoughts on this..."
+      post_comment: "Post Comment"
+      unknown_user: "Unknown Resident"
+      no_comments: "No comments yet. Start the discussion!"
+
+  passwords:
+    new:
+      title: "Forgot your password?"
+      email_placeholder: "Enter your email address"
+      submit: "Email reset instructions"
+    edit:
+      title: "Update your password"
+      password_placeholder: "Enter new password"
+      password_confirmation_placeholder: "Repeat new password"
+      submit: "Save"
+
+  errors:
+    not_found:
+      message: "Sorry, we couldn't find the page you're looking for."
+      back: "Back to Home"
+    internal_server_error:
+      message: "Something went wrong on our end. We're working to fix it."
+      back: "Back to Home"
+    unprocessable_entity:
+      message: "Your request couldn't be processed. Please check your input and try again."
+      back: "Back to Home"
+
+  flash:
+    sessions:
+      rate_limit: "Try again later."
+      auth_failure: "Try another email address or password."
+      impersonation_unavailable: "Impersonation is only available in local development."
+      impersonation_success: "Successfully impersonating %{name} (%{role})"
+    topics:
+      create_success: "Post created successfully."
+    comments:
+      create_success: "Comment posted successfully."
+    upvotes:
+      removed: "Upvote removed."
+      success: "Topic upvoted!"
+    service_listings:
+      create_success: "Service recommendation added!"
+      vouch_success: "Vouched for %{title}!"
+    passwords:
+      rate_limit: "Try again later."
+      create_success: "Password reset instructions sent (if user with that email address exists)."
+      update_success: "Password has been reset."
+      update_failure: "Passwords did not match."
+      token_invalid: "Password reset link is invalid or has expired."
+
+  passwords_mailer:
+    reset:
+      subject: "Reset your password"
+      instructions: "You can reset your password on"
+      link_text: "this password reset page"
+      expiry: "This link will expire in %{time}."
+
+  pwa:
+    manifest:
+      description: "Web app for condominium residents to share updates, discuss community topics, and recommend local services."
+
+  roles:
+    resident: "Resident"
+    admin: "Staff"
+
+  topic_types:
+    discussion: "Discussion"
+    announcement: "Announcement"
+
+  locales:
+    en: "English"
+    pt-BR: "Português (Brasil)"
+    es: "Español"
+    ko: "한국어"
+
+  activerecord:
+    errors:
+      models:
+        topic:
+          attributes:
+            topic_type:
+              admins_only: "Announcements can only be created by management (admins)."

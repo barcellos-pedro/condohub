@@ -1,5 +1,5 @@
 <div class="error-card">
   <div class="error-code">404</div>
-  <p class="error-message">Sorry, we couldn't find the page you're looking for.</p>
-  <%= link_to "Back to Home", root_path, class: "btn btn-primary" %>
+  <p class="error-message"><%= raw t(".message") %></p>
+  <%= link_to t(".back"), root_path, class: "btn btn-primary" %>
 </div>

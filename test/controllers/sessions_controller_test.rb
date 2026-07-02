@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to new_session_path
-    assert_equal "Impersonation is only available in local development.", flash[:alert]
+    assert_equal I18n.t("flash.sessions.impersonation_unavailable"), flash[:alert]
   end
 
   test "create with valid credentials" do

@@ -236,6 +236,43 @@ a:hover {
   padding: 0 1.5rem;
 }
 
+/* Locale switcher */
+.locale-switcher {
+  display: flex;
+  align-items: center;
+}
+
+.locale-select {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 1.75rem 0.35rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 10px 6px;
+}
+
+.locale-select:hover {
+  border-color: var(--primary-accent);
+  background-color: rgba(56, 189, 248, 0.05);
+}
+
+.locale-select:focus {
+  outline: none;
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
+}
+
 /* Switcher / Login styling */
 .login-card {
   max-width: 480px;

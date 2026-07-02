@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "CondoHub — The Resident Portal" %></title>
+    <title><%= content_for(:title) || t(".title") %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="CondoHub">
+    <meta name="application-name" content="<%= t(".app_name") %>">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -25,14 +25,29 @@
     <% if authenticated? %>
       <header class="app-header">
         <a href="<%= root_path %>" class="logo">
-          CondoHub <span class="logo-sub">MVP</span>
+          <%= t(".app_name") %> <span class="logo-sub">MVP</span>
         </a>
+
+        <div class="locale-switcher" data-controller="locale-switcher">
+          <%= select_tag nil,
+                options_for_select(
+                  {
+                    t("locales.en") => "en",
+                    t("locales.pt-BR") => "pt-BR",
+                    t("locales.es") => "es",
+                    t("locales.ko") => "ko"
+                  },
+                  I18n.locale.to_s
+                ),
+                data: { locale_switcher_target: "select", action: "locale-switcher#change" },
+                class: "locale-select" %>
+        </div>
         
         <div class="user-nav-card">
           <div class="user-nav-info">
             <div class="user-nav-name"><%= current_user.full_name %></div>
             <div class="user-nav-meta">
-              <span class="badge badge-<%= current_user.role %>"><%= current_user.role %></span>
+              <span class="badge badge-<%= current_user.role %>"><%= t("roles.#{current_user.role}") %></span>
               <span>•</span>
               <strong style="color: var(--primary-accent);"><%= current_condominium.name %></strong>
             </div>
@@ -42,7 +57,7 @@
             <span data-theme-target="icon">☀️</span>
           </button>
 
-          <%= button_to "Log Out", session_path, method: :delete, class: "btn btn-danger", style: "padding: 0.4rem 0.8rem; font-size: 0.8rem;" %>
+          <%= button_to t(".log_out"), session_path, method: :delete, class: "btn btn-danger", style: "padding: 0.4rem 0.8rem; font-size: 0.8rem;" %>
         </div>
       </header>
     <% end %>

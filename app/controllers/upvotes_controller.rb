@@ -5,10 +5,10 @@ class UpvotesController < ApplicationController
 
     if upvote
       upvote.destroy
-      message = 'Upvote removed.'
+      message = t("flash.upvotes.removed")
     else
       @topic.upvotes.create(user: current_user)
-      message = 'Topic upvoted!'
+      message = t("flash.upvotes.success")
     end
 
     redirect_back fallback_location: root_path, notice: message
