@@ -1,5 +1,5 @@
-<div>
-  <h1>422 Unprocessable Entity</h1>
-  <p>Your request couldn't be processed. Please check your input and try again.</p>
-  <%= link_to "Back to Home", root_path %>
+<div class="error-card">
+  <div class="error-code">422</div>
+  <p class="error-message">Your request couldn't be processed. Please check your input and try again.</p>
+  <%= link_to "Back to Home", root_path, class: "btn btn-primary" %>
 </div>
