@@ -81,7 +81,7 @@ ENV DATABASE_URL="sqlite3:///data/production.sqlite3"
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Start server via Thruster by default, this can be overwritten at runtime
+# Start the server by default, this can be overwritten at runtime
 EXPOSE 8080
 VOLUME /data
-CMD ["./bin/thrust", "./bin/rails", "server"]
+CMD ["./bin/rails", "server"]

@@ -8,12 +8,10 @@ console_command = '/rails/bin/rails console'
 
 [env]
   DATABASE_URL = 'sqlite3:///data/production.sqlite3'
-  PORT = '3000'          # Tells Puma to run internally on 3000
-  THRUSTER_PORT = '8080' # Tells Thruster to listen on 8080 (Non-root safe)
+  PORT = '8080'
 
 [processes]
-  # This explicitly forces Fly to run Thruster alongside your Rails server
-  app = "./bin/thrust ./bin/rails server"
+  app = "./bin/rails server"
 
 [[mounts]]
   source = 'data'
@@ -23,7 +21,7 @@ console_command = '/rails/bin/rails console'
   auto_extend_size_limit = '10GB'
 
 [http_service]
-  internal_port = 8080   # Fly looks for traffic on Thruster's 8080 port
+  internal_port = 8080
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
@@ -33,7 +31,7 @@ console_command = '/rails/bin/rails console'
   [[http_service.checks]]
     interval = '10s'
     timeout = '2s'
-    grace_period = '15s'  # Slightly bumped to give Rails initialization breathing room
+    grace_period = '5s'
     method = 'GET'
     path = '/up'
     protocol = 'http'
