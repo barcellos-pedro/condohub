@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 
     user = User.find(params[:user_id])
     start_new_session_for user
-    redirect_to root_path, notice: t("flash.sessions.impersonation_success", name: user.full_name, role: t("roles.#{user.role}"))
+    redirect_to dashboard_path, notice: t("flash.sessions.impersonation_success", name: user.full_name, role: t("roles.#{user.role}"))
   end
 
   def destroy

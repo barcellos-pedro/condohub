@@ -7,15 +7,15 @@
       <p class="condo-card-address">📍 <%= current_condominium.address.presence || t(".no_address") %></p>
       
       <nav class="tab-nav">
-        <%= link_to root_path(tab: 'topics'), class: "tab-link #{@tab == 'topics' ? 'active' : ''}" do %>
+        <%= link_to dashboard_path(tab: 'topics'), class: "tab-link #{@tab == 'topics' ? 'active' : ''}" do %>
           <%= t(".discussions_tab") %>
         <% end %>
         
-        <%= link_to root_path(tab: 'announcements'), class: "tab-link #{@tab == 'announcements' ? 'active' : ''}" do %>
+        <%= link_to dashboard_path(tab: 'announcements'), class: "tab-link #{@tab == 'announcements' ? 'active' : ''}" do %>
           <%= t(".announcements_tab") %>
         <% end %>
         
-        <%= link_to root_path(tab: 'services'), class: "tab-link #{@tab == 'services' ? 'active' : ''}" do %>
+        <%= link_to dashboard_path(tab: 'services'), class: "tab-link #{@tab == 'services' ? 'active' : ''}" do %>
           <%= t(".services_tab") %>
         <% end %>
       </nav>

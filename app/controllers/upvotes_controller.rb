@@ -11,6 +11,6 @@ class UpvotesController < ApplicationController
       message = t("flash.upvotes.success")
     end
 
-    redirect_back fallback_location: root_path, notice: message
+    redirect_back fallback_location: dashboard_path, notice: message
   end
 end

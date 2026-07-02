@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CondoHub | <%= t("landing.index.tagline") %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= javascript_importmap_tags %>
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --primary-hover: #1557b0;
+            --text-dark: #202124;
+            --text-light: #5f6368;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --border-color: #dadce0;
+            --mockup-bg: #f0f4f8;
+            --mockup-text: #5f6368;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--text-dark); }
+        h2 { font-size: 2.25rem; margin-bottom: 1rem; color: var(--text-dark); }
+        p { font-size: 1.125rem; color: var(--text-light); margin-bottom: 1.5rem; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.875rem 1.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header.landing-header {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+            background-color: var(--bg-light);
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .features {
+            padding: 5rem 0;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+
+        .feature-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-image-container {
+            flex: 1;
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .feature-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: block;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-dark);
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2, .cta-section p {
+            color: var(--white);
+        }
+
+        .cta-section .btn {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .cta-section .btn:hover {
+            background-color: var(--bg-light);
+        }
+
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .locale-switcher-landing select {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.4rem 2rem 0.4rem 0.75rem;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235f6368' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 10px 6px;
+        }
+
+        .locale-switcher-landing select:hover {
+            border-color: var(--primary-color);
+        }
+
+        .app-mockup {
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            font-size: 0.8rem;
+        }
+
+        .mockup-header {
+            background: var(--mockup-bg);
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mockup-body {
+            padding: 0.5rem;
+        }
+
+        .mockup-post {
+            display: flex;
+            gap: 0.6rem;
+            padding: 0.75rem 0.6rem;
+            border-bottom: 1px solid #eee;
+            align-items: flex-start;
+        }
+
+        .mockup-post:last-child {
+            border-bottom: none;
+        }
+
+        .mockup-upvote {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.15rem;
+            flex-shrink: 0;
+            width: 28px;
+            color: var(--mockup-text);
+            font-size: 0.65rem;
+        }
+
+        .mockup-upvote-arrow {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--mockup-text);
+        }
+
+        .mockup-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .mockup-line {
+            height: 0.65rem;
+            background: #e8edf3;
+            border-radius: 4px;
+            margin-bottom: 0.35rem;
+        }
+
+        .mockup-line.w1 { width: 60%; }
+        .mockup-line.w2 { width: 85%; }
+        .mockup-line.w3 { width: 40%; }
+        .mockup-line.w4 { width: 50%; }
+        .mockup-line.w5 { width: 75%; }
+
+        .mockup-badge {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.12);
+            color: #92400e;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .mockup-announcement {
+            border-left: 3px solid #d97706;
+            padding: 0.75rem 0.6rem;
+            margin-bottom: 0.25rem;
+            background: #fffbeb;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .mockup-service {
+            padding: 0.75rem 0.6rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mockup-service:last-child {
+            border-bottom: none;
+        }
+
+        .mockup-service-category {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            color: #4338ca;
+            padding: 0.1rem 0.4rem;
+            border-radius: 10px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .mockup-service-vouch {
+            text-align: right;
+            font-size: 0.65rem;
+            color: #059669;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.25rem; }
+            .feature-row, .feature-row:nth-child(even) {
+                flex-direction: column;
+                gap: 2rem;
+                margin-bottom: 4rem;
+            }
+            .hero { padding: 4rem 0; }
+            .nav-left { gap: 1rem; }
+            .locale-switcher-landing select { font-size: 0.75rem; padding: 0.3rem 1.5rem 0.3rem 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="landing-header">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="<%= root_path %>" class="logo">CondoHub</a>
+                <div class="locale-switcher-landing" data-controller="locale-switcher">
+                    <%= select_tag nil,
+                        options_for_select(
+                            {
+                                t("locales.en") => "en",
+                                t("locales.pt-BR") => "pt-BR",
+                                t("locales.es") => "es",
+                                t("locales.ko") => "ko"
+                            },
+                            I18n.locale.to_s
+                        ),
+                        data: { locale_switcher_target: "select", action: "locale-switcher#change" } %>
+                </div>
+            </div>
+            <%= link_to t("landing.index.get_started"), dashboard_path, class: "btn" %>
+        </div>
+    </header>
+
+    <%= yield %>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CondoHub. <%= t("landing.index.footer") %></p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToCTA() {
+            var ctaSection = document.getElementById('join-cta');
+            if (ctaSection) {
+                ctaSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

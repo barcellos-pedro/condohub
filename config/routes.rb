@@ -2,14 +2,17 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   scope "(:locale)", locale: /en|pt\-BR|es|ko/ do
+    # Landing Page (public)
+    root "landing#index"
+
     # Authentication Routes
     resource :session, only: [ :new, :create, :destroy ]
     resources :passwords, param: :token, only: [ :new, :create, :edit, :update ]
 
     post "session/impersonate", to: "sessions#impersonate", as: :impersonate_session
 
-    # Core Dashboard
-    root "dashboard#index"
+    # Dashboard
+    get "dashboard", to: "dashboard#index"
 
     # Topics, Comments, Upvotes
     resources :topics, only: [ :show, :create ] do

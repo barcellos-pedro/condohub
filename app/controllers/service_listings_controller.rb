@@ -4,16 +4,16 @@ class ServiceListingsController < ApplicationController
     @service.user = current_user
 
     if @service.save
-      redirect_to root_path(tab: 'services'), notice: t("flash.service_listings.create_success")
+      redirect_to dashboard_path(tab: 'services'), notice: t("flash.service_listings.create_success")
     else
-      redirect_to root_path(tab: 'services'), alert: @service.errors.full_messages.to_sentence
+      redirect_to dashboard_path(tab: 'services'), alert: @service.errors.full_messages.to_sentence
     end
   end
 
   def vouch
     @service = current_condominium.service_listings.find(params[:id])
     @service.increment!(:upvotes_count)
-    redirect_to root_path(tab: 'services'), notice: t("flash.service_listings.vouch_success", title: @service.title)
+    redirect_to dashboard_path(tab: 'services'), notice: t("flash.service_listings.vouch_success", title: @service.title)
   end
 
   private

@@ -1,0 +1,145 @@
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1><%= t(".hero_title") %></h1>
+            <p><%= t(".hero_subtitle") %></p>
+            <button class="btn" onclick="scrollToCTA()"><%= t(".join_community") %></button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features container">
+
+        <!-- Feature 1: Discussions -->
+        <div class="feature-row">
+            <div class="feature-content">
+                <h2><%= t(".feature1_title") %></h2>
+                <p><%= t(".feature1_text") %></p>
+                <ul class="feature-list">
+                    <li><%= t(".feature1_list1") %></li>
+                    <li><%= t(".feature1_list2") %></li>
+                    <li><%= t(".feature1_list3") %></li>
+                </ul>
+            </div>
+            <div class="feature-image-container">
+                <div class="app-mockup" aria-label="<%= t(".feature1_img_alt") %>">
+                    <div class="mockup-header">CondoHub</div>
+                    <div class="mockup-body">
+                        <div class="mockup-post">
+                            <div class="mockup-upvote">
+                                <div class="mockup-upvote-arrow">▲</div>
+                                <span>3</span>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="mockup-line w1"></div>
+                                <div class="mockup-line w2"></div>
+                                <div class="mockup-line w3"></div>
+                            </div>
+                        </div>
+                        <div class="mockup-post">
+                            <div class="mockup-upvote">
+                                <div class="mockup-upvote-arrow">▲</div>
+                                <span>5</span>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="mockup-line w1"></div>
+                                <div class="mockup-line w2"></div>
+                                <div class="mockup-line w3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 2: Announcements -->
+        <div class="feature-row">
+            <div class="feature-content">
+                <h2><%= t(".feature2_title") %></h2>
+                <p><%= t(".feature2_text") %></p>
+                <ul class="feature-list">
+                    <li><%= t(".feature2_list1") %></li>
+                    <li><%= t(".feature2_list2") %></li>
+                    <li><%= t(".feature2_list3") %></li>
+                </ul>
+            </div>
+            <div class="feature-image-container">
+                <div class="app-mockup" aria-label="<%= t(".feature2_img_alt") %>">
+                    <div class="mockup-header">CondoHub</div>
+                    <div class="mockup-body">
+                        <div class="mockup-announcement">
+                            <span class="mockup-badge"><%= t(".feature2_badge") %></span>
+                            <div class="mockup-content" style="margin-top: 0.5rem;">
+                                <div class="mockup-line w4"></div>
+                                <div class="mockup-line w2"></div>
+                                <div class="mockup-line w5"></div>
+                                <div class="mockup-line w3"></div>
+                            </div>
+                        </div>
+                        <div class="mockup-post" style="opacity: 0.5;">
+                            <div class="mockup-upvote">
+                                <div class="mockup-upvote-arrow">▲</div>
+                                <span>2</span>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="mockup-line w1"></div>
+                                <div class="mockup-line w2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 3: Services -->
+        <div class="feature-row">
+            <div class="feature-content">
+                <h2><%= t(".feature3_title") %></h2>
+                <p><%= t(".feature3_text") %></p>
+                <ul class="feature-list">
+                    <li><%= t(".feature3_list1") %></li>
+                    <li><%= t(".feature3_list2") %></li>
+                    <li><%= t(".feature3_list3") %></li>
+                </ul>
+            </div>
+            <div class="feature-image-container">
+                <div class="app-mockup" aria-label="<%= t(".feature3_img_alt") %>">
+                    <div class="mockup-header">CondoHub</div>
+                    <div class="mockup-body">
+                        <div class="mockup-service">
+                            <div>
+                                <span class="mockup-service-category"><%= t(".feature3_service_cat1") %></span>
+                                <div style="margin-top: 0.3rem;">
+                                    <div class="mockup-line w1"></div>
+                                    <div class="mockup-line w3"></div>
+                                </div>
+                            </div>
+                            <div class="mockup-service-vouch"><%= t(".feature3_vouches") %></div>
+                        </div>
+                        <div class="mockup-service">
+                            <div>
+                                <span class="mockup-service-category"><%= t(".feature3_service_cat2") %></span>
+                                <div style="margin-top: 0.3rem;">
+                                    <div class="mockup-line w1"></div>
+                                    <div class="mockup-line w3"></div>
+                                </div>
+                            </div>
+                            <div class="mockup-service-vouch">12 <%= t(".feature3_vouches") %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="cta-section" id="join-cta">
+        <div class="container">
+            <h2><%= t(".cta_title") %></h2>
+            <p><%= t(".cta_text") %></p>
+            <button class="btn" onclick="alert('<%= t(".request_access_alert") %>')"><%= t(".request_access") %></button>
+        </div>
+    </section>
+</main>
