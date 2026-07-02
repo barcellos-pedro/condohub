@@ -43,6 +43,9 @@ Rails.application.configure do
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
 
+  # Route exceptions to the errors controller for custom error pages.
+  config.exceptions_app = self.routes
+
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
 
