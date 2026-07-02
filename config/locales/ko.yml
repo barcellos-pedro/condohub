@@ -4,6 +4,7 @@ ko:
       title: "CondoHub — 입주민 포털"
       app_name: "CondoHub"
       log_out: "로그아웃"
+      description: "콘도미니엄 입주민들이 업데이트를 공유하고, 커뮤니티 주제를 논의하며, 지역 서비스를 추천할 수 있는 웹 애플리케이션입니다."
 
   dashboard:
     index:
@@ -52,6 +53,7 @@ ko:
     index:
       logo: "CondoHub"
       tagline: "여러분의 커뮤니티, 연결되다"
+      meta_description: "CondoHub이 여러분의 건물에 생명을 불어넣습니다. 이웃과 소통하고, 관리 업데이트를 확인하며, 신뢰할 수 있는 지역 서비스를 찾아보세요 — 모든 것을 한곳에서."
       get_started: "시작하기"
       hero_title: "더 나은 공동 생활 방식"
       hero_subtitle: "CondoHub이 여러분의 건물에 생명을 불어넣습니다. 이웃과 소통하고, 관리 업데이트를 확인하며, 신뢰할 수 있는 지역 서비스를 찾아보세요—모든 것을 한곳에서."

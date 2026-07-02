@@ -4,6 +4,7 @@ pt-BR:
       title: "CondoHub — O Portal do Morador"
       app_name: "CondoHub"
       log_out: "Sair"
+      description: "Aplicativo web para moradores de condomínios compartilharem atualizações, discutirem tópicos da comunidade e recomendarem serviços locais."
 
   dashboard:
     index:
@@ -52,6 +53,7 @@ pt-BR:
     index:
       logo: "CondoHub"
       tagline: "Sua Comunidade, Conectada"
+      meta_description: "CondoHub traz vida ao seu prédio. Conecte-se com seus vizinhos, fique informado sobre atualizações da administração e descubra serviços locais confiáveis — tudo em um só lugar."
       get_started: "Começar"
       hero_title: "Uma Melhor Maneira de Viver Juntos"
       hero_subtitle: "CondoHub traz vida ao seu prédio. Conecte-se com seus vizinhos, fique informado sobre atualizações da administração e descubra serviços locais confiáveis—tudo em um só lugar."

@@ -4,6 +4,7 @@ en:
       title: "CondoHub — The Resident Portal"
       app_name: "CondoHub"
       log_out: "Log Out"
+      description: "CondoHub is a web app for condominium residents to share updates, discuss community topics, and recommend local services."
 
   dashboard:
     index:
@@ -52,6 +53,7 @@ en:
     index:
       logo: "CondoHub"
       tagline: "Your Community, Connected"
+      meta_description: "CondoHub brings your building to life. Connect with your neighbors, stay informed about management updates, and discover trusted local services — all in one place."
       get_started: "Get Started"
       hero_title: "A Better Way to Live Together"
       hero_subtitle: "CondoHub brings your building to life. Connect with your neighbors, stay informed about management updates, and discover trusted local services—all in one place."
