@@ -36,3 +36,21 @@ This repository is a Ruby on Rails 8.1 application with a small MVC structure an
 - [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb)
 - [app/models/user.rb](app/models/user.rb)
 - [app/controllers/application_controller.rb](app/controllers/application_controller.rb)
+
+## Quick checklist for agents
+
+- **Setup:** Run `bundle install` then `bin/setup --skip-server`.
+- **Run tests:** Use `bin/rails test` or the CI wrapper `bin/ci` locally for full checks.
+- **DB (test):** `env RAILS_ENV=test bin/rails db:seed:replant` to reset test fixtures.
+- **JS/Assets:** The app uses importmap/propshaft — avoid adding bundlers unless requested.
+
+## Authentication notes
+
+- Authentication is centralized in [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb). Align changes with the `Current.session` / `Current.user` pattern and prefer small, targeted edits rather than introducing external auth libraries.
+
+## Suggested next customizations for agents
+
+- Create a focused agent instruction for testing workflows (running `bin/ci`, common flakiness, and db seeding).
+- Add a small skill that documents where frontend components live (`app/javascript/controllers`) and how Stimulus controllers are organized.
+
+If you'd like, I can create those customization files now (test-instructions, frontend-skill). Any preference which to add first?
