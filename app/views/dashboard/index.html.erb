@@ -20,10 +20,12 @@
         <% end %>
       </nav>
       
-      <div style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-        <span style="display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700;">Sandbox Mode</span>
-        <%= link_to "← Switch Persona", new_session_path, class: "btn btn-secondary", style: "width: 100%; font-size: 0.8rem; padding: 0.5rem;" %>
-      </div>
+      <% if Rails.env.development? %>
+        <div style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+          <span style="display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700;">Sandbox Mode</span>
+          <%= link_to "← Switch Persona", new_session_path, class: "btn btn-secondary", style: "width: 100%; font-size: 0.8rem; padding: 0.5rem;" %>
+        </div>
+      <% end %>
     </aside>
 
     <!-- Main Content Area -->
