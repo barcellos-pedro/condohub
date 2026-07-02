@@ -49,6 +49,7 @@ body {
   font-family: var(--font-sans);
   min-height: 100vh;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -802,4 +803,228 @@ a:hover {
   margin-bottom: 2rem;
   font-size: 1rem;
   line-height: 1.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .app-header {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo-sub {
+    font-size: 0.65rem;
+  }
+
+  .user-nav-card {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .user-nav-info {
+    text-align: right;
+    min-width: 0;
+  }
+
+  .user-nav-name {
+    font-size: 0.8rem;
+  }
+
+  .user-nav-meta {
+    font-size: 0.65rem;
+    gap: 0.25rem;
+  }
+
+  .user-nav-meta .badge {
+    font-size: 0.55rem;
+  }
+
+  .locale-select {
+    font-size: 0.7rem;
+    padding: 0.25rem 1.5rem 0.25rem 0.4rem;
+  }
+
+  .login-card {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+
+  .login-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .feed-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .feed-title {
+    font-size: 1.2rem;
+  }
+
+  .post-card {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .upvote-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+
+  .upvote-count {
+    font-size: 0.75rem;
+  }
+
+  .post-title {
+    font-size: 1rem;
+  }
+
+  .post-body-snippet {
+    font-size: 0.85rem;
+  }
+
+  .post-footer {
+    gap: 1rem;
+    font-size: 0.75rem;
+  }
+
+  .service-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .service-title {
+    font-size: 1rem;
+  }
+
+  .service-desc {
+    font-size: 0.85rem;
+  }
+
+  .service-contact {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .service-vouch {
+    align-self: flex-end;
+  }
+
+  .thread-card {
+    padding: 1.25rem;
+  }
+
+  .thread-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .thread-title {
+    font-size: 1.35rem;
+  }
+
+  .thread-content {
+    font-size: 0.9rem;
+  }
+
+  .thread-actions {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .comment-card {
+    padding: 0.75rem 1rem;
+  }
+
+  .sidebar-card {
+    padding: 1rem;
+    position: static;
+  }
+
+  .condo-card-title {
+    font-size: 1.1rem;
+  }
+
+  .impersonation-section {
+    margin: 1.5rem 1rem;
+    padding: 1.25rem;
+  }
+
+  .creator-card {
+    padding: 1rem;
+  }
+
+  .flash-container {
+    padding: 0 1rem;
+  }
+
+  .tab-link {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .user-nav-card {
+    justify-content: center;
+  }
+
+  .user-nav-info {
+    text-align: left;
+  }
+
+  .user-nav-meta {
+    justify-content: flex-start;
+  }
+
+  .login-card {
+    margin: 1.5rem 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .login-title {
+    font-size: 1.25rem;
+  }
+
+  .post-card {
+    flex-direction: column;
+  }
+
+  .upvote-container {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .upvote-count {
+    margin-top: 0;
+  }
+
+  .service-contact {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
 }
