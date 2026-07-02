@@ -2,14 +2,15 @@
 
 ## Purpose
 
-This repository is a Ruby on Rails 8.1 application with a small MVC structure and a custom, session-based authentication flow. Agents should favor Rails-native patterns, keep changes minimal, and follow the existing conventions in the app.
+This repository is a Ruby on Rails 8.1 application with a small MVC structure and a custom, session-based authentication flow. Agents should favor Rails-native patterns, keep changes minimal, and follow existing app conventions.
 
 ## What to know first
 
 - Start with [README.md](README.md) and [database_architecture.md](database_architecture.md) for setup context.
-- The app uses Rails importmap, propshaft, Turbo, and Stimulus; avoid introducing extra JavaScript tooling unless the task explicitly requires it.
-- Authentication is custom and lives in [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb). Keep any auth-related changes consistent with the existing `Current.session` and `Current.user` flow rather than introducing Devise or another library.
-- Routes are intentionally narrow in [config/routes.rb](config/routes.rb); prefer the existing nested resource structure over broad new routes.
+- The app uses Rails importmap, Propshaft, Turbo, and Stimulus; avoid introducing extra JavaScript tooling unless the task explicitly requires it.
+- Authentication is custom and centralized in [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb). Keep changes aligned with the `Current.session` / `Current.user` flow and avoid Devise or other auth libraries.
+- Routes are intentionally narrow in [config/routes.rb](config/routes.rb). Use the existing locale-scoped, nested resource structure instead of broad new routes.
+- Frontend behavior is built with Hotwire: [app/javascript/application.js](app/javascript/application.js) and [config/importmap.rb](config/importmap.rb) load Turbo and Stimulus controllers.
 
 ## Recommended commands
 
@@ -23,9 +24,17 @@ This repository is a Ruby on Rails 8.1 application with a small MVC structure an
 
 - Use the existing domain model names and associations: `Condominium`, `User`, `Topic`, `Comment`, `Upvote`, `ServiceListing`, and `Session`.
 - Follow Rails MVC structure and keep changes scoped to the relevant model, view, controller, or test file.
-- Add or update tests with Minitest and fixtures from [test/test_helper.rb](test/test_helper.rb); prefer covering behavior at the controller/model level when that is the affected layer.
+- Add or update tests with Minitest and fixtures from [test/test_helper.rb](test/test_helper.rb); prefer controller/model tests when behavior changes.
 - Keep auth, session, and routing changes aligned with [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb) and [config/routes.rb](config/routes.rb).
-- Prefer minimal, context-aware edits over broad refactors or new abstractions.
+- Prefer small, focused edits over broad refactors or new abstractions.
+- Respect the app's importmap-based JS stack and avoid adding bundlers, Webpack, Vite, or similar unless explicitly requested.
+
+## CI and test flow
+
+- `bin/ci` runs setup, RuboCop, Bundler Audit, Importmap audit, Brakeman, Rails tests, and test seed replant.
+- `bin/rails test` is the preferred local test command.
+- Test fixtures are loaded globally from [test/test_helper.rb](test/test_helper.rb) with `fixtures :all`.
+- Database seeding for test resets is `env RAILS_ENV=test bin/rails db:seed:replant`.
 
 ## Useful references
 
@@ -33,24 +42,12 @@ This repository is a Ruby on Rails 8.1 application with a small MVC structure an
 - [database_architecture.md](database_architecture.md)
 - [config/ci.rb](config/ci.rb)
 - [config/routes.rb](config/routes.rb)
+- [config/importmap.rb](config/importmap.rb)
 - [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb)
-- [app/models/user.rb](app/models/user.rb)
-- [app/controllers/application_controller.rb](app/controllers/application_controller.rb)
-
-## Quick checklist for agents
-
-- **Setup:** Run `bundle install` then `bin/setup --skip-server`.
-- **Run tests:** Use `bin/rails test` or the CI wrapper `bin/ci` locally for full checks.
-- **DB (test):** `env RAILS_ENV=test bin/rails db:seed:replant` to reset test fixtures.
-- **JS/Assets:** The app uses importmap/propshaft — avoid adding bundlers unless requested.
-
-## Authentication notes
-
-- Authentication is centralized in [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb). Align changes with the `Current.session` / `Current.user` pattern and prefer small, targeted edits rather than introducing external auth libraries.
+- [app/javascript/application.js](app/javascript/application.js)
+- [app/javascript/controllers/index.js](app/javascript/controllers/index.js)
 
 ## Suggested next customizations for agents
 
-- Create a focused agent instruction for testing workflows (running `bin/ci`, common flakiness, and db seeding).
-- Add a small skill that documents where frontend components live (`app/javascript/controllers`) and how Stimulus controllers are organized.
-
-If you'd like, I can create those customization files now (test-instructions, frontend-skill). Any preference which to add first?
+- Add a focused agent instruction for testing workflows and common `bin/ci` maintenance tasks.
+- Add a small frontend skill documenting Stimulus controller locations and importmap conventions.
