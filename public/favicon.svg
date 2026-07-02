@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Background block wrapper -->
+  <rect width="32" height="32" rx="6" fill="#0F172A"/> <!-- Deep slate background -->
+  
+  <!-- Condo Hub Geometric Structure -->
+  <path d="M9 24V14L16 9L23 14V24H19V18H13V24H9Z" fill="#38BDF8"/> <!-- Crisp sky blue icon -->
+  
+  <!-- Central Hub Node (Representing the community connection) -->
+  <circle cx="16" cy="14" r="2" fill="#FFFFFF"/>
+</svg>
