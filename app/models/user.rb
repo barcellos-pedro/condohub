@@ -13,7 +13,7 @@ class User < ApplicationRecord
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   # Enums (SQLite/PostgreSQL compatible string enum)
-  enum :role, { resident: 'resident', admin: 'admin' }, default: 'resident'
+  enum :role, { resident: "resident", admin: "admin" }, default: "resident"
 
   # Validations
   validates :email_address, presence: true, uniqueness: { case_sensitive: false }

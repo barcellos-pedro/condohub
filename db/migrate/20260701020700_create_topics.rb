@@ -14,6 +14,6 @@ class CreateTopics < ActiveRecord::Migration[8.1]
     add_foreign_key :topics, :condominiums
     add_foreign_key :topics, :users
 
-    add_index :topics, [:condominium_id, :created_at]
+    add_index :topics, [ :condominium_id, :created_at ]
   end
 end

@@ -15,6 +15,6 @@ class CreateServiceListings < ActiveRecord::Migration[8.1]
     add_foreign_key :service_listings, :condominiums
     add_foreign_key :service_listings, :users
 
-    add_index :service_listings, [:condominium_id, :category]
+    add_index :service_listings, [ :condominium_id, :category ]
   end
 end

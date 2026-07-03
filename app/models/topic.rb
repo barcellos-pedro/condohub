@@ -6,7 +6,7 @@ class Topic < ApplicationRecord
   has_many :upvotes, dependent: :destroy
 
   # Enums
-  enum :topic_type, { discussion: 'discussion', announcement: 'announcement' }, default: 'discussion'
+  enum :topic_type, { discussion: "discussion", announcement: "announcement" }, default: "discussion"
 
   # Validations
   validates :title, presence: true, length: { maximum: 255 }
