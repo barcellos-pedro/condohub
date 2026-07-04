@@ -36,6 +36,22 @@ This repository is a Ruby on Rails 8.1 application with a small MVC structure an
 - Test fixtures are loaded globally from [test/test_helper.rb](test/test_helper.rb) with `fixtures :all`.
 - Database seeding for test resets is `env RAILS_ENV=test bin/rails db:seed:replant`.
 
+## Commit conventions
+
+Use semantic commit messages with one of these types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`. Follow the format:
+
+```
+<type>: <present-tense summary>
+```
+
+Examples:
+- `feat: add hat wobble`
+- `fix: resolve sign-in redirect loop`
+- `docs: update API endpoint docs`
+- `refactor: extract payment calculation`
+- `test: add coverage for upvote model`
+- `chore: bump brakeman to 7.0`
+
 ## Useful references
 
 - [README.md](README.md)
