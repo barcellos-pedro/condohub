@@ -48,7 +48,8 @@ pt-BR:
       vouches: "recomendações"
       no_services: "Nenhum serviço recomendado ainda. Sinta-se à vontade para recomendar o seu!"
       no_announcements: "Nenhum aviso oficial publicado ainda."
-
+      condo_settings: "⚙️ Config. do Condomínio"
+ 
   landing:
     index:
       logo: "CondoHub"
@@ -183,9 +184,28 @@ pt-BR:
     es: "Español"
     ko: "한국어"
 
+  condominiums:
+    edit:
+      title: "Configurações do Condomínio"
+      subtitle: "Gerencie o perfil e os links da comunidade do seu condomínio."
+      name_label: "Nome do Condomínio"
+      address_label: "Endereço"
+      address_placeholder: "ex.: 100 Skyline Blvd"
+      whatsapp_label: "Link do Grupo do WhatsApp"
+      whatsapp_hint: "Cole o link de convite do seu grupo do WhatsApp (https://chat.whatsapp.com/...)"
+      save: "Salvar Alterações"
+      cancel: "Cancelar"
+    update:
+      success: "Configurações do condomínio atualizadas com sucesso."
+      unauthorized: "Você não tem autorização para gerenciar as configurações do condomínio."
+
   activerecord:
     errors:
       models:
+        condominium:
+          attributes:
+            whatsapp_group_link:
+              invalid: "deve ser um link de convite válido do grupo do WhatsApp"
         topic:
           attributes:
             topic_type:

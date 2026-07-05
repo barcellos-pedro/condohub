@@ -434,7 +434,44 @@ a:hover {
 .condo-card-address {
   font-size: 0.8rem;
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.condo-card-whatsapp {
+  margin-bottom: 0.5rem;
+}
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #25D366;
+  transition: opacity 0.2s;
+}
+
+.whatsapp-link:hover {
+  opacity: 0.8;
+  color: #1ebe5c;
+}
+
+.condo-card-settings {
+  margin-bottom: 1rem;
+}
+
+.settings-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.settings-link:hover {
+  color: var(--primary-accent);
 }
 
 .tab-nav {

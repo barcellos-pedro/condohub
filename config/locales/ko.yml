@@ -48,7 +48,8 @@ ko:
       vouches: "추천"
       no_services: "아직 추천된 서비스가 없습니다. 자유롭게 추천해보세요!"
       no_announcements: "아직 게시된 공식 공지사항이 없습니다."
-
+      condo_settings: "⚙️ 콘도 설정"
+ 
   landing:
     index:
       logo: "CondoHub"
@@ -183,9 +184,28 @@ ko:
     es: "Español"
     ko: "한국어"
 
+  condominiums:
+    edit:
+      title: "콘도 설정"
+      subtitle: "콘도미니엄의 프로필과 커뮤니티 링크를 관리하세요."
+      name_label: "콘도미니엄 이름"
+      address_label: "주소"
+      address_placeholder: "예: 100 Skyline Blvd"
+      whatsapp_label: "WhatsApp 그룹 링크"
+      whatsapp_hint: "WhatsApp 그룹의 초대 링크를 붙여넣으세요 (https://chat.whatsapp.com/...)"
+      save: "변경사항 저장"
+      cancel: "취소"
+    update:
+      success: "콘도미니엄 설정이 성공적으로 업데이트되었습니다."
+      unauthorized: "콘도미니엄 설정을 관리할 권한이 없습니다."
+
   activerecord:
     errors:
       models:
+        condominium:
+          attributes:
+            whatsapp_group_link:
+              invalid: "유효한 WhatsApp 그룹 초대 링크여야 합니다"
         topic:
           attributes:
             topic_type:

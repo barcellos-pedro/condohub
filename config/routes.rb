@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       resource :upvote, only: [ :create ]
     end
 
+    # Condominium Settings (admin only)
+    resource :condominium, only: [ :edit, :update ]
+
     # Service Listings
     resources :service_listings, only: [ :create ] do
       member do

@@ -48,6 +48,7 @@ en:
       vouches: "vouches"
       no_services: "No recommended services listed yet. Feel free to list yours!"
       no_announcements: "No official announcements posted yet."
+      condo_settings: "⚙️ Condo Settings"
 
   landing:
     index:
@@ -183,9 +184,28 @@ en:
     es: "Español"
     ko: "한국어"
 
+  condominiums:
+    edit:
+      title: "Condo Settings"
+      subtitle: "Manage your condominium's profile and community links."
+      name_label: "Condominium Name"
+      address_label: "Address"
+      address_placeholder: "e.g., 100 Skyline Blvd"
+      whatsapp_label: "WhatsApp Group Link"
+      whatsapp_hint: "Paste the invite link from your WhatsApp group (https://chat.whatsapp.com/...)"
+      save: "Save Changes"
+      cancel: "Cancel"
+    update:
+      success: "Condominium settings updated successfully."
+      unauthorized: "You are not authorized to manage condominium settings."
+
   activerecord:
     errors:
       models:
+        condominium:
+          attributes:
+            whatsapp_group_link:
+              invalid: "must be a valid WhatsApp group invite link"
         topic:
           attributes:
             topic_type:

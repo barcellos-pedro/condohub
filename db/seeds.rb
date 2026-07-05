@@ -12,7 +12,8 @@ Condominium.destroy_all
 puts "Creating condominiums..."
 condo_a = Condominium.create!(
   name: "Grand Horizon Towers",
-  address: "100 Skyline Blvd, Suite A"
+  address: "100 Skyline Blvd, Suite A",
+  whatsapp_group_link: "https://chat.whatsapp.com/GC4T8BzRvJv2t7K9pQmXwA"
 )
 
 condo_b = Condominium.create!(
