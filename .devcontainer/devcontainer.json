@@ -1,6 +1,38 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "name": "Ruby on Rails MVP",
+  "image": "mcr.microsoft.com/devcontainers/ruby:3.3",
   "features": {
-    "ghcr.io/rails/devcontainer/features/ruby:2": {}
-  }
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.Ruby",
+        "hridoy.rails-snippets",
+        "visualstudioexptteam.vscodeintellicode",
+        "castwide.solargraph"
+      ],
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash"
+          }
+        }
+      }
+    }
+  },
+  "forwardPorts": [
+    3000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Rails Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bundle install && bin/rails db:prepare",
+  "remoteUser": "vscode"
 }
