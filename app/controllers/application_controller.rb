@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
 
-  before_action :set_locale
+  prepend_before_action :set_locale
 
   helper_method :current_user, :current_condominium
 

@@ -14,4 +14,12 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_no_match(/Sandbox Mode/i, response.body)
     assert_no_match(/Switch Persona/i, response.body)
   end
+
+  test "redirects unauthenticated requests to the matching locale session page" do
+    sign_out
+
+    get dashboard_path(locale: :"pt-BR")
+
+    assert_redirected_to new_session_path(locale: :"pt-BR")
+  end
 end
