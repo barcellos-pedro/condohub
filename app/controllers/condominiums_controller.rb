@@ -17,7 +17,7 @@ class CondominiumsController < ApplicationController
   private
 
   def condominium_params
-    params.require(:condominium).permit(:name, :address, :whatsapp_group_link)
+    params.expect(condominium: [ :name, :address, :whatsapp_group_link ])
   end
 
   def require_admin

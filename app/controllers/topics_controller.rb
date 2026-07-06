@@ -18,6 +18,6 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topic).permit(:title, :content, :topic_type)
+    params.expect(topic: [ :title, :content, :topic_type ])
   end
 end

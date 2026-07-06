@@ -19,6 +19,6 @@ class ServiceListingsController < ApplicationController
   private
 
   def service_params
-    params.require(:service_listing).permit(:title, :description, :contact_info, :category)
+    params.expect(service_listing: [ :title, :description, :contact_info, :category ])
   end
 end
