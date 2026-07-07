@@ -24,7 +24,7 @@ es:
       comments: "comentarios"
       no_discussions: "Aún no hay discusiones. ¡Sé el primero en iniciar una conversación!"
       management_announcements: "📢 Anuncios de la Administración"
-      official_only: "Solo administración."
+      official_only: "Solo administración"
       publish_heading: "📢 Publicar Nuevo Anuncio Oficial"
       announcement_title_placeholder: "Título del Anuncio..."
       announcement_content_placeholder: "Escribe los detalles del anuncio oficial..."
