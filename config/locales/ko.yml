@@ -111,6 +111,11 @@ ko:
       add_comment: "댓글 추가"
       comment_placeholder: "이에 대한 생각을 공유하세요..."
       post_comment: "댓글 게시"
+      edit_comment: "수정"
+      delete_comment: "삭제"
+      delete_comment_confirm: "이 댓글을 삭제하시겠습니까?"
+      save_comment: "저장"
+      cancel_comment_edit: "취소"
       unknown_user: "알 수 없는 입주민"
       no_comments: "아직 댓글이 없습니다. 토론을 시작하세요!"
 
@@ -146,6 +151,9 @@ ko:
       create_success: "게시물이 성공적으로 생성되었습니다."
     comments:
       create_success: "댓글이 성공적으로 게시되었습니다."
+      update_success: "댓글이 성공적으로 수정되었습니다."
+      destroy_success: "댓글이 성공적으로 삭제되었습니다."
+      not_authorized: "본인이 작성한 댓글만 변경할 수 있습니다."
     upvotes:
       removed: "추천이 취소되었습니다."
       success: "토론을 추천했습니다!"

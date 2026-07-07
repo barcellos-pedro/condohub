@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     # Topics, Comments, Upvotes
     resources :topics, only: [ :show, :create ] do
-      resources :comments, only: [ :create ]
+      resources :comments, only: [ :create, :edit, :update, :destroy ]
       resource :upvote, only: [ :create ]
     end
 

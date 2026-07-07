@@ -1,0 +1,29 @@
+<%= turbo_frame_tag dom_id(comment) do %>
+  <div class="comment-card">
+    <div class="comment-header">
+      <div class="comment-meta">
+        <strong><%= comment.user&.full_name || t("topics.show.unknown_user") %></strong>
+        <span class="badge badge-<%= comment.user&.role || 'resident' %>" style="font-size: 0.55rem; padding: 0.1rem 0.3rem;"><%= t("roles.#{comment.user&.role || 'resident'}") %></span>
+        <span style="color: var(--text-muted);">•</span>
+        <span style="color: var(--text-muted);"><%= time_ago_in_words(comment.created_at) %> <%= t("topics.show.ago") %></span>
+      </div>
+
+      <% if comment.user == current_user %>
+        <div class="comment-actions">
+          <%= link_to t("topics.show.edit_comment"),
+                      edit_topic_comment_path(topic_id: topic, id: comment),
+                      class: "btn btn-secondary btn-comment-action" %>
+          <%= button_to t("topics.show.delete_comment"),
+                        topic_comment_path(topic_id: topic, id: comment),
+                        method: :delete,
+                        form: { class: "comment-action-form", data: { turbo_confirm: t("topics.show.delete_comment_confirm") } },
+                        class: "btn btn-danger btn-comment-action" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="comment-body">
+      <%= comment.content %>
+    </div>
+  </div>
+<% end %>

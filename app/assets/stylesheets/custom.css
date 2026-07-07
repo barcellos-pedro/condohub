@@ -765,17 +765,48 @@ a:hover {
   margin-bottom: 0.75rem;
 }
 
+.comment-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
 .comment-meta {
   font-size: 0.75rem;
   color: var(--text-secondary);
-  margin-bottom: 0.4rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+.comment-actions,
+.comment-edit-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.comment-action-form {
+  display: inline-flex;
+}
+
+.btn-comment-action {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.72rem;
+  border-radius: var(--radius-sm);
+}
+
+.comment-edit-form .form-group {
+  margin-bottom: 0.75rem;
 }
 
 .comment-body {
   font-size: 0.9rem;
   color: var(--text-primary);
+  white-space: pre-wrap;
 }
 
 /* Flash Messages */
@@ -987,6 +1018,17 @@ a:hover {
 
   .comment-card {
     padding: 0.75rem 1rem;
+  }
+
+  .comment-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .comment-actions,
+  .comment-edit-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .sidebar-card {

@@ -1,0 +1,25 @@
+<%= turbo_frame_tag dom_id(comment) do %>
+  <div class="comment-card">
+    <%= form_with model: [ topic, comment ],
+                  url: topic_comment_path(topic_id: topic, id: comment),
+                  class: "comment-edit-form" do |form| %>
+      <% if comment.errors.any? %>
+        <div class="form-error">
+          <%= comment.errors.full_messages.to_sentence %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.text_area :content, required: true, rows: 3, class: "form-input" %>
+      </div>
+
+      <div class="comment-edit-actions">
+        <%= link_to t("topics.show.cancel_comment_edit"),
+                    topic_path(topic, anchor: dom_id(comment)),
+                    class: "btn btn-secondary btn-comment-action",
+                    data: { turbo_frame: "_top" } %>
+        <%= form.submit t("topics.show.save_comment"), class: "btn btn-primary btn-comment-action" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

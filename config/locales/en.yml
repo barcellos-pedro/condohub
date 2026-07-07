@@ -111,6 +111,11 @@ en:
       add_comment: "Add a comment"
       comment_placeholder: "Share your thoughts on this..."
       post_comment: "Post Comment"
+      edit_comment: "Edit"
+      delete_comment: "Delete"
+      delete_comment_confirm: "Delete this comment?"
+      save_comment: "Save"
+      cancel_comment_edit: "Cancel"
       unknown_user: "Unknown Resident"
       no_comments: "No comments yet. Start the discussion!"
 
@@ -146,6 +151,9 @@ en:
       create_success: "Post created successfully."
     comments:
       create_success: "Comment posted successfully."
+      update_success: "Comment updated successfully."
+      destroy_success: "Comment deleted successfully."
+      not_authorized: "You can only change your own comments."
     upvotes:
       removed: "Upvote removed."
       success: "Topic upvoted!"

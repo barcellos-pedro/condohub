@@ -111,6 +111,11 @@ es:
       add_comment: "Añadir comentario"
       comment_placeholder: "Comparte tus pensamientos sobre esto..."
       post_comment: "Publicar Comentario"
+      edit_comment: "Editar"
+      delete_comment: "Eliminar"
+      delete_comment_confirm: "¿Eliminar este comentario?"
+      save_comment: "Guardar"
+      cancel_comment_edit: "Cancelar"
       unknown_user: "Residente Desconocido"
       no_comments: "Aún no hay comentarios. ¡Inicia la discusión!"
 
@@ -146,6 +151,9 @@ es:
       create_success: "Publicación creada exitosamente."
     comments:
       create_success: "Comentario publicado exitosamente."
+      update_success: "Comentario actualizado exitosamente."
+      destroy_success: "Comentario eliminado exitosamente."
+      not_authorized: "Solo puedes cambiar tus propios comentarios."
     upvotes:
       removed: "Voto eliminado."
       success: "¡Tema votado!"

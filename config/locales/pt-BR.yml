@@ -111,6 +111,11 @@ pt-BR:
       add_comment: "Adicionar comentário"
       comment_placeholder: "Compartilhe seus pensamentos sobre isso..."
       post_comment: "Comentar"
+      edit_comment: "Editar"
+      delete_comment: "Excluir"
+      delete_comment_confirm: "Excluir este comentário?"
+      save_comment: "Salvar"
+      cancel_comment_edit: "Cancelar"
       unknown_user: "Morador Desconhecido"
       no_comments: "Nenhum comentário ainda. Inicie a discussão!"
 
@@ -146,6 +151,9 @@ pt-BR:
       create_success: "Publicação criada com sucesso."
     comments:
       create_success: "Comentário publicado com sucesso."
+      update_success: "Comentário atualizado com sucesso."
+      destroy_success: "Comentário excluído com sucesso."
+      not_authorized: "Você só pode alterar seus próprios comentários."
     upvotes:
       removed: "Curtida removida."
       success: "Tópico curtido!"
