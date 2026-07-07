@@ -24,7 +24,7 @@ ko:
       comments: "댓글"
       no_discussions: "아직 토론이 없습니다. 대화를 시작해보세요!"
       management_announcements: "📢 관리 공지사항"
-      official_only: "공식 전용"
+      official_only: "관리자만 가능"
       publish_heading: "📢 새 공식 공지 발행"
       announcement_title_placeholder: "공지 제목..."
       announcement_content_placeholder: "공식 공지의 세부 내용을 작성하세요..."

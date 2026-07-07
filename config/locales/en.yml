@@ -24,7 +24,7 @@ en:
       comments: "comments"
       no_discussions: "No discussions yet. Be the first to start a conversation!"
       management_announcements: "📢 Management Announcements"
-      official_only: "Official Only"
+      official_only: "Management Only"
       publish_heading: "📢 Publish New Official Announcement"
       announcement_title_placeholder: "Announcement Heading..."
       announcement_content_placeholder: "Write the details of the official announcement..."
