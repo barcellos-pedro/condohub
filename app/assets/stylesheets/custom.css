@@ -420,8 +420,6 @@ a:hover {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
-  position: sticky;
-  top: 90px;
 }
 
 .condo-card-title {
