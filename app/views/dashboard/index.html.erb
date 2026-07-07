@@ -24,7 +24,7 @@
       <% end %>
 
       <nav class="tab-nav">
-        <%= link_to dashboard_path(tab: 'topics'), class: "tab-link #{@tab == 'topics' ? 'active' : ''}" do %>
+        <%= link_to dashboard_path(tab: 'discussions'), class: "tab-link #{@tab == 'discussions' ? 'active' : ''}" do %>
           <%= t(".discussions_tab") %>
         <% end %>
         
@@ -48,7 +48,7 @@
     <!-- Main Content Area -->
     <main>
       
-      <% if @tab == 'topics' %>
+      <% if @tab == 'discussions' %>
         <!-- TAB: DISCUSSIONS -->
         <div class="feed-header">
           <h1 class="feed-title"><%= t(".resident_discussions") %></h1>
