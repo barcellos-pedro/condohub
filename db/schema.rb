@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_04_185148) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_07_000000) do
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -27,6 +27,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_04_185148) do
     t.string "name", null: false
     t.datetime "updated_at", null: false
     t.string "whatsapp_group_link"
+  end
+
+  create_table "service_listing_upvotes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "service_listing_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["service_listing_id"], name: "index_service_listing_upvotes_on_service_listing_id"
+    t.index ["user_id", "service_listing_id"], name: "idx_on_user_id_service_listing_id_ceab4d13e0", unique: true
+    t.index ["user_id"], name: "index_service_listing_upvotes_on_user_id"
   end
 
   create_table "service_listings", force: :cascade do |t|
@@ -92,6 +102,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_04_185148) do
 
   add_foreign_key "comments", "topics"
   add_foreign_key "comments", "users"
+  add_foreign_key "service_listing_upvotes", "service_listings"
+  add_foreign_key "service_listing_upvotes", "users"
   add_foreign_key "service_listings", "condominiums"
   add_foreign_key "service_listings", "users"
   add_foreign_key "sessions", "users"

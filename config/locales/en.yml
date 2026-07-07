@@ -160,6 +160,7 @@ en:
     service_listings:
       create_success: "Service recommendation added!"
       vouch_success: "Vouched for %{title}!"
+      vouch_removed: "Vouch removed for %{title}."
     passwords:
       rate_limit: "Try again later."
       create_success: "Password reset instructions sent (if user with that email address exists)."

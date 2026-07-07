@@ -160,6 +160,7 @@ es:
     service_listings:
       create_success: "¡Recomendación de servicio añadida!"
       vouch_success: "¡Recomendación para %{title} registrada!"
+      vouch_removed: "Recomendación para %{title} eliminada."
     passwords:
       rate_limit: "Inténtalo de nuevo más tarde."
       create_success: "Instrucciones de restablecimiento enviadas (si el usuario con ese email existe)."

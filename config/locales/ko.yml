@@ -160,6 +160,7 @@ ko:
     service_listings:
       create_success: "서비스 추천이 추가되었습니다!"
       vouch_success: "%{title}에 대한 추천이 등록되었습니다!"
+      vouch_removed: "%{title}에 대한 추천이 취소되었습니다."
     passwords:
       rate_limit: "나중에 다시 시도하세요."
       create_success: "비밀번호 재설정 안내를 보냈습니다 (해당 이메일의 사용자가 있을 경우)."

@@ -694,6 +694,12 @@ a:hover {
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
+.btn-vouch.vouched {
+  background: var(--success);
+  color: white;
+  border-color: var(--success);
+}
+
 /* Creation Panel */
 .creator-card {
   background: var(--bg-secondary);

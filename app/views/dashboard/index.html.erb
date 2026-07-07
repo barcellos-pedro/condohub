@@ -230,7 +230,8 @@
               </div>
               
               <div class="service-vouch">
-                <%= button_to vouch_service_listing_path(service), method: :post, class: "btn btn-vouch" do %>
+                <% vouched = service.service_listing_upvotes.any? { |vouch| vouch.user_id == current_user.id } %>
+                <%= button_to vouch_service_listing_path(id: service.id), method: :post, class: "btn btn-vouch #{vouched ? 'vouched' : ''}" do %>
                   <%= t(".vouch") %>
                 <% end %>
                 <span style="font-size: 0.8rem; font-weight: 700; color: var(--success);"><%= service.upvotes_count %> <%= t(".vouches") %></span>

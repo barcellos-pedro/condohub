@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
       @topics = current_condominium.topics.announcements.includes(:user).order(created_at: :desc)
       @new_topic = current_condominium.topics.new(topic_type: :announcement)
     when "services"
-      @services = current_condominium.service_listings.includes(:user).order(upvotes_count: :desc, created_at: :desc)
+      @services = current_condominium.service_listings.includes(:user, :service_listing_upvotes).order(upvotes_count: :desc, created_at: :desc)
       @new_service = current_condominium.service_listings.new
     else # discussions
       @topics = current_condominium.topics.discussions.includes(:user).order(upvotes_count: :desc, created_at: :desc)
