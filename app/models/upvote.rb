@@ -1,8 +1,6 @@
 class Upvote < ApplicationRecord
-  # Associations
   belongs_to :user
-  belongs_to :topic, counter_cache: true
+  belongs_to :upvotable, polymorphic: true, counter_cache: :upvotes_count
 
-  # Validations
-  validates :user_id, uniqueness: { scope: :topic_id, message: "has already upvoted this topic" }
+  validates :user_id, uniqueness: { scope: [ :upvotable_type, :upvotable_id ], message: "has already upvoted this" }
 end

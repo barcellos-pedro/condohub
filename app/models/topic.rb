@@ -3,7 +3,7 @@ class Topic < ApplicationRecord
   belongs_to :condominium
   belongs_to :user
   has_many :comments, dependent: :destroy
-  has_many :upvotes, dependent: :destroy
+  has_many :upvotes, as: :upvotable, dependent: :destroy
 
   # Enums
   enum :topic_type, { discussion: "discussion", announcement: "announcement" }, default: "discussion"

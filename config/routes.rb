@@ -25,9 +25,7 @@ Rails.application.routes.draw do
 
     # Service Listings
     resources :service_listings, only: [ :create ] do
-      member do
-        post :vouch
-      end
+      resource :upvote, only: [ :create ]
     end
   end
 

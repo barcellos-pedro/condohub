@@ -102,9 +102,9 @@ comment_reply = Comment.create!(
 )
 
 # Create Upvotes for Condo A Topics
-Upvote.create!(user: marcelo, topic: discussion_a)
-Upvote.create!(user: roberto, topic: discussion_a)
-Upvote.create!(user: julia, topic: announcement_a)
+Upvote.create!(user: marcelo, upvotable: discussion_a)
+Upvote.create!(user: roberto, upvotable: discussion_a)
+Upvote.create!(user: julia, upvotable: announcement_a)
 
 # Create Service Listings for Condo A
 puts "Creating Grand Horizon service recommendations..."
@@ -152,7 +152,7 @@ Comment.create!(
   content: "Thanks Carlos! I'll put a brief note about this in the lobby entrance board in case the owner doesn't check CondoHub."
 )
 
-Upvote.create!(user: carlos, topic: announcement_b)
+Upvote.create!(user: carlos, upvotable: announcement_b)
 
 ServiceListing.create!(
   condominium: condo_b,

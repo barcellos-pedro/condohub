@@ -10,21 +10,6 @@ class ServiceListingsController < ApplicationController
     end
   end
 
-  def vouch
-    @service = current_condominium.service_listings.find(params[:id])
-    vouch = @service.service_listing_upvotes.find_by(user: current_user)
-
-    if vouch
-      vouch.destroy
-      message = t("flash.service_listings.vouch_removed", title: @service.title)
-    else
-      @service.service_listing_upvotes.create(user: current_user)
-      message = t("flash.service_listings.vouch_success", title: @service.title)
-    end
-
-    redirect_to dashboard_path(tab: "services"), notice: message
-  end
-
   private
 
   def service_params

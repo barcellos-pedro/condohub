@@ -1,9 +1,2 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  user: one
-  topic: one
-
-two:
-  user: two
-  topic: two
+# Fixtures intentionally minimal to avoid conflicting with toggle tests.
+# Topics and service listings have upvotes_count set in their own fixtures.
