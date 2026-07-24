@@ -26,25 +26,32 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <%= javascript_importmap_tags %>
     <style>
         :root {
-            --primary-color: #1a73e8;
-            --primary-hover: #1557b0;
-            --text-dark: #202124;
-            --text-light: #5f6368;
-            --bg-light: #f8f9fa;
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --text-dark: #0f172a;
+            --text-light: #475569;
+            --bg-light: #f8fafc;
             --white: #ffffff;
-            --border-color: #dadce0;
-            --mockup-bg: #f0f4f8;
-            --mockup-text: #5f6368;
+            --border-color: #e2e8f0;
+            --mockup-bg: #f1f5f9;
+            --mockup-text: #64748b;
+            --radius-lg: 12px;
+            --radius-md: 8px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
@@ -65,20 +72,32 @@
 
         .btn {
             display: inline-block;
-            background-color: var(--primary-color);
+            background: var(--primary-gradient);
             color: var(--white);
             padding: 0.875rem 1.75rem;
-            border-radius: 6px;
+            border-radius: var(--radius-md);
             text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
         }
 
         .btn:hover {
-            background-color: var(--primary-hover);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:focus-visible,
+        .locale-switcher-landing select:focus-visible {
+            outline: 3px solid rgba(79, 70, 229, 0.4);
+            outline-offset: 2px;
         }
 
         .container {
@@ -112,12 +131,23 @@
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero {
-            padding: 6rem 0;
+            padding: 7rem 0;
             text-align: center;
-            background-color: var(--bg-light);
+            background: radial-gradient(circle at top, rgba(99, 102, 241, 0.08) 0%, rgba(255, 255, 255, 0) 70%), var(--bg-light);
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, #0f172a 30%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
@@ -147,15 +177,22 @@
         .feature-image-container {
             flex: 1;
             background: var(--bg-light);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-image-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08);
         }
 
         .feature-image-container img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
             display: block;
         }
@@ -170,6 +207,7 @@
             display: flex;
             align-items: center;
             color: var(--text-dark);
+            font-weight: 500;
         }
 
         .feature-list li::before {
@@ -180,23 +218,82 @@
         }
 
         .cta-section {
-            background-color: var(--primary-color);
+            background: var(--primary-gradient);
             color: var(--white);
             text-align: center;
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
         }
 
         .cta-section h2, .cta-section p {
             color: var(--white);
         }
 
+        .cta-form-container {
+            max-width: 480px;
+            margin: 2rem auto 0 auto;
+            position: relative;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.4rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: border-color 0.2s;
+        }
+
+        .cta-form:focus-within {
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+
+        .cta-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
         .cta-section .btn {
             background-color: var(--white);
             color: var(--primary-color);
+            box-shadow: none;
         }
 
         .cta-section .btn:hover {
             background-color: var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .cta-section .btn:active {
+            transform: translateY(1px);
+        }
+
+        .cta-feedback-message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         footer {
@@ -442,6 +539,7 @@
                             },
                             I18n.locale.to_s
                         ),
+                        aria: { label: t("landing.index.select_language") },
                         data: { locale_switcher_target: "select", action: "locale-switcher#change" } %>
                 </div>
             </div>
@@ -462,6 +560,8 @@
             var ctaSection = document.getElementById('join-cta');
             if (ctaSection) {
                 ctaSection.scrollIntoView({ behavior: 'smooth' });
+                // Prevent browser jump before scrolling completes, focus section cleanly
+                ctaSection.focus({ preventScroll: true });
             }
         }
     </script>
