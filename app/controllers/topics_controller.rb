@@ -9,9 +9,9 @@ class TopicsController < ApplicationController
     @topic.user = current_user
 
     if @topic.save
-      redirect_to dashboard_path(tab: @topic.topic_type == "announcement" ? "announcements" : "topics"), notice: t("flash.topics.create_success")
+      redirect_to dashboard_path(tab: @topic.topic_type == "announcement" ? "announcements" : "discussions"), notice: t("flash.topics.create_success")
     else
-      redirect_to dashboard_path(tab: @topic.topic_type == "announcement" ? "announcements" : "topics"), alert: @topic.errors.full_messages.to_sentence
+      redirect_to dashboard_path(tab: @topic.topic_type == "announcement" ? "announcements" : "discussions"), alert: @topic.errors.full_messages.to_sentence
     end
   end
 
