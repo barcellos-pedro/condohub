@@ -85,6 +85,10 @@ ko:
       cta_text: "건물 관리자에게 CondoHub 도입에 대해 문의하세요."
       request_access: "액세스 요청"
       request_access_alert: "관심을 가져주셔서 감사합니다! 이메일 기능이 준비되면 알려드리겠습니다."
+      select_language: "언어 선택"
+      email_placeholder: "이메일 주소를 입력하세요"
+      email_label: "이메일 주소"
+      request_access_success: "감사합니다! 이메일이 등록되었습니다. 곧 연락드리겠습니다."
       footer: "더 나은 이웃 관계를 만듭니다."
 
   sessions:

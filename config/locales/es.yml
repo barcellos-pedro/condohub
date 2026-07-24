@@ -85,6 +85,10 @@ es:
       cta_text: "Habla con tu administrador sobre traer CondoHub a tu residencia hoy."
       request_access: "Solicitar Acceso"
       request_access_alert: "¡Gracias por tu interés! La función de correo electrónico se implementará próximamente."
+      select_language: "Seleccionar idioma"
+      email_placeholder: "Ingresa tu correo electrónico"
+      email_label: "Dirección de correo electrónico"
+      request_access_success: "¡Gracias! Hemos registrado tu correo y nos pondremos en contacto pronto."
       footer: "Construyendo mejores vecindarios."
 
   sessions:

@@ -23,12 +23,12 @@
                 </ul>
             </div>
             <div class="feature-image-container">
-                <div class="app-mockup" aria-label="<%= t(".feature1_img_alt") %>">
-                    <div class="mockup-header">CondoHub</div>
-                    <div class="mockup-body">
+                <div class="app-mockup" role="img" aria-label="<%= t(".feature1_img_alt") %>">
+                    <div class="mockup-header" aria-hidden="true">CondoHub</div>
+                    <div class="mockup-body" aria-hidden="true">
                         <div class="mockup-post">
                             <div class="mockup-upvote">
-                                <div class="mockup-upvote-arrow">▲</div>
+                                <div class="mockup-upvote-arrow" aria-hidden="true">▲</div>
                                 <span>3</span>
                             </div>
                             <div class="mockup-content">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="mockup-post">
                             <div class="mockup-upvote">
-                                <div class="mockup-upvote-arrow">▲</div>
+                                <div class="mockup-upvote-arrow" aria-hidden="true">▲</div>
                                 <span>5</span>
                             </div>
                             <div class="mockup-content">
@@ -65,9 +65,9 @@
                 </ul>
             </div>
             <div class="feature-image-container">
-                <div class="app-mockup" aria-label="<%= t(".feature2_img_alt") %>">
-                    <div class="mockup-header">CondoHub</div>
-                    <div class="mockup-body">
+                <div class="app-mockup" role="img" aria-label="<%= t(".feature2_img_alt") %>">
+                    <div class="mockup-header" aria-hidden="true">CondoHub</div>
+                    <div class="mockup-body" aria-hidden="true">
                         <div class="mockup-announcement">
                             <span class="mockup-badge"><%= t(".feature2_badge") %></span>
                             <div class="mockup-content" style="margin-top: 0.5rem;">
@@ -79,7 +79,7 @@
                         </div>
                         <div class="mockup-post" style="opacity: 0.5;">
                             <div class="mockup-upvote">
-                                <div class="mockup-upvote-arrow">▲</div>
+                                <div class="mockup-upvote-arrow" aria-hidden="true">▲</div>
                                 <span>2</span>
                             </div>
                             <div class="mockup-content">
@@ -104,9 +104,9 @@
                 </ul>
             </div>
             <div class="feature-image-container">
-                <div class="app-mockup" aria-label="<%= t(".feature3_img_alt") %>">
-                    <div class="mockup-header">CondoHub</div>
-                    <div class="mockup-body">
+                <div class="app-mockup" role="img" aria-label="<%= t(".feature3_img_alt") %>">
+                    <div class="mockup-header" aria-hidden="true">CondoHub</div>
+                    <div class="mockup-body" aria-hidden="true">
                         <div class="mockup-service">
                             <div>
                                 <span class="mockup-service-category"><%= t(".feature3_service_cat1") %></span>
@@ -135,11 +135,27 @@
     </section>
 
     <!-- Bottom CTA -->
-    <section class="cta-section" id="join-cta">
+    <section class="cta-section" id="join-cta" tabindex="-1" style="outline: none;">
         <div class="container">
             <h2><%= t(".cta_title") %></h2>
             <p><%= t(".cta_text") %></p>
-            <button class="btn" onclick="alert('<%= t(".request_access_alert") %>')"><%= t(".request_access") %></button>
+            
+            <div class="cta-form-container" data-controller="cta-signup">
+                <form data-action="submit->cta-signup#submit" class="cta-form">
+                    <input type="email" 
+                           required 
+                           placeholder="<%= t(".email_placeholder") %>" 
+                           class="cta-input" 
+                           data-cta-signup-target="email"
+                           aria-label="<%= t(".email_label") %>">
+                    <button type="submit" class="btn btn-submit" data-cta-signup-target="submitBtn">
+                        <%= t(".request_access") %>
+                    </button>
+                </form>
+                <div data-cta-signup-target="feedback" class="cta-feedback-message hidden" aria-live="polite">
+                    <%= t(".request_access_success") %>
+                </div>
+            </div>
         </div>
     </section>
 </main>

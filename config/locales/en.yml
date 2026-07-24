@@ -85,6 +85,10 @@ en:
       cta_text: "Talk to your building manager about bringing CondoHub to your residence today."
       request_access: "Request Access"
       request_access_alert: "Thanks for your interest! We'll notify you when the email feature is ready."
+      select_language: "Select language"
+      email_placeholder: "Enter your email"
+      email_label: "Email Address"
+      request_access_success: "Thank you! We have registered your email and will be in touch soon."
       footer: "Building better neighborhoods."
 
   sessions:
