@@ -1,69 +1,52 @@
-# Agent Instructions for Condo
+# Agent Instructions for CondoHub
 
-## Purpose
+Rails 8.1 / Ruby 4.0.5 / SQLite / Hotwire (Turbo + Stimulus) / importmap + Propshaft.
+For full architecture, see [CODEMAP.md](CODEMAP.md).
 
-This repository is a Ruby on Rails 8.1 application with a small MVC structure and a custom, session-based authentication flow. Agents should favor Rails-native patterns, keep changes minimal, and follow existing app conventions.
+## Commands
 
-## What to know first
+```
+bundle install
+bin/setup --skip-server          # install deps + prepare DB (no server)
+bin/rails test                   # full test suite
+bin/rails test test/path/to_test.rb   # single test file
+bin/rubocop                      # lint (rubocop-rails-omakase)
+bin/ci                           # full CI: setup, rubocop, bundler-audit, importmap audit, brakeman, tests, seed replant
+env RAILS_ENV=test bin/rails db:seed:replant   # reset test DB + reload fixtures
+```
 
-- Start with [README.md](README.md) and [database_architecture.md](database_architecture.md) for setup context.
-- The app uses Rails importmap, Propshaft, Turbo, and Stimulus; avoid introducing extra JavaScript tooling unless the task explicitly requires it.
-- Authentication is custom and centralized in [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb). Keep changes aligned with the `Current.session` / `Current.user` flow and avoid Devise or other auth libraries.
-- Routes are intentionally narrow in [config/routes.rb](config/routes.rb). Use the existing locale-scoped, nested resource structure instead of broad new routes.
-- Frontend behavior is built with Hotwire: [app/javascript/application.js](app/javascript/application.js) and [config/importmap.rb](config/importmap.rb) load Turbo and Stimulus controllers.
+## Auth
 
-## Recommended commands
+Custom session-based auth in `app/controllers/concerns/authentication.rb`. Uses `Current.session` / `Current.user` via `ActiveSupport::CurrentAttributes`. Cookie: `cookies.signed[:session_id]`. **Do not add Devise or other auth gems.**
 
-- `bundle install`
-- `bin/setup --skip-server`
-- `bin/rails test`
-- `bin/ci`
-- `env RAILS_ENV=test bin/rails db:seed:replant`
+## Multi-tenant scoping
 
-## Project conventions
+Every authenticated controller scopes queries through `current_condominium` (derived from `current_user.condominium`). Cross-condo access raises `RecordNotFound` → 404. Always scope finds through `current_condominium.<association>`.
 
-- Use the existing domain model names and associations: `Condominium`, `User`, `Topic`, `Comment`, `Upvote`, `ServiceListing`, and `Session`.
-- Follow Rails MVC structure and keep changes scoped to the relevant model, view, controller, or test file.
-- Add or update tests with Minitest and fixtures from [test/test_helper.rb](test/test_helper.rb); prefer controller/model tests when behavior changes.
-- Keep auth, session, and routing changes aligned with [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb) and [config/routes.rb](config/routes.rb).
-- Prefer small, focused edits over broad refactors or new abstractions.
-- Respect the app's importmap-based JS stack and avoid adding bundlers, Webpack, Vite, or similar unless explicitly requested.
+## I18n
 
-## CI and test flow
+4 locales: `en`, `pt-BR` (default), `es`, `ko`. All routes are locale-scoped (`/:locale/...`). `default_url_options` always includes `locale:`. See `config/locales/`.
 
-- `bin/ci` runs setup, RuboCop, Bundler Audit, Importmap audit, Brakeman, Rails tests, and test seed replant.
-- `bin/rails test` is the preferred local test command.
-- Test fixtures are loaded globally from [test/test_helper.rb](test/test_helper.rb) with `fixtures :all`.
-- Database seeding for test resets is `env RAILS_ENV=test bin/rails db:seed:replant`.
+## Routes
+
+Narrow, locale-scoped resources in `config/routes.rb`. No index actions for topics/services (dashboard handles listing). Follow existing nesting; don't add broad new routes.
+
+## Frontend
+
+Importmap-based — no bundler, no Webpack, no Vite. Stimulus controllers in `app/javascript/controllers/`, eager-loaded via `index.js`. Add new controllers there and they are auto-registered.
+
+## Testing
+
+- Minitest with `fixtures :all` (loaded in `test/test_helper.rb`)
+- Integration test auth helper: `sign_in_as(users(:name))` from `test/test_helpers/session_test_helper.rb`
+- Parallel test execution enabled (`workers: :number_of_processors`)
+- After model/controller changes, run `bin/rails test` before committing
 
 ## Commit conventions
 
-Use semantic commit messages with one of these types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`. Follow the format:
+Semantic commits: `<type>: <present-tense summary>`
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
-```
-<type>: <present-tense summary>
-```
+## Deploy
 
-Examples:
-- `feat: add hat wobble`
-- `fix: resolve sign-in redirect loop`
-- `docs: update API endpoint docs`
-- `refactor: extract payment calculation`
-- `test: add coverage for upvote model`
-- `chore: bump brakeman to 7.0`
-
-## Useful references
-
-- [README.md](README.md)
-- [database_architecture.md](database_architecture.md)
-- [config/ci.rb](config/ci.rb)
-- [config/routes.rb](config/routes.rb)
-- [config/importmap.rb](config/importmap.rb)
-- [app/controllers/concerns/authentication.rb](app/controllers/concerns/authentication.rb)
-- [app/javascript/application.js](app/javascript/application.js)
-- [app/javascript/controllers/index.js](app/javascript/controllers/index.js)
-
-## Suggested next customizations for agents
-
-- Add a focused agent instruction for testing workflows and common `bin/ci` maintenance tasks.
-- Add a small frontend skill documenting Stimulus controller locations and importmap conventions.
+Fly.io via `.github/workflows/fly-deploy.yml` on push to `main`. Dockerfile + Kamal config present.
