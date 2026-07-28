@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+  before_action :set_topic, only: [ :show, :edit, :update, :destroy ]
+  before_action :require_owner, only: [ :edit, :update, :destroy ]
+
   def show
     @topic = current_condominium.topics.includes(:user, comments: :user).find(params[:id])
     @comment = Comment.new
@@ -15,7 +18,38 @@ class TopicsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @topic.update(topic_params)
+      redirect_to @topic, notice: t("flash.topics.update_success")
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @topic.destroy
+    redirect_to dashboard_path, notice: t("flash.topics.destroy_success")
+  end
+
   private
+
+  def set_topic
+    @topic = current_condominium.topics.find(params[:id])
+  end
+
+  def require_owner
+    if @topic.announcement? && !current_user.admin?
+      redirect_to dashboard_path, alert: t("flash.topics.not_authorized")
+      return
+    end
+
+    unless @topic.user_id == current_user.id || current_user.admin?
+      redirect_to dashboard_path, alert: t("flash.topics.not_authorized")
+    end
+  end
 
   def topic_params
     params.expect(topic: [ :title, :content, :topic_type ])
