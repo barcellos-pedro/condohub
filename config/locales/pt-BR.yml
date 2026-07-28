@@ -105,6 +105,18 @@ pt-BR:
       sandbox_description: "Troque instantaneamente entre funções e condomínios com um clique para testar o isolamento de multi-inquilinos e regras de permissão."
 
   topics:
+    form:
+      title_placeholder: "Título da sua publicação..."
+      content_placeholder: "O que você está pensando? Escreva aqui..."
+      submit: "Salvar"
+      cancel: "Cancelar"
+    edit:
+      title: "Editar Tópico"
+      back: "← Voltar ao Tópico"
+    actions:
+      edit: "Editar"
+      delete: "Excluir"
+      delete_confirm: "Tem certeza que deseja excluir? Esta ação não pode ser desfeita."
     show:
       back_to_feed: "← Voltar ao Feed"
       posted_by: "Postado por"
@@ -122,6 +134,26 @@ pt-BR:
       cancel_comment_edit: "Cancelar"
       unknown_user: "Morador Desconhecido"
       no_comments: "Nenhum comentário ainda. Inicie a discussão!"
+
+  service_listings:
+    form:
+      title_label: "Nome do Prestador/Empresa"
+      title_placeholder: "Ex.: Serviços Hidráulicos do João"
+      category_label: "Categoria"
+      category_placeholder: "Ex.: Hidráulica, Eletricista, Limpeza"
+      contact_info_label: "Informações de Contato (Telefone ou Email)"
+      contact_info_placeholder: "+55 (11) 99999-9999 ou joao@gmail.com"
+      description_label: "Por que você recomenda?"
+      description_placeholder: "Descreva a qualidade do trabalho, preço, disponibilidade..."
+      submit: "Salvar"
+      cancel: "Cancelar"
+    edit:
+      title: "Editar Serviço"
+      back: "← Voltar aos Serviços"
+    actions:
+      edit: "Editar"
+      delete: "Excluir"
+      delete_confirm: "Tem certeza que deseja excluir este serviço? Esta ação não pode ser desfeita."
 
   passwords:
     new:
@@ -153,6 +185,9 @@ pt-BR:
       impersonation_success: "Personificando %{name} (%{role}) com sucesso."
     topics:
       create_success: "Publicação criada com sucesso."
+      update_success: "Tópico atualizado com sucesso."
+      destroy_success: "Tópico excluído com sucesso."
+      not_authorized: "Você não tem autorização para modificar este conteúdo."
     comments:
       create_success: "Comentário publicado com sucesso."
       update_success: "Comentário atualizado com sucesso."
@@ -163,6 +198,9 @@ pt-BR:
       success: "Tópico curtido!"
     service_listings:
       create_success: "Recomendação de serviço adicionada!"
+      update_success: "Serviço atualizado com sucesso."
+      destroy_success: "Serviço excluído com sucesso."
+      not_authorized: "Você não tem autorização para modificar este conteúdo."
       vouch_success: "Recomendação para %{title} registrada!"
       vouch_removed: "Recomendação para %{title} removida."
     passwords:

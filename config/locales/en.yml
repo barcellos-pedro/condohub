@@ -105,6 +105,18 @@ en:
       sandbox_description: "Instantly switch roles and condominiums with one click to test multi-tenancy isolation and permission rules."
 
   topics:
+    form:
+      title_placeholder: "Title of your post..."
+      content_placeholder: "What's on your mind? Type it here..."
+      submit: "Save"
+      cancel: "Cancel"
+    edit:
+      title: "Edit Topic"
+      back: "← Back to Topic"
+    actions:
+      edit: "Edit"
+      delete: "Delete"
+      delete_confirm: "Are you sure you want to delete this? This action cannot be undone."
     show:
       back_to_feed: "← Back to Feed"
       posted_by: "Posted by"
@@ -122,6 +134,26 @@ en:
       cancel_comment_edit: "Cancel"
       unknown_user: "Unknown Resident"
       no_comments: "No comments yet. Start the discussion!"
+
+  service_listings:
+    form:
+      title_label: "Provider/Business Name"
+      title_placeholder: "E.g., Joao's Plumbing Services"
+      category_label: "Category"
+      category_placeholder: "E.g., Plumbing, Electrician, Cleaning"
+      contact_info_label: "Contact Information (Phone or Email)"
+      contact_info_placeholder: "+55 (11) 99999-9999 or joao@gmail.com"
+      description_label: "Why do you recommend them?"
+      description_placeholder: "Describe their work quality, price, availability..."
+      submit: "Save"
+      cancel: "Cancel"
+    edit:
+      title: "Edit Service Listing"
+      back: "← Back to Services"
+    actions:
+      edit: "Edit"
+      delete: "Delete"
+      delete_confirm: "Are you sure you want to delete this service listing? This action cannot be undone."
 
   passwords:
     new:
@@ -153,6 +185,9 @@ en:
       impersonation_success: "Successfully impersonating %{name} (%{role})"
     topics:
       create_success: "Post created successfully."
+      update_success: "Topic updated successfully."
+      destroy_success: "Topic deleted successfully."
+      not_authorized: "You are not authorized to modify this content."
     comments:
       create_success: "Comment posted successfully."
       update_success: "Comment updated successfully."
@@ -163,6 +198,9 @@ en:
       success: "Topic upvoted!"
     service_listings:
       create_success: "Service recommendation added!"
+      update_success: "Service listing updated successfully."
+      destroy_success: "Service listing deleted successfully."
+      not_authorized: "You are not authorized to modify this content."
       vouch_success: "Vouched for %{title}!"
       vouch_removed: "Vouch removed for %{title}."
     passwords:
