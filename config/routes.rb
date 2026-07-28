@@ -27,6 +27,12 @@ Rails.application.routes.draw do
     resources :service_listings, only: [ :create, :edit, :update, :destroy ] do
       resource :upvote, only: [ :create ]
     end
+
+    # Profile
+    resource :profile, only: [ :edit, :update ]
+
+    # Residents
+    resources :residents, only: [ :show ]
   end
 
   # Reveal health status (no locale needed)

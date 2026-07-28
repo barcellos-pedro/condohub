@@ -251,6 +251,41 @@ pt-BR:
       unauthorized: "Você não tem autorização para gerenciar as configurações do condomínio."
 
   activerecord:
+  profiles:
+    edit:
+      title: "Editar Perfil"
+      back_to_dashboard: "← Voltar ao Painel"
+      first_name: "Nome"
+      last_name: "Sobrenome"
+      email: "Endereço de Email"
+      change_password: "Alterar Senha"
+      hide_password: "Ocultar Campos de Senha"
+      current_password: "Senha Atual"
+      new_password: "Nova Senha"
+      confirm_password: "Confirmar Nova Senha"
+      save: "Salvar Alterações"
+      errors_title:
+        one: "1 erro impediu esta atualização:"
+        other: "%{count} erros impediram esta atualização:"
+      updated: "Perfil atualizado com sucesso."
+      wrong_password: "A senha atual está incorreta."
+
+  residents:
+    show:
+      title: "Perfil do Morador"
+      back_to_dashboard: "← Voltar ao Painel"
+      topics: "Tópicos"
+      comments: "Comentários"
+      services: "Serviços"
+      vouches: "Recomendações"
+      recent_topics: "Tópicos Recentes"
+      recent_comments: "Comentários Recentes"
+      services_recommended: "Serviços Recomendados"
+      ago: "atrás"
+
+  not_found: "Morador não encontrado."
+
+  activerecord:
     errors:
       models:
         condominium:

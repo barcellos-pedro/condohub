@@ -251,6 +251,41 @@ ko:
       unauthorized: "콘도미니엄 설정을 관리할 권한이 없습니다."
 
   activerecord:
+  profiles:
+    edit:
+      title: "프로필 수정"
+      back_to_dashboard: "← 대시보드로 돌아가기"
+      first_name: "이름"
+      last_name: "성"
+      email: "이메일 주소"
+      change_password: "비밀번호 변경"
+      hide_password: "비밀번호 필드 숨기기"
+      current_password: "현재 비밀번호"
+      new_password: "새 비밀번호"
+      confirm_password: "새 비밀번호 확인"
+      save: "변경사항 저장"
+      errors_title:
+        one: "1개의 오류로 업데이트가 차단되었습니다:"
+        other: "%{count}개의 오류로 업데이트가 차단되었습니다:"
+      updated: "프로필이 성공적으로 업데이트되었습니다."
+      wrong_password: "현재 비밀번호가 올바르지 않습니다."
+
+  residents:
+    show:
+      title: "입주민 프로필"
+      back_to_dashboard: "← 대시보드로 돌아가기"
+      topics: "토론"
+      comments: "댓글"
+      services: "서비스"
+      vouches: "추천"
+      recent_topics: "최근 토론"
+      recent_comments: "최근 댓글"
+      services_recommended: "추천 서비스"
+      ago: "전"
+
+  not_found: "입주민을 찾을 수 없습니다."
+
+  activerecord:
     errors:
       models:
         condominium:
