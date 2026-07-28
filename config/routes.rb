@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index"
 
     # Topics, Comments, Upvotes
-    resources :topics, only: [ :show, :create ] do
+    resources :topics, only: [ :show, :create, :edit, :update, :destroy ] do
       resources :comments, only: [ :create, :edit, :update, :destroy ]
       resource :upvote, only: [ :create ]
     end
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resource :condominium, only: [ :edit, :update ]
 
     # Service Listings
-    resources :service_listings, only: [ :create ] do
+    resources :service_listings, only: [ :create, :edit, :update, :destroy ] do
       resource :upvote, only: [ :create ]
     end
   end
