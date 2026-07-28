@@ -1,0 +1,93 @@
+<div class="container" style="max-width: 800px;">
+  <div style="margin-bottom: 1.5rem;">
+    <%= link_to t(".back_to_dashboard"), dashboard_path, class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" %>
+  </div>
+
+  <article class="thread-card">
+    <div class="thread-meta">
+      <div>
+        <h1 class="thread-title" style="font-size: 1.5rem; margin: 0;"><%= @resident.full_name %></h1>
+        <span class="badge badge-<%= @resident.role %>"><%= t("roles.#{@resident.role}") %></span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.5rem; padding: 1rem; background: rgba(var(--primary-accent-rgb, 59, 130, 246), 0.05); border-radius: 0.5rem;">
+      <div style="text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-accent);"><%= @resident.active_contributions[:topics] %></div>
+        <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;"><%= t(".topics") %></div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-accent);"><%= @resident.active_contributions[:comments] %></div>
+        <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;"><%= t(".comments") %></div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-accent);"><%= @resident.active_contributions[:services] %></div>
+        <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;"><%= t(".services") %></div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-accent);"><%= @resident.active_contributions[:vouches] %></div>
+        <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;"><%= t(".vouches") %></div>
+      </div>
+    </div>
+  </article>
+
+  <% if @recent_topics.any? %>
+    <section style="margin-top: 2rem;">
+      <h2 class="comment-section-title"><%= t(".recent_topics") %></h2>
+      <% @recent_topics.each do |topic| %>
+        <div class="post-card">
+          <div class="post-main">
+            <div class="post-meta">
+              <span class="badge badge-<%= topic.topic_type %>"><%= t("topic_types.#{topic.topic_type}") %></span>
+              <span>•</span>
+              <span><%= time_ago_in_words(topic.created_at) %> <%= t(".ago") %></span>
+            </div>
+            <h2 class="post-title"><%= link_to topic.title, topic_path(topic) %></h2>
+            <p class="post-body-snippet"><%= truncate(topic.content, length: 150) %></p>
+          </div>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+
+  <% if @recent_comments.any? %>
+    <section style="margin-top: 2rem;">
+      <h2 class="comment-section-title"><%= t(".recent_comments") %></h2>
+      <% @recent_comments.each do |comment| %>
+        <div class="comment-card">
+          <div class="comment-header">
+            <div class="comment-meta">
+              <span style="color: var(--text-muted);"><%= time_ago_in_words(comment.created_at) %> <%= t(".ago") %></span>
+              <span>•</span>
+              <%= link_to comment.topic.title, topic_path(comment.topic), style: "color: var(--primary-accent); font-weight: 600;" %>
+            </div>
+          </div>
+          <div class="comment-body">
+            <%= truncate(comment.content, length: 200) %>
+          </div>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+
+  <% if @services.any? %>
+    <section style="margin-top: 2rem;">
+      <h2 class="comment-section-title"><%= t(".services_recommended") %></h2>
+      <% @services.each do |service| %>
+        <div class="service-card">
+          <div class="service-left">
+            <span class="service-category"><%= service.category %></span>
+            <h2 class="service-title"><%= service.title %></h2>
+            <p class="service-desc"><%= service.description %></p>
+            <div class="service-contact">
+              <span>📞 <%= service.contact_info %></span>
+            </div>
+          </div>
+          <div class="service-vouch">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--success);"><%= service.upvotes_count %> <%= t(".vouches") %></span>
+          </div>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+</div>
