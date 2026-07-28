@@ -16,11 +16,20 @@ class User < ApplicationRecord
   enum :role, { resident: "resident", admin: "admin" }, default: "resident"
 
   # Validations
-  validates :email_address, presence: true, uniqueness: { case_sensitive: false }
+  validates :email_address, presence: true, uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, :last_name, presence: true
   validates :role, presence: true
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def active_contributions
+    {
+      topics: topics.count,
+      comments: comments.count,
+      services: service_listings.count,
+      vouches: upvotes.count
+    }
   end
 end
