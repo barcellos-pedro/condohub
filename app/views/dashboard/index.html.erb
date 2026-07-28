@@ -73,7 +73,7 @@
               </div>
               <div class="post-main">
                 <div class="post-meta">
-                  <%= t(".posted_by") %> <span class="post-author"><%= topic.user.full_name %></span>
+                  <%= t(".posted_by") %> <span class="post-author"><%= link_to topic.user.full_name, resident_path(topic.user), class: "author-link" %></span>
                   <span class="badge badge-<%= topic.user.role %>"><%= t("roles.#{topic.user.role}") %></span>
                   <span>•</span>
                   <span><%= time_ago_in_words(topic.created_at) %> <%= t(".ago") %></span>
@@ -134,7 +134,7 @@
               </div>
               <div class="post-main">
                 <div class="post-meta">
-                  <%= t(".published_by") %> <span class="post-author"><%= announcement.user.full_name %></span>
+                  <%= t(".published_by") %> <span class="post-author"><%= link_to announcement.user.full_name, resident_path(announcement.user), class: "author-link" %></span>
                   <span class="badge badge-admin"><%= t("roles.admin") %></span>
                   <span>•</span>
                   <span><%= time_ago_in_words(announcement.created_at) %> <%= t(".ago") %></span>
@@ -186,7 +186,7 @@
                 <div class="service-contact">
                   <span>📞 <strong><%= t(".contact_label") %></strong> <%= service.contact_info %></span>
                   <span>•</span>
-                  <span><%= t(".recommended_by") %> <strong><%= service.user.full_name %></strong></span>
+                  <span><%= t(".recommended_by") %> <strong><%= link_to service.user.full_name, resident_path(service.user), class: "author-link" %></strong></span>
                 </div>
               </div>
               
