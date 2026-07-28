@@ -105,6 +105,18 @@ ko:
       sandbox_description: "한 번의 클릭으로 역할과 콘도미니엄을 즉시 전환하여 멀티 테넌시 격리 및 권한 규칙을 테스트하세요."
 
   topics:
+    form:
+      title_placeholder: "게시물 제목..."
+      content_placeholder: "무슨 생각을 하고 계신가요? 여기에 적어보세요..."
+      submit: "저장"
+      cancel: "취소"
+    edit:
+      title: "토론 수정"
+      back: "← 토론으로 돌아가기"
+    actions:
+      edit: "수정"
+      delete: "삭제"
+      delete_confirm: "정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
     show:
       back_to_feed: "← 피드로 돌아가기"
       posted_by: "작성자"
@@ -122,6 +134,26 @@ ko:
       cancel_comment_edit: "취소"
       unknown_user: "알 수 없는 입주민"
       no_comments: "아직 댓글이 없습니다. 토론을 시작하세요!"
+
+  service_listings:
+    form:
+      title_label: "업체명"
+      title_placeholder: "예: Joao의 배관 서비스"
+      category_label: "카테고리"
+      category_placeholder: "예: 배관, 전기, 청소"
+      contact_info_label: "연락처 정보 (전화 또는 이메일)"
+      contact_info_placeholder: "+55 (11) 99999-9999 또는 joao@gmail.com"
+      description_label: "추천하는 이유는?"
+      description_placeholder: "작업 품질, 가격, 이용 가능성 등을 설명하세요..."
+      submit: "저장"
+      cancel: "취소"
+    edit:
+      title: "서비스 수정"
+      back: "← 서비스로 돌아가기"
+    actions:
+      edit: "수정"
+      delete: "삭제"
+      delete_confirm: "정말 이 서비스를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
 
   passwords:
     new:
@@ -153,6 +185,9 @@ ko:
       impersonation_success: "%{name}(%{role})으로 성공적으로 전환했습니다."
     topics:
       create_success: "게시물이 성공적으로 생성되었습니다."
+      update_success: "토론이 성공적으로 수정되었습니다."
+      destroy_success: "토론이 성공적으로 삭제되었습니다."
+      not_authorized: "이 콘텐츠를 수정할 권한이 없습니다."
     comments:
       create_success: "댓글이 성공적으로 게시되었습니다."
       update_success: "댓글이 성공적으로 수정되었습니다."
@@ -163,6 +198,9 @@ ko:
       success: "토론을 추천했습니다!"
     service_listings:
       create_success: "서비스 추천이 추가되었습니다!"
+      update_success: "서비스가 성공적으로 수정되었습니다."
+      destroy_success: "서비스가 성공적으로 삭제되었습니다."
+      not_authorized: "이 콘텐츠를 수정할 권한이 없습니다."
       vouch_success: "%{title}에 대한 추천이 등록되었습니다!"
       vouch_removed: "%{title}에 대한 추천이 취소되었습니다."
     passwords:

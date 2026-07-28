@@ -15,3 +15,11 @@ two:
   first_name: Bob
   last_name: Jones
   role: resident
+
+three:
+  condominium: one
+  email_address: three@example.com
+  password_digest: <%= password_digest %>
+  first_name: Carol
+  last_name: Davis
+  role: resident

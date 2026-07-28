@@ -105,6 +105,18 @@ es:
       sandbox_description: "Cambia instantáneamente entre roles y condominios con un clic para probar el aislamiento multiinquilino y las reglas de permiso."
 
   topics:
+    form:
+      title_placeholder: "Título de tu publicación..."
+      content_placeholder: "¿Qué tienes en mente? Escríbelo aquí..."
+      submit: "Guardar"
+      cancel: "Cancelar"
+    edit:
+      title: "Editar Tema"
+      back: "← Volver al Tema"
+    actions:
+      edit: "Editar"
+      delete: "Eliminar"
+      delete_confirm: "¿Estás seguro de que deseas eliminar esto? Esta acción no se puede deshacer."
     show:
       back_to_feed: "← Volver al Feed"
       posted_by: "Publicado por"
@@ -122,6 +134,26 @@ es:
       cancel_comment_edit: "Cancelar"
       unknown_user: "Residente Desconocido"
       no_comments: "Aún no hay comentarios. ¡Inicia la discusión!"
+
+  service_listings:
+    form:
+      title_label: "Nombre del Proveedor/Empresa"
+      title_placeholder: "Ej.: Servicios de Plomería de Juan"
+      category_label: "Categoría"
+      category_placeholder: "Ej.: Plomería, Electricista, Limpieza"
+      contact_info_label: "Información de Contacto (Teléfono o Email)"
+      contact_info_placeholder: "+55 (11) 99999-9999 o juan@gmail.com"
+      description_label: "¿Por qué lo recomiendas?"
+      description_placeholder: "Describe la calidad de su trabajo, precio, disponibilidad..."
+      submit: "Guardar"
+      cancel: "Cancelar"
+    edit:
+      title: "Editar Servicio"
+      back: "← Volver a Servicios"
+    actions:
+      edit: "Editar"
+      delete: "Eliminar"
+      delete_confirm: "¿Estás seguro de que deseas eliminar este servicio? Esta acción no se puede deshacer."
 
   passwords:
     new:
@@ -153,6 +185,9 @@ es:
       impersonation_success: "Suplantando a %{name} (%{role}) exitosamente."
     topics:
       create_success: "Publicación creada exitosamente."
+      update_success: "Tema actualizado exitosamente."
+      destroy_success: "Tema eliminado exitosamente."
+      not_authorized: "No tienes autorización para modificar este contenido."
     comments:
       create_success: "Comentario publicado exitosamente."
       update_success: "Comentario actualizado exitosamente."
@@ -163,6 +198,9 @@ es:
       success: "¡Tema votado!"
     service_listings:
       create_success: "¡Recomendación de servicio añadida!"
+      update_success: "Servicio actualizado exitosamente."
+      destroy_success: "Servicio eliminado exitosamente."
+      not_authorized: "No tienes autorización para modificar este contenido."
       vouch_success: "¡Recomendación para %{title} registrada!"
       vouch_removed: "Recomendación para %{title} eliminada."
     passwords:

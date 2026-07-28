@@ -17,3 +17,12 @@ two:
   contact_info: MyString
   category: MyString
   upvotes_count: 0
+
+three:
+  condominium: one
+  user: three
+  title: Resident Service
+  description: Service description from resident
+  contact_info: Contact info
+  category: Category
+  upvotes_count: 0

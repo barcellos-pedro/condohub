@@ -1,0 +1,10 @@
+<div class="container" style="max-width: 800px;">
+  <div style="margin-bottom: 1.5rem;">
+    <%= link_to t("topics.edit.back"), topic_path(@topic), class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" %>
+  </div>
+
+  <div class="creator-card">
+    <h3 class="creator-title"><%= t("topics.edit.title") %></h3>
+    <%= render "form", topic: @topic %>
+  </div>
+</div>
