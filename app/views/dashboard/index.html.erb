@@ -57,21 +57,7 @@
         <!-- Create new topic form -->
         <div class="creator-card">
           <h3 class="creator-title"><%= t(".share_something") %></h3>
-          <%= form_with model: @new_topic, url: topics_path, local: true do |form| %>
-            <%= form.hidden_field :topic_type, value: 'discussion' %>
-            
-            <div class="form-group">
-              <%= form.text_field :title, required: true, placeholder: t(".title_placeholder"), class: "form-input" %>
-            </div>
-            
-            <div class="form-group">
-              <%= form.text_area :content, required: true, rows: 3, placeholder: t(".content_placeholder"), class: "form-input" %>
-            </div>
-            
-            <div style="display: flex; justify-content: flex-end;">
-              <%= form.submit t(".post_discussion"), class: "btn btn-primary" %>
-            </div>
-          <% end %>
+          <%= render "topics/form", topic: @new_topic %>
         </div>
 
         <!-- Topics Feed -->
@@ -98,6 +84,14 @@
                   <%= link_to topic_path(topic), class: "post-footer-link" do %>
                     💬 <%= topic.comments.count %> <%= t(".comments") %>
                   <% end %>
+                  <% if topic.user == current_user || current_user.admin? %>
+                    <span style="margin-left: auto; display: flex; gap: 0.5rem;">
+                      <%= link_to t("topics.actions.edit"), edit_topic_path(topic), class: "post-footer-link" %>
+                      <%= button_to t("topics.actions.delete"), topic_path(topic), method: :delete,
+                          data: { turbo_confirm: t("topics.actions.delete_confirm") },
+                          class: "post-footer-link", style: "color: var(--danger);" %>
+                    </span>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -119,21 +113,7 @@
         <% if current_user.admin? %>
           <div class="creator-card" style="border-left: 4px solid var(--warning);">
             <h3 class="creator-title" style="color: var(--warning);"><%= t(".publish_heading") %></h3>
-            <%= form_with model: @new_topic, url: topics_path, local: true do |form| %>
-              <%= form.hidden_field :topic_type, value: 'announcement' %>
-              
-              <div class="form-group">
-                <%= form.text_field :title, required: true, placeholder: t(".announcement_title_placeholder"), class: "form-input" %>
-              </div>
-              
-              <div class="form-group">
-                <%= form.text_area :content, required: true, rows: 4, placeholder: t(".announcement_content_placeholder"), class: "form-input" %>
-              </div>
-              
-              <div style="display: flex; justify-content: flex-end;">
-                <%= form.submit t(".publish_announcement"), class: "btn btn-primary", style: "background: var(--warning); color: black;" %>
-              </div>
-            <% end %>
+            <%= render "topics/form", topic: @new_topic %>
           </div>
         <% else %>
           <div class="creator-card" style="background: rgba(245, 158, 11, 0.03); border: 1px dashed rgba(245, 158, 11, 0.2); text-align: center; color: var(--warning); font-size: 0.9rem;">
@@ -165,6 +145,14 @@
                   <%= link_to topic_path(announcement), class: "post-footer-link" do %>
                     💬 <%= announcement.comments.count %> <%= t(".comments") %>
                   <% end %>
+                  <% if announcement.user == current_user || current_user.admin? %>
+                    <span style="margin-left: auto; display: flex; gap: 0.5rem;">
+                      <%= link_to t("topics.actions.edit"), edit_topic_path(announcement), class: "post-footer-link" %>
+                      <%= button_to t("topics.actions.delete"), topic_path(announcement), method: :delete,
+                          data: { turbo_confirm: t("topics.actions.delete_confirm") },
+                          class: "post-footer-link", style: "color: var(--danger);" %>
+                    </span>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -184,34 +172,7 @@
         <!-- Recommend new service form -->
         <div class="creator-card">
           <h3 class="creator-title"><%= t(".recommend_service") %></h3>
-          <%= form_with model: @new_service, url: service_listings_path, local: true do |form| %>
-            
-            <div class="condo-switcher-grid" style="gap: 1rem; margin-bottom: 1rem;">
-              <div class="form-group" style="margin-bottom: 0;">
-                <%= form.label :title, t(".provider_name_label"), class: "form-label" %>
-                <%= form.text_field :title, required: true, placeholder: t(".provider_name_placeholder"), class: "form-input" %>
-              </div>
-              
-              <div class="form-group" style="margin-bottom: 0;">
-                <%= form.label :category, t(".category_label"), class: "form-label" %>
-                <%= form.text_field :category, required: true, placeholder: t(".category_placeholder"), class: "form-input" %>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <%= form.label :contact_info, t(".contact_info_label"), class: "form-label" %>
-              <%= form.text_field :contact_info, required: true, placeholder: t(".contact_info_placeholder"), class: "form-input" %>
-            </div>
-            
-            <div class="form-group">
-              <%= form.label :description, t(".reason_label"), class: "form-label" %>
-              <%= form.text_area :description, required: true, rows: 2, placeholder: t(".reason_placeholder"), class: "form-input" %>
-            </div>
-            
-            <div style="display: flex; justify-content: flex-end;">
-              <%= form.submit t(".submit_recommendation"), class: "btn btn-primary" %>
-            </div>
-          <% end %>
+          <%= render "service_listings/form", service_listing: @new_service %>
         </div>
 
         <!-- Services Feed -->
@@ -235,6 +196,14 @@
                   <%= t(".vouch") %>
                 <% end %>
                 <span style="font-size: 0.8rem; font-weight: 700; color: var(--success);"><%= service.upvotes_count %> <%= t(".vouches") %></span>
+                <% if service.user == current_user || current_user.admin? %>
+                  <div style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <%= link_to t("service_listings.actions.edit"), edit_service_listing_path(service), class: "btn btn-secondary", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
+                    <%= button_to t("service_listings.actions.delete"), service_listing_path(service), method: :delete,
+                        data: { turbo_confirm: t("service_listings.actions.delete_confirm") },
+                        class: "btn btn-danger", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
+                  </div>
+                <% end %>
               </div>
             </div>
           <% end %>
