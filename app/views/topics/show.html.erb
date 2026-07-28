@@ -8,7 +8,7 @@
   <article class="thread-card" style="<%= @topic.announcement? ? 'border-left: 4px solid var(--warning);' : '' %>">
     <div class="thread-meta">
       <div>
-        <%= t(".posted_by") %> <strong><%= @topic.user.full_name %></strong> 
+        <%= t(".posted_by") %> <strong><%= link_to @topic.user.full_name, resident_path(@topic.user), class: "author-link" %></strong> 
         <span class="badge badge-<%= @topic.user.role %>"><%= t("roles.#{@topic.user.role}") %></span>
         <span>•</span>
         <span><%= time_ago_in_words(@topic.created_at) %> <%= t(".ago") %></span>

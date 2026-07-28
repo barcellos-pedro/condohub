@@ -251,6 +251,41 @@ es:
       unauthorized: "No tienes autorización para gestionar la configuración del condominio."
 
   activerecord:
+  profiles:
+    edit:
+      title: "Editar Perfil"
+      back_to_dashboard: "← Volver al Panel"
+      first_name: "Nombre"
+      last_name: "Apellido"
+      email: "Correo Electrónico"
+      change_password: "Cambiar Contraseña"
+      hide_password: "Ocultar Campos de Contraseña"
+      current_password: "Contraseña Actual"
+      new_password: "Nueva Contraseña"
+      confirm_password: "Confirmar Nueva Contraseña"
+      save: "Guardar Cambios"
+      errors_title:
+        one: "1 error impidió esta actualización:"
+        other: "%{count} errores impidieron esta actualización:"
+      updated: "Perfil actualizado correctamente."
+      wrong_password: "La contraseña actual es incorrecta."
+
+  residents:
+    show:
+      title: "Perfil del Residente"
+      back_to_dashboard: "← Volver al Panel"
+      topics: "Temas"
+      comments: "Comentarios"
+      services: "Servicios"
+      vouches: "Recomendaciones"
+      recent_topics: "Temas Recientes"
+      recent_comments: "Comentarios Recientes"
+      services_recommended: "Servicios Recomendados"
+      ago: "atrás"
+
+  not_found: "Residente no encontrado."
+
+  activerecord:
     errors:
       models:
         condominium:

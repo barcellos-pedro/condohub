@@ -250,6 +250,40 @@ en:
       success: "Condominium settings updated successfully."
       unauthorized: "You are not authorized to manage condominium settings."
 
+  profiles:
+    edit:
+      title: "Edit Profile"
+      back_to_dashboard: "← Back to Dashboard"
+      first_name: "First Name"
+      last_name: "Last Name"
+      email: "Email Address"
+      change_password: "Change Password"
+      hide_password: "Hide Password Fields"
+      current_password: "Current Password"
+      new_password: "New Password"
+      confirm_password: "Confirm New Password"
+      save: "Save Changes"
+      errors_title:
+        one: "1 error prevented this update:"
+        other: "%{count} errors prevented this update:"
+      updated: "Profile updated successfully."
+      wrong_password: "Current password is incorrect."
+
+  residents:
+    show:
+      title: "Resident Profile"
+      back_to_dashboard: "← Back to Dashboard"
+      topics: "Topics"
+      comments: "Comments"
+      services: "Services"
+      vouches: "Vouches"
+      recent_topics: "Recent Topics"
+      recent_comments: "Recent Comments"
+      services_recommended: "Services Recommended"
+      ago: "ago"
+
+  not_found: "Resident not found."
+
   activerecord:
     errors:
       models:

@@ -1,0 +1,64 @@
+<div class="container" style="max-width: 600px;">
+  <div style="margin-bottom: 1.5rem;">
+    <%= link_to t(".back_to_dashboard"), dashboard_path, class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" %>
+  </div>
+
+  <article class="thread-card">
+    <h1 class="thread-title" style="font-size: 1.5rem; margin-bottom: 1.5rem;"><%= t(".title") %></h1>
+
+    <%= form_with model: @user, url: profile_path, local: true do |form| %>
+      <% if @user.errors.any? %>
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem;">
+          <h3 style="color: var(--danger); margin: 0 0 0.5rem 0; font-size: 0.9rem;"><%= t(".errors_title", count: @user.errors.count) %></h3>
+          <ul style="margin: 0; padding-left: 1.5rem; color: var(--danger); font-size: 0.85rem;">
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :first_name, t(".first_name"), class: "form-label" %>
+        <%= form.text_field :first_name, class: "form-input", required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :last_name, t(".last_name"), class: "form-label" %>
+        <%= form.text_field :last_name, class: "form-input", required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :email_address, t(".email"), class: "form-label" %>
+        <%= form.email_field :email_address, class: "form-input", required: true %>
+      </div>
+
+      <div style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;" data-controller="password-toggle">
+        <button type="button" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem;" data-action="password-toggle#toggle">
+          <span data-password-toggle-target="label" data-show-label="<%= t(".change_password") %>" data-hide-label="<%= t(".hide_password") %>"><%= t(".change_password") %></span>
+        </button>
+
+        <div data-password-toggle-target="fields" style="display: none;">
+          <div class="form-group">
+            <%= form.label :current_password, t(".current_password"), class: "form-label" %>
+            <%= form.password_field :current_password, class: "form-input", autocomplete: "current-password" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :password, t(".new_password"), class: "form-label" %>
+            <%= form.password_field :password, class: "form-input", autocomplete: "new-password" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :password_confirmation, t(".confirm_password"), class: "form-label" %>
+            <%= form.password_field :password_confirmation, class: "form-input", autocomplete: "new-password" %>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+        <%= form.submit t(".save"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </article>
+</div>

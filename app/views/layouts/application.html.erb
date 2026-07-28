@@ -60,7 +60,7 @@
         
         <div class="user-nav-card">
           <div class="user-nav-info">
-            <div class="user-nav-name"><%= current_user.full_name %></div>
+            <div class="user-nav-name"><%= link_to current_user.full_name, edit_profile_path, class: "profile-link", style: "color: inherit; text-decoration: none;" %></div>
             <div class="user-nav-meta">
               <span class="badge badge-<%= current_user.role %>"><%= t("roles.#{current_user.role}") %></span>
               <span>•</span>
