@@ -29,11 +29,11 @@ Every authenticated controller scopes queries through `current_condominium` (der
 
 ## Routes
 
-Narrow, locale-scoped resources in `config/routes.rb`. No index actions for topics/services (dashboard handles listing). Follow existing nesting; don't add broad new routes.
+Locale-scoped under optional `(:locale)` with regex `/en|pt\-BR|es|ko/`. Resources: `session`, `passwords`, `dashboard`, `topics` (show/create/edit/update/destroy), `comments`, `upvotes`, `condominium` (admin), `service_listings` (create/edit/update/destroy), `profile`, `residents` (show). Follow existing nesting; don't add broad new routes.
 
 ## Frontend
 
-Importmap-based — no bundler, no Webpack, no Vite. Stimulus controllers in `app/javascript/controllers/`, eager-loaded via `index.js`. Add new controllers there and they are auto-registered.
+Importmap-based — no bundler, no Webpack, no Vite. Stimulus controllers in `app/javascript/controllers/`, eager-loaded via `index.js`. Add new controllers there and they are auto-registered. Controllers: `theme`, `locale_switcher`, `password_toggle`, `cta_signup`.
 
 ## Testing
 
@@ -49,4 +49,4 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
 ## Deploy
 
-Fly.io via `.github/workflows/fly-deploy.yml` on push to `main`. Dockerfile + Kamal config present.
+Fly.io via `fly.toml` (app: `condohub-solitary-shape-2752`, region: `gru`). SQLite on persistent volume at `/data`. Dockerfile + Kamal config present.
