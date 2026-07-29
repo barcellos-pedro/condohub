@@ -8,6 +8,12 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "new redirects to dashboard if already authenticated" do
+    sign_in_as(@user)
+    get new_session_path
+    assert_redirected_to dashboard_path
+  end
+
   test "new hides impersonation UI outside development" do
     get new_session_path
 
