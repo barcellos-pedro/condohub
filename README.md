@@ -60,6 +60,20 @@ Run the full CI-style checks:
 bin/ci
 ```
 
+## Production environment variables
+
+The following environment variables are **required** in production:
+
+- `RAILS_MASTER_KEY` — Decrypts `config/credentials.yml.enc`. Without it, Rails cannot access encrypted credentials (SMTP settings, Active Storage keys, etc.). The value is the contents of `config/master.key`. Pass it to Docker via `-e RAILS_MASTER_KEY=<value>` as shown in the Dockerfile.
+- `SECRET_KEY_BASE` — Used by Rails to sign and verify session cookies and generate secure tokens (e.g. password reset tokens). Without it, authentication and all token-based flows break. Generate one with `bin/rails secret`.
+
+Both must be set before booting the production server. On Fly.io, set them with:
+
+```bash
+fly secrets set RAILS_MASTER_KEY=$(cat config/master.key)
+fly secrets set SECRET_KEY_BASE=$(bin/rails secret)
+```
+
 ## Project structure
 
 - app/controllers contains the main request handling for sessions, topics, services, and the dashboard
