@@ -11,9 +11,22 @@ bin/setup --skip-server          # install deps + prepare DB (no server)
 bin/rails test                   # full test suite
 bin/rails test test/path/to_test.rb   # single test file
 bin/rubocop                      # lint (rubocop-rails-omakase)
-bin/ci                           # full CI: setup, rubocop, bundler-audit, importmap audit, brakeman, tests, seed replant
+bin/ci                           # full CI pipeline (see below)
 env RAILS_ENV=test bin/rails db:seed:replant   # reset test DB + reload fixtures
 ```
+
+## CI pipeline
+
+`bin/ci` runs these steps in order (defined in `config/ci.rb`):
+1. `bin/setup --skip-server`
+2. `bin/rubocop`
+3. `bin/bundler-audit`
+4. `bin/importmap audit`
+5. `bin/brakeman --quiet --no-pager --exit-on-warn --exit-on-error`
+6. `bin/rails test`
+7. `env RAILS_ENV=test bin/rails db:seed:replant`
+
+Run `bin/ci` before pushing to catch security issues and test failures together.
 
 ## Auth
 
@@ -21,11 +34,19 @@ Custom session-based auth in `app/controllers/concerns/authentication.rb`. Uses 
 
 ## Multi-tenant scoping
 
-Every authenticated controller scopes queries through `current_condominium` (derived from `current_user.condominium`). Cross-condo access raises `RecordNotFound` → 404. Always scope finds through `current_condominium.<association>`.
+Every authenticated controller scopes queries through `current_condominium` (derived from `current_user.condominium`). Cross-condo access raises `RecordNotFound` → 404. Always scope finds through `current_condominium.<association>`:
+
+```ruby
+# Correct — scoped to current user's condominium
+@topic = current_condominium.topics.find(params[:id])
+
+# Wrong — leaks cross-condo data
+@topic = Topic.find(params[:id])
+```
 
 ## I18n
 
-4 locales: `en`, `pt-BR` (default), `es`, `ko`. All routes are locale-scoped (`/:locale/...`). `default_url_options` always includes `locale:`. See `config/locales/`.
+4 locales: `en`, `pt-BR` (default), `es`, `ko`. All routes are locale-scoped (`/:locale/...`). `ApplicationController#default_url_options` always includes `locale:`, so URL helpers automatically preserve the current locale. See `config/locales/`.
 
 ## Routes
 
@@ -49,4 +70,4 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
 ## Deploy
 
-Fly.io via `fly.toml` (app: `condohub-app`, region: `gru`). SQLite on persistent volume at `/data`. Dockerfile + Kamal config present.
+Fly.io via `fly.toml` (app: `condohub-app`, region: `gru`). SQLite on persistent volume at `/data`. Dockerfile + Kamal config present. Production requires `RAILS_MASTER_KEY` and `SECRET_KEY_BASE` (see README).
