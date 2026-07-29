@@ -70,6 +70,16 @@ carlos = User.create!(
   role: :resident
 )
 
+# Test User
+test_user = User.create!(
+  condominium: condo_b,
+  email_address: "test@test.com",
+  password: "test",
+  first_name: "Test",
+  last_name: "User",
+  role: :resident
+)
+
 # Create Topics for Condo A (Grand Horizon)
 puts "Creating Grand Horizon topics..."
 announcement_a = Topic.create!(
