@@ -49,4 +49,4 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
 ## Deploy
 
-Fly.io via `fly.toml` (app: `condohub-solitary-shape-2752`, region: `gru`). SQLite on persistent volume at `/data`. Dockerfile + Kamal config present.
+Fly.io via `fly.toml` (app: `condohub-app`, region: `gru`). SQLite on persistent volume at `/data`. Dockerfile + Kamal config present.

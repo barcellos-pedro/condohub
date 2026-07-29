@@ -1,6 +1,6 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 
-app = 'condohub-solitary-shape-2752'
+app = 'condohub-app'
 primary_region = 'gru'
 console_command = '/rails/bin/rails console'
 
