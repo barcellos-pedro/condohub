@@ -86,10 +86,10 @@
                   <% end %>
                   <% if topic.user == current_user || current_user.admin? %>
                     <span style="margin-left: auto; display: flex; gap: 0.5rem;">
-                      <%= link_to t("topics.actions.edit"), edit_topic_path(topic), class: "post-footer-link" %>
+                      <%= link_to t("topics.actions.edit"), edit_topic_path(topic), class: "btn btn-secondary", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
                       <%= button_to t("topics.actions.delete"), topic_path(topic), method: :delete,
                           data: { turbo_confirm: t("topics.actions.delete_confirm") },
-                          class: "post-footer-link", style: "color: var(--danger);" %>
+                          class: "btn btn-danger", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
                     </span>
                   <% end %>
                 </div>
@@ -147,10 +147,10 @@
                   <% end %>
                   <% if announcement.user == current_user || current_user.admin? %>
                     <span style="margin-left: auto; display: flex; gap: 0.5rem;">
-                      <%= link_to t("topics.actions.edit"), edit_topic_path(announcement), class: "post-footer-link" %>
+                      <%= link_to t("topics.actions.edit"), edit_topic_path(announcement), class: "btn btn-secondary", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
                       <%= button_to t("topics.actions.delete"), topic_path(announcement), method: :delete,
                           data: { turbo_confirm: t("topics.actions.delete_confirm") },
-                          class: "post-footer-link", style: "color: var(--danger);" %>
+                          class: "btn btn-danger", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
                     </span>
                   <% end %>
                 </div>
