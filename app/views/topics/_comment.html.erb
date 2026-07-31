@@ -2,7 +2,7 @@
   <div class="comment-card">
     <div class="comment-header">
       <div class="comment-meta">
-        <strong><%= link_to(comment.user&.full_name || t("topics.show.unknown_user"), comment.user ? resident_path(comment.user) : "#", class: "author-link") %></strong>
+        <strong><%= link_to(comment.user&.full_name || t("topics.show.unknown_user"), comment.user ? resident_path(comment.user) : "#", class: "author-link", data: { turbo_frame: "_top" }) %></strong>
         <span class="badge badge-<%= comment.user&.role || 'resident' %>" style="font-size: 0.55rem; padding: 0.1rem 0.3rem;"><%= t("roles.#{comment.user&.role || 'resident'}") %></span>
         <span style="color: var(--text-muted);">•</span>
         <span style="color: var(--text-muted);"><%= time_ago_in_words(comment.created_at) %> <%= t("topics.show.ago") %></span>
