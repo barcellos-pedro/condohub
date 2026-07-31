@@ -24,6 +24,8 @@ graph TB
             UC[UpvotesController]
             SC[ServiceListingsController]
             CO[CondominiumsController]
+            PR[ProfilesController]
+            RE[ResidentsController]
             E[ErrorsController]
         end
         subgraph Auth
@@ -52,7 +54,7 @@ graph TB
     end
 
     T --> R
-    R --> L & S & P & D & TC & CC & UC & SC & CO & E
+    R --> L & S & P & D & TC & CC & UC & SC & CO & PR & RE & E
     S --> A
     P --> A
     A --> CU
@@ -68,6 +70,8 @@ graph TB
     SC --> SL
     D --> T & SL
     CO --> CD
+    PR --> U
+    RE --> U & T & CM & SL
     Controllers --> Views
     Controllers --> PM
     Models --> SQL
@@ -200,11 +204,13 @@ condohub/
 │   │   ├── sessions_controller.rb          # Sign in/out + dev impersonation
 │   │   ├── passwords_controller.rb         # Password reset flow
 │   │   ├── dashboard_controller.rb         # Main 3-tab dashboard
-│   │   ├── topics_controller.rb            # Show/create topics
+│   │   ├── topics_controller.rb            # Show/create/edit/update/destroy topics
 │   │   ├── comments_controller.rb          # CRUD comments with Turbo Streams
 │   │   ├── upvotes_controller.rb           # Toggle polymorphic upvotes
-│   │   ├── service_listings_controller.rb  # Create service recommendations
+│   │   ├── service_listings_controller.rb  # Create/edit/update/destroy service recommendations
 │   │   ├── condominiums_controller.rb      # Admin: edit condo settings
+│   │   ├── profiles_controller.rb          # Edit/update own profile + password change
+│   │   ├── residents_controller.rb         # Show resident profile + contributions
 │   │   └── errors_controller.rb            # 404/422/500 pages
 │   │
 │   ├── models/
@@ -232,6 +238,8 @@ condohub/
 │   │   │   └── index.html.erb              # 3-tab: Discussions, Announcements, Services
 │   │   ├── topics/
 │   │   │   ├── show.html.erb               # Topic detail + comments
+│   │   │   ├── edit.html.erb               # Edit topic form
+│   │   │   ├── _form.html.erb              # Topic form partial
 │   │   │   ├── _comment.html.erb           # Turbo Frame comment card
 │   │   │   ├── _comment_form.html.erb      # Turbo Frame inline edit
 │   │   │   └── _comments_count.html.erb    # Comment count span
@@ -243,6 +251,13 @@ condohub/
 │   │   │   └── reset.text.erb              # Reset email plaintext
 │   │   ├── condominiums/
 │   │   │   └── edit.html.erb               # Admin settings form
+│   │   ├── service_listings/
+│   │   │   ├── edit.html.erb               # Edit service listing form
+│   │   │   └── _form.html.erb              # Service listing form partial
+│   │   ├── profiles/
+│   │   │   └── edit.html.erb               # Profile edit form + password change
+│   │   ├── residents/
+│   │   │   └── show.html.erb               # Resident profile + contributions
 │   │   ├── errors/
 │   │   │   ├── not_found.html.erb          # 404
 │   │   │   ├── internal_server_error.html.erb  # 500
@@ -258,7 +273,9 @@ condohub/
 │   │       ├── index.js                    # Eager-loads all controllers
 │   │       ├── hello_controller.js         # Placeholder
 │   │       ├── locale_switcher_controller.js  # Locale select → URL rewrite
-│   │       └── theme_controller.js         # Dark/light mode toggle
+│   │       ├── theme_controller.js         # Dark/light mode toggle
+│   │       ├── cta_signup_controller.js    # Landing page CTA email capture
+│   │       └── password_toggle_controller.js  # Show/hide password fields
 │   │
 │   ├── mailers/
 │   │   ├── application_mailer.rb           # Base: default from, locale around_action
@@ -311,16 +328,19 @@ condohub/
 │   │   ├── sessions_controller_test.rb     # Login/logout + impersonation guard
 │   │   ├── passwords_controller_test.rb    # Reset flow (request, token, update)
 │   │   ├── dashboard_controller_test.rb    # Auth guard, locale, sandbox visibility
+│   │   ├── topics_controller_test.rb       # Owner/non-owner/admin/cross-condo CRUD
 │   │   ├── comments_controller_test.rb     # CRUD ownership + cross-condo isolation
 │   │   ├── upvotes_controller_test.rb      # Toggle + cross-condo 404
-│   │   ├── service_listings_controller_test.rb  # CRUD + isolation
+│   │   ├── service_listings_controller_test.rb  # CRUD + admin/owner + isolation + vouch
+│   │   ├── profiles_controller_test.rb     # Profile update + password change
+│   │   ├── residents_controller_test.rb    # Show profile + cross-condo isolation
 │   │   └── errors_controller_test.rb       # 404/422/500 + catch-all
 │   ├── fixtures/
 │   │   ├── condominiums.yml                # 2 condos
-│   │   ├── users.yml                       # 2 users (admin + resident)
-│   │   ├── topics.yml                      # 2 topics
+│   │   ├── users.yml                       # 3 users (1 admin + 2 residents)
+│   │   ├── topics.yml                      # 4 topics (3 discussion + 1 announcement)
 │   │   ├── comments.yml                    # 2 comments
-│   │   ├── service_listings.yml            # 2 listings
+│   │   ├── service_listings.yml            # 3 listings
 │   │   └── upvotes.yml                     # Empty (minimal)
 │   ├── integration/                        # (empty)
 │   ├── helpers/                            # (empty)
@@ -350,6 +370,9 @@ condohub/
 | `GET`    | `/dashboard`                      | `dashboard#index`              | Main dashboard (3 tabs)                  |
 | `GET`    | `/topics/:id`                     | `topics#show`                  | Topic detail + comments                  |
 | `POST`   | `/topics`                         | `topics#create`                | Create new topic                         |
+| `GET`    | `/topics/:id/edit`                | `topics#edit`                  | Edit topic form                          |
+| `PATCH`  | `/topics/:id`                     | `topics#update`                | Update topic                             |
+| `DELETE` | `/topics/:id`                     | `topics#destroy`               | Delete topic                             |
 | `POST`   | `/topics/:topic_id/comments`      | `comments#create`              | Add comment to topic                     |
 | `GET`    | `/topics/:topic_id/comments/:id/edit` | `comments#edit`            | Turbo Frame: edit comment form           |
 | `PATCH`  | `/topics/:topic_id/comments/:id`  | `comments#update`              | Update comment (Turbo Stream)            |
@@ -358,7 +381,13 @@ condohub/
 | `GET`    | `/condominium/edit`               | `condominiums#edit`            | Admin: condo settings form               |
 | `PATCH`  | `/condominium`                    | `condominiums#update`          | Admin: update condo settings             |
 | `POST`   | `/service_listings`               | `service_listings#create`      | Create service listing                   |
+| `GET`    | `/service_listings/:id/edit`      | `service_listings#edit`        | Edit service listing form                |
+| `PATCH`  | `/service_listings/:id`           | `service_listings#update`      | Update service listing                   |
+| `DELETE` | `/service_listings/:id`           | `service_listings#destroy`     | Delete service listing                   |
 | `POST`   | `/service_listings/:id/upvote`    | `upvotes#create`               | Toggle upvote ("vouch") on service       |
+| `GET`    | `/profile/edit`                   | `profiles#edit`                | Profile edit form                        |
+| `PATCH`  | `/profile`                        | `profiles#update`              | Update profile + password change         |
+| `GET`    | `/residents/:id`                  | `residents#show`               | Resident profile + contributions         |
 | `GET`    | `/up`                             | `rails/health#show`            | Health check                             |
 | `GET/*`  | `/errors/404`                     | `errors#not_found`             | 404 page                                 |
 | `GET/*`  | `/errors/500`                     | `errors#internal_server_error` | 500 page                                 |
@@ -392,11 +421,13 @@ condohub/
 | `SessionsController`    | `new`, `create`, `destroy`, `impersonate` | `allow_unauthenticated_access` (except destroy) | Public + dev-only impersonate |
 | `PasswordsController`   | `new`, `create`, `edit`, `update` | `allow_unauthenticated_access`; `set_user_by_token` (edit/update) | Public                    |
 | `DashboardController`   | `index`                          | (default auth)                                | Authenticated             |
-| `TopicsController`      | `show`, `create`                 | (default auth)                                | Authenticated             |
+| `TopicsController`      | `show`, `create`, `edit`, `update`, `destroy` | `set_topic`, `require_owner` (edit/update/destroy) | Authenticated + owner/admin |
 | `CommentsController`    | `create`, `edit`, `update`, `destroy` | `set_topic`, `set_comment`, `require_comment_owner` (edit/update/destroy) | Authenticated + owner     |
 | `UpvotesController`     | `create`                         | (default auth)                                | Authenticated             |
-| `ServiceListingsController` | `create`                      | (default auth)                                | Authenticated             |
+| `ServiceListingsController` | `create`, `edit`, `update`, `destroy` | `set_service_listing`, `require_owner` (edit/update/destroy) | Authenticated + owner/admin |
 | `CondominiumsController` | `edit`, `update`                | `require_admin`                               | Admin only                |
+| `ProfilesController`    | `edit`, `update`                 | (default auth)                                | Authenticated (own profile) |
+| `ResidentsController`   | `show`                           | (default auth)                                | Authenticated             |
 | `ErrorsController`      | `not_found`, `internal_server_error`, `unprocessable_entity` | `skip_before_action :require_authentication` | Public                    |
 
 ### 5.3 Views
@@ -407,10 +438,13 @@ condohub/
 | `landing/`           | `index.html.erb`                                               | Hero + features + CTA                    |
 | `sessions/`          | `new.html.erb`                                                 | Login form + dev sandbox                 |
 | `dashboard/`         | `index.html.erb`                                               | 3-tab main interface                     |
-| `topics/`            | `show.html.erb`, `_comment.html.erb`, `_comment_form.html.erb`, `_comments_count.html.erb` | Topic detail, comment partials (Turbo Frame) |
+| `topics/`            | `show.html.erb`, `edit.html.erb`, `_form.html.erb`, `_comment.html.erb`, `_comment_form.html.erb`, `_comments_count.html.erb` | Topic detail, edit form, comment partials (Turbo Frame) |
 | `passwords/`         | `new.html.erb`, `edit.html.erb`                                | Reset request + password change          |
 | `passwords_mailer/`  | `reset.html.erb`, `reset.text.erb`                              | Password reset email                     |
 | `condominiums/`      | `edit.html.erb`                                                | Admin: edit condo settings               |
+| `service_listings/`  | `edit.html.erb`, `_form.html.erb`                              | Service listing edit form + partial      |
+| `profiles/`          | `edit.html.erb`                                                | Profile edit + password change           |
+| `residents/`         | `show.html.erb`                                                | Resident profile + contributions         |
 | `errors/`            | `not_found.html.erb`, `internal_server_error.html.erb`, `unprocessable_entity.html.erb` | Error pages                              |
 | `pwa/`               | `manifest.json.erb`, `service-worker.js`                       | PWA support                              |
 
@@ -421,6 +455,8 @@ condohub/
 | `hello_controller.js`            | —            | —              | Placeholder (default Rails scaffold)     |
 | `locale_switcher_controller.js`  | `select`     | `change`       | Rewrites URL with selected locale        |
 | `theme_controller.js`            | `icon`       | `toggle`       | Dark/light mode, persists to localStorage|
+| `cta_signup_controller.js`       | `email`, `submitBtn`, `feedback` | `submit` | Landing page CTA email capture (simulated) |
+| `password_toggle_controller.js`  | `fields`, `label` | `toggle`  | Show/hide password fields              |
 
 ### 5.5 Mailers
 
@@ -434,8 +470,8 @@ condohub/
 | Layer       | Files                                                                 | Coverage                                  |
 |-------------|-----------------------------------------------------------------------|-------------------------------------------|
 | Models      | `user_test.rb` · `upvote_test.rb` · `comment_test.rb` · `topic_test.rb` · `service_listing_test.rb` | Email normalization, upvote polymorphism/uniqueness/counter_cache (others: stubs) |
-| Controllers | `sessions_controller_test.rb` · `passwords_controller_test.rb` · `dashboard_controller_test.rb` · `comments_controller_test.rb` · `upvotes_controller_test.rb` · `service_listings_controller_test.rb` · `errors_controller_test.rb` | Auth flow, password reset, dashboard, comment CRUD + ownership, upvote toggle, cross-condo isolation, error pages |
-| Fixtures    | `condominiums.yml` · `users.yml` · `topics.yml` · `comments.yml` · `service_listings.yml` · `upvotes.yml` | 2 condos, 2 users, 2 topics, 2 comments, 2 listings, 0 upvotes |
+| Controllers | `sessions_controller_test.rb` · `passwords_controller_test.rb` · `dashboard_controller_test.rb` · `topics_controller_test.rb` · `comments_controller_test.rb` · `upvotes_controller_test.rb` · `service_listings_controller_test.rb` · `profiles_controller_test.rb` · `residents_controller_test.rb` · `errors_controller_test.rb` | Auth flow, password reset, dashboard, topic CRUD + owner/admin/cross-condo, comment CRUD + ownership, upvote toggle, service CRUD + admin/owner + vouch, profile update + password change, resident profile + cross-condo, error pages |
+| Fixtures    | `condominiums.yml` · `users.yml` · `topics.yml` · `comments.yml` · `service_listings.yml` · `upvotes.yml` | 2 condos, 3 users, 4 topics, 2 comments, 3 listings, 0 upvotes |
 
 ---
 
@@ -551,7 +587,7 @@ Browser                          Rails App
 | Category        | Technology                       |
 |-----------------|----------------------------------|
 | Framework       | Ruby on Rails 8.1.3              |
-| Language        | Ruby 3.4+                        |
+| Language        | Ruby 4.0.5                       |
 | Database        | SQLite3 2.1+                     |
 | Auth            | Custom (signed cookies, BCrypt)  |
 | Frontend        | Hotwire (Turbo + Stimulus)       |
