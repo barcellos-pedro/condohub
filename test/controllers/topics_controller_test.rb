@@ -64,31 +64,35 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   # Admin tests
-  test "admin can edit any topic in their condominium" do
+  test "admin cannot edit another user's discussion topic" do
     sign_in_as(users(:one))
     topic = topics(:three)
 
     get edit_topic_path(id: topic.id)
-    assert_response :success
+    assert_redirected_to dashboard_path
+    follow_redirect!
+    assert flash[:alert].present?
   end
 
-  test "admin can update any topic in their condominium" do
+  test "admin cannot update another user's discussion topic" do
     sign_in_as(users(:one))
     topic = topics(:three)
 
     patch topic_path(id: topic.id), params: { topic: { title: "Admin Updated" } }
-    assert_redirected_to topic_path(id: topic.id)
-    assert_equal "Admin Updated", topic.reload.title
+    assert_redirected_to dashboard_path
+    assert flash[:alert].present?
+    assert_not_equal "Admin Updated", topic.reload.title
   end
 
-  test "admin can destroy any topic in their condominium" do
+  test "admin cannot destroy another user's discussion topic" do
     sign_in_as(users(:one))
     topic = topics(:three)
 
-    assert_difference("Topic.count", -1) do
+    assert_no_difference("Topic.count") do
       delete topic_path(id: topic.id)
     end
     assert_redirected_to dashboard_path
+    assert flash[:alert].present?
   end
 
   # Cross-condo tests

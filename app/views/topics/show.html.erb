@@ -27,7 +27,7 @@
         ▲ <%= upvoted ? t(".upvoted") : t(".upvote") %> (<%= @topic.upvotes_count %>)
       <% end %>
       
-      <% if @topic.user == current_user || current_user.admin? %>
+      <% if @topic.user == current_user || (@topic.announcement? && current_user.admin?) %>
         <div style="margin-left: auto; display: flex; gap: 0.5rem;">
           <%= link_to t("topics.actions.edit"), edit_topic_path(@topic), class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" %>
           <%= button_to t("topics.actions.delete"), topic_path(@topic), method: :delete,
