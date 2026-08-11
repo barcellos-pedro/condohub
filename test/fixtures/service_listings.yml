@@ -3,26 +3,26 @@
 one:
   condominium: one
   user: one
-  title: MyString
-  description: MyText
-  contact_info: MyString
-  category: MyString
+  title: Plumbing Fix
+  description: Quick and reliable plumbing service
+  contact_info: "+5511999990001"
+  category: plumbing
   upvotes_count: 0
 
 two:
   condominium: two
   user: two
-  title: MyString
-  description: MyText
-  contact_info: MyString
-  category: MyString
+  title: Electrical Work
+  description: Professional electrical installations
+  contact_info: "+5511999990002"
+  category: electrical
   upvotes_count: 0
 
 three:
   condominium: one
   user: three
-  title: Resident Service
-  description: Service description from resident
-  contact_info: Contact info
-  category: Category
+  title: Deep Cleaning Service
+  description: Thorough cleaning for apartments
+  contact_info: "+5511999990003"
+  category: cleaning
   upvotes_count: 0
