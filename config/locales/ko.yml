@@ -225,6 +225,26 @@ ko:
     resident: "입주민"
     admin: "관리자"
 
+  search:
+    placeholder: "검색..."
+    button: "검색"
+
+  load_more: "더 보기"
+
+  filters:
+    all: "전체"
+
+  categories:
+    plumbing: "배관"
+    electrical: "전기"
+    cleaning: "청소"
+    gardening: "정원"
+    painting: "도장"
+    locksmith: "열쇠"
+    moving: "이사"
+    security: "보안"
+    other: "기타"
+
   topic_types:
     discussion: "토론"
     announcement: "공지"

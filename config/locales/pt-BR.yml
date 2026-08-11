@@ -225,6 +225,26 @@ pt-BR:
     resident: "Morador"
     admin: "Administrador"
 
+  search:
+    placeholder: "Buscar..."
+    button: "Buscar"
+
+  load_more: "Carregar mais"
+
+  filters:
+    all: "Todos"
+
+  categories:
+    plumbing: "Hidráulica"
+    electrical: "Elétrica"
+    cleaning: "Limpeza"
+    gardening: "Jardinagem"
+    painting: "Pintura"
+    locksmith: "Chaveiro"
+    moving: "Mudança"
+    security: "Vigilância"
+    other: "Outros"
+
   topic_types:
     discussion: "Discussão"
     announcement: "Aviso"

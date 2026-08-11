@@ -225,6 +225,26 @@ es:
     resident: "Residente"
     admin: "Administrador"
 
+  search:
+    placeholder: "Buscar..."
+    button: "Buscar"
+
+  load_more: "Cargar más"
+
+  filters:
+    all: "Todos"
+
+  categories:
+    plumbing: "Plomería"
+    electrical: "Electricidad"
+    cleaning: "Limpieza"
+    gardening: "Jardinería"
+    painting: "Pintura"
+    locksmith: "Cerrajería"
+    moving: "Mudanza"
+    security: "Seguridad"
+    other: "Otros"
+
   topic_types:
     discussion: "Discusión"
     announcement: "Anuncio"

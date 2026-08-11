@@ -225,6 +225,26 @@ en:
     resident: "Resident"
     admin: "Staff"
 
+  search:
+    placeholder: "Search..."
+    button: "Search"
+
+  load_more: "Load more"
+
+  filters:
+    all: "All"
+
+  categories:
+    plumbing: "Plumbing"
+    electrical: "Electrical"
+    cleaning: "Cleaning"
+    gardening: "Gardening"
+    painting: "Painting"
+    locksmith: "Locksmith"
+    moving: "Moving"
+    security: "Security"
+    other: "Other"
+
   topic_types:
     discussion: "Discussion"
     announcement: "Announcement"
