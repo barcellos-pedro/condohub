@@ -1,4 +1,6 @@
 class Topic < ApplicationRecord
+  include Searchable
+
   # Associations
   belongs_to :condominium
   belongs_to :user
@@ -19,6 +21,7 @@ class Topic < ApplicationRecord
   # Scopes
   scope :discussions, -> { where(topic_type: :discussion) }
   scope :announcements, -> { where(topic_type: :announcement) }
+  searchable_fields :title, :content
 
   private
 
