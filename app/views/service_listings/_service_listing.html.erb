@@ -1,0 +1,28 @@
+<div class="service-card">
+  <div class="service-left">
+    <span class="service-category"><%= t("categories.#{service_listing.category}") %></span>
+    <h2 class="service-title"><%= service_listing.title %></h2>
+    <p class="service-desc"><%= service_listing.description %></p>
+    <div class="service-contact">
+      <span>📞 <strong><%= t("dashboard.index.contact_label") %></strong> <%= service_listing.contact_info %></span>
+      <span>•</span>
+      <span><%= t("dashboard.index.recommended_by") %> <strong><%= link_to service_listing.user.full_name, resident_path(service_listing.user), class: "author-link" %></strong></span>
+    </div>
+  </div>
+
+  <div class="service-vouch">
+    <% vouched = service_listing.upvotes.any? { |upvote| upvote.user_id == current_user.id } %>
+    <%= button_to service_listing_upvote_path(service_listing_id: service_listing.id), method: :post, class: "btn btn-vouch #{vouched ? 'vouched' : ''}" do %>
+      <%= t("dashboard.index.vouch") %>
+    <% end %>
+    <span style="font-size: 0.8rem; font-weight: 700; color: var(--success);"><%= service_listing.upvotes_count %> <%= t("dashboard.index.vouches") %></span>
+    <% if service_listing.user == current_user || current_user.admin? %>
+      <div style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
+        <%= link_to t("service_listings.actions.edit"), edit_service_listing_path(service_listing), class: "btn btn-secondary", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
+        <%= button_to t("service_listings.actions.delete"), service_listing_path(service_listing), method: :delete,
+            data: { turbo_confirm: t("service_listings.actions.delete_confirm") },
+            class: "btn btn-danger", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
+      </div>
+    <% end %>
+  </div>
+</div>

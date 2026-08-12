@@ -13,7 +13,7 @@
 
     <div class="form-group" style="margin-bottom: 0;">
       <%= form.label :category, t("service_listings.form.category_label"), class: "form-label" %>
-      <%= form.text_field :category, required: true, placeholder: t("service_listings.form.category_placeholder"), class: "form-input" %>
+      <%= form.select :category, ServiceListing::CATEGORIES.map { |cat| [t("categories.#{cat}"), cat] }, { include_blank: true }, class: "form-input" %>
     </div>
   </div>
 

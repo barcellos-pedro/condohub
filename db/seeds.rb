@@ -122,7 +122,7 @@ ServiceListing.create!(
   condominium: condo_a,
   user: julia,
   title: "Mario's Pipeline Plumbing Specialists",
-  category: "Plumbing",
+  category: "plumbing",
   contact_info: "+55 (11) 98765-4321",
   description: "Mario did an incredible job fixing our bathroom pipe leak last week. He arrived within 45 minutes of calling, worked cleanly, explained everything clearly, and charged a very reasonable flat rate. Highly recommend him for emergency plumbing issues!",
   upvotes_count: 5
@@ -132,7 +132,7 @@ ServiceListing.create!(
   condominium: condo_a,
   user: marcelo,
   title: "Sparky Electric - Reliable & Licensed",
-  category: "Electrical",
+  category: "electrical",
   contact_info: "sparky.electrics@outlook.com",
   description: "Used them to replace our breaker box and install new LED dimmers in our living room. Super professional, wore shoe covers, and finished under the estimated timeframe. Certified and fully insured.",
   upvotes_count: 2
@@ -168,7 +168,7 @@ ServiceListing.create!(
   condominium: condo_b,
   user: carlos,
   title: "Dona Maria's Home Cleaning",
-  category: "Cleaning",
+  category: "cleaning",
   contact_info: "+55 (11) 91111-2222",
   description: "Dona Maria has been cleaning our apartment bi-weekly for over a year. She is extremely thorough, reliable, and trustworthy. She brings all her own organic cleaning supplies.",
   upvotes_count: 8

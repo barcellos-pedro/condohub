@@ -1,0 +1,44 @@
+<% is_announcement = (defined?(@tab) && @tab == "announcements") %>
+<% truncate_length = is_announcement ? 250 : 180 %>
+<% card_style = is_announcement ? "border-left: 3px solid var(--warning);" : "" %>
+<% can_manage = topic.user == current_user || (is_announcement && current_user.admin?) %>
+
+<div class="post-card" style="<%= card_style %>">
+  <div class="upvote-container">
+    <% upvoted = topic.upvotes.exists?(user: current_user) %>
+    <%= button_to topic_upvote_path(topic), method: :post, class: "upvote-btn #{upvoted ? 'upvoted' : ''}" do %>
+      ▲
+    <% end %>
+    <span class="upvote-count"><%= topic.upvotes_count %></span>
+  </div>
+  <div class="post-main">
+    <div class="post-meta">
+      <% if is_announcement %>
+        <%= t("dashboard.index.published_by") %>
+        <span class="post-author"><%= link_to topic.user.full_name, resident_path(topic.user), class: "author-link" %></span>
+        <span class="badge badge-admin"><%= t("roles.admin") %></span>
+      <% else %>
+        <%= t("dashboard.index.posted_by") %>
+        <span class="post-author"><%= link_to topic.user.full_name, resident_path(topic.user), class: "author-link" %></span>
+        <span class="badge badge-<%= topic.user.role %>"><%= t("roles.#{topic.user.role}") %></span>
+      <% end %>
+      <span>•</span>
+      <span><%= time_ago_in_words(topic.created_at) %> <%= t("dashboard.index.ago") %></span>
+    </div>
+    <h2 class="post-title"><%= link_to topic.title, topic_path(topic) %></h2>
+    <p class="post-body-snippet"<% if is_announcement %> style="color: var(--text-primary);"<% end %>><%= truncate(topic.content, length: truncate_length) %></p>
+    <div class="post-footer">
+      <%= link_to topic_path(topic), class: "post-footer-link" do %>
+        💬 <%= topic.comments.count %> <%= t("dashboard.index.comments") %>
+      <% end %>
+      <% if can_manage %>
+        <span style="margin-left: auto; display: flex; gap: 0.5rem;">
+          <%= link_to t("topics.actions.edit"), edit_topic_path(topic), class: "btn btn-secondary", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
+          <%= button_to t("topics.actions.delete"), topic_path(topic), method: :delete,
+              data: { turbo_confirm: t("topics.actions.delete_confirm") },
+              class: "btn btn-danger", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>

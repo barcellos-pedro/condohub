@@ -54,6 +54,12 @@
           <h1 class="feed-title"><%= t(".resident_discussions") %></h1>
         </div>
 
+        <%= form_with url: dashboard_path, method: :get, local: true, class: "search-form" do |f| %>
+          <%= hidden_field_tag :tab, @tab %>
+          <%= text_field_tag :q, @query, placeholder: t("search.placeholder"), class: "form-input" %>
+          <%= submit_tag t("search.button"), class: "btn btn-primary" %>
+        <% end %>
+
         <!-- Create new topic form -->
         <div class="creator-card">
           <h3 class="creator-title"><%= t(".share_something") %></h3>
@@ -61,45 +67,21 @@
         </div>
 
         <!-- Topics Feed -->
-        <% if @topics.any? %>
-          <% @topics.each do |topic| %>
-            <div class="post-card">
-              <div class="upvote-container">
-                <% upvoted = topic.upvotes.exists?(user: current_user) %>
-                <%= button_to topic_upvote_path(topic), method: :post, class: "upvote-btn #{upvoted ? 'upvoted' : ''}" do %>
-                  ▲
-                <% end %>
-                <span class="upvote-count"><%= topic.upvotes_count %></span>
-              </div>
-              <div class="post-main">
-                <div class="post-meta">
-                  <%= t(".posted_by") %> <span class="post-author"><%= link_to topic.user.full_name, resident_path(topic.user), class: "author-link" %></span>
-                  <span class="badge badge-<%= topic.user.role %>"><%= t("roles.#{topic.user.role}") %></span>
-                  <span>•</span>
-                  <span><%= time_ago_in_words(topic.created_at) %> <%= t(".ago") %></span>
-                </div>
-                <h2 class="post-title"><%= link_to topic.title, topic_path(topic) %></h2>
-                <p class="post-body-snippet"><%= truncate(topic.content, length: 180) %></p>
-                <div class="post-footer">
-                  <%= link_to topic_path(topic), class: "post-footer-link" do %>
-                    💬 <%= topic.comments.count %> <%= t(".comments") %>
-                  <% end %>
-                  <% if topic.user == current_user %>
-                    <span style="margin-left: auto; display: flex; gap: 0.5rem;">
-                      <%= link_to t("topics.actions.edit"), edit_topic_path(topic), class: "btn btn-secondary", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
-                      <%= button_to t("topics.actions.delete"), topic_path(topic), method: :delete,
-                          data: { turbo_confirm: t("topics.actions.delete_confirm") },
-                          class: "btn btn-danger", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
-                    </span>
-                  <% end %>
-                </div>
-              </div>
+        <%= turbo_frame_tag "topics_list" do %>
+          <% if @topics.any? %>
+            <% @topics.each do |topic| %>
+              <%= render topic %>
+            <% end %>
+            <%= render "shared/pagination",
+                has_more: @has_more_topics,
+                label: t("load_more"),
+                url_params: dashboard_path(tab: "discussions", page: @next_page, q: @query),
+                frame_id: "topics_list" %>
+          <% else %>
+            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+              <%= t(".no_discussions") %>
             </div>
           <% end %>
-        <% else %>
-          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-            <%= t(".no_discussions") %>
-          </div>
         <% end %>
 
       <% elsif @tab == 'announcements' %>
@@ -108,6 +90,12 @@
           <h1 class="feed-title"><%= t(".management_announcements") %></h1>
           <span class="badge badge-announcement" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;"><%= t(".official_only") %></span>
         </div>
+
+        <%= form_with url: dashboard_path, method: :get, local: true, class: "search-form" do |f| %>
+          <%= hidden_field_tag :tab, @tab %>
+          <%= text_field_tag :q, @query, placeholder: t("search.placeholder"), class: "form-input" %>
+          <%= submit_tag t("search.button"), class: "btn btn-primary" %>
+        <% end %>
 
         <!-- Create new announcement (Admins only) -->
         <% if current_user.admin? %>
@@ -122,51 +110,42 @@
         <% end %>
 
         <!-- Announcements Feed -->
-        <% if @topics.any? %>
-          <% @topics.each do |announcement| %>
-            <div class="post-card" style="border-left: 3px solid var(--warning);">
-              <div class="upvote-container">
-                <% upvoted = announcement.upvotes.exists?(user: current_user) %>
-                <%= button_to topic_upvote_path(announcement), method: :post, class: "upvote-btn #{upvoted ? 'upvoted' : ''}" do %>
-                  ▲
-                <% end %>
-                <span class="upvote-count"><%= announcement.upvotes_count %></span>
-              </div>
-              <div class="post-main">
-                <div class="post-meta">
-                  <%= t(".published_by") %> <span class="post-author"><%= link_to announcement.user.full_name, resident_path(announcement.user), class: "author-link" %></span>
-                  <span class="badge badge-admin"><%= t("roles.admin") %></span>
-                  <span>•</span>
-                  <span><%= time_ago_in_words(announcement.created_at) %> <%= t(".ago") %></span>
-                </div>
-                <h2 class="post-title"><%= link_to announcement.title, topic_path(announcement) %></h2>
-                <p class="post-body-snippet" style="color: var(--text-primary);"><%= truncate(announcement.content, length: 250) %></p>
-                <div class="post-footer">
-                  <%= link_to topic_path(announcement), class: "post-footer-link" do %>
-                    💬 <%= announcement.comments.count %> <%= t(".comments") %>
-                  <% end %>
-                  <% if announcement.user == current_user || current_user.admin? %>
-                    <span style="margin-left: auto; display: flex; gap: 0.5rem;">
-                      <%= link_to t("topics.actions.edit"), edit_topic_path(announcement), class: "btn btn-secondary", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
-                      <%= button_to t("topics.actions.delete"), topic_path(announcement), method: :delete,
-                          data: { turbo_confirm: t("topics.actions.delete_confirm") },
-                          class: "btn btn-danger", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
-                    </span>
-                  <% end %>
-                </div>
-              </div>
+        <%= turbo_frame_tag "topics_list" do %>
+          <% if @topics.any? %>
+            <% @topics.each do |topic| %>
+              <%= render topic %>
+            <% end %>
+            <%= render "shared/pagination",
+                has_more: @has_more_topics,
+                label: t("load_more"),
+                url_params: dashboard_path(tab: "announcements", page: @next_page, q: @query),
+                frame_id: "topics_list" %>
+          <% else %>
+            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+              <%= t(".no_announcements") %>
             </div>
           <% end %>
-        <% else %>
-          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-            <%= t(".no_announcements") %>
-          </div>
         <% end %>
 
       <% elsif @tab == 'services' %>
         <!-- TAB: LOCAL SERVICES -->
         <div class="feed-header">
           <h1 class="feed-title"><%= t(".trusted_services") %></h1>
+        </div>
+
+        <%= form_with url: dashboard_path, method: :get, local: true, class: "search-form" do |f| %>
+          <%= hidden_field_tag :tab, @tab %>
+          <%= text_field_tag :q, @query, placeholder: t("search.placeholder"), class: "form-input" %>
+          <%= submit_tag t("search.button"), class: "btn btn-primary" %>
+        <% end %>
+
+        <div class="category-filters">
+          <%= link_to t("filters.all"), dashboard_path(tab: "services", q: @query),
+              class: ("active" if @category.blank?) %>
+          <% ServiceListing::CATEGORIES.each do |cat| %>
+            <%= link_to t("categories.#{cat}"), dashboard_path(tab: "services", category: cat, q: @query),
+                class: ("active" if @category == cat) %>
+          <% end %>
         </div>
 
         <!-- Recommend new service form -->
@@ -176,41 +155,21 @@
         </div>
 
         <!-- Services Feed -->
-        <% if @services.any? %>
-          <% @services.each do |service| %>
-            <div class="service-card">
-              <div class="service-left">
-                <span class="service-category"><%= service.category %></span>
-                <h2 class="service-title"><%= service.title %></h2>
-                <p class="service-desc"><%= service.description %></p>
-                <div class="service-contact">
-                  <span>📞 <strong><%= t(".contact_label") %></strong> <%= service.contact_info %></span>
-                  <span>•</span>
-                  <span><%= t(".recommended_by") %> <strong><%= link_to service.user.full_name, resident_path(service.user), class: "author-link" %></strong></span>
-                </div>
-              </div>
-              
-              <div class="service-vouch">
-                <% vouched = service.upvotes.any? { |upvote| upvote.user_id == current_user.id } %>
-                <%= button_to service_listing_upvote_path(service_listing_id: service.id), method: :post, class: "btn btn-vouch #{vouched ? 'vouched' : ''}" do %>
-                  <%= t(".vouch") %>
-                <% end %>
-                <span style="font-size: 0.8rem; font-weight: 700; color: var(--success);"><%= service.upvotes_count %> <%= t(".vouches") %></span>
-                <% if service.user == current_user || current_user.admin? %>
-                  <div style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
-                    <%= link_to t("service_listings.actions.edit"), edit_service_listing_path(service), class: "btn btn-secondary", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
-                    <%= button_to t("service_listings.actions.delete"), service_listing_path(service), method: :delete,
-                        data: { turbo_confirm: t("service_listings.actions.delete_confirm") },
-                        class: "btn btn-danger", style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
-                  </div>
-                <% end %>
-              </div>
+        <%= turbo_frame_tag "services_list" do %>
+          <% if @services.any? %>
+            <% @services.each do |service| %>
+              <%= render service %>
+            <% end %>
+            <%= render "shared/pagination",
+                has_more: @has_more_services,
+                label: t("load_more"),
+                url_params: dashboard_path(tab: "services", page: @next_page, q: @query, category: @category),
+                frame_id: "services_list" %>
+          <% else %>
+            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+              <%= t(".no_services") %>
             </div>
           <% end %>
-        <% else %>
-          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-            <%= t(".no_services") %>
-          </div>
         <% end %>
 
       <% end %>
