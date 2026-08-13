@@ -3,8 +3,6 @@
 | Workstream                  | Priority  | Effort  |
 | --------------------------- | --------- | ------- |
 | **Announcement Delivery**   | 🔴 High   | Low-Med |
-| **Comment Engagement**      | 🟡 Medium | Medium  |
-| **Admin Intelligence**      | 🟢 Low    | Medium  |
 | **Self-Service Onboarding** | 🟢 Low    | High    |
 
 ## Workstream: Announcement Delivery
