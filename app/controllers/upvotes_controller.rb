@@ -1,30 +1,54 @@
 class UpvotesController < ApplicationController
-  def create
-    upvotable = if params[:topic_id]
-                  current_condominium.topics.find(params[:topic_id])
-    else
-                  current_condominium.service_listings.find(params[:service_listing_id])
-    end
+  before_action :require_authentication
+  before_action :set_upvotable
 
-    upvote = upvotable.upvotes.find_by(user: current_user)
+  def create
+    upvote = @upvotable.upvotes.find_by(user: current_user)
 
     if upvote
       upvote.destroy
-      message = if upvotable.is_a?(Topic)
-                  t("flash.upvotes.removed")
-      else
-                  t("flash.service_listings.vouch_removed", title: upvotable.title)
-      end
+      message = success_message(:removed)
     else
-      upvotable.upvotes.create!(user: current_user)
-      message = if upvotable.is_a?(Topic)
-                  t("flash.upvotes.success")
-      else
-                  t("flash.service_listings.vouch_success", title: upvotable.title)
-      end
+      @upvotable.upvotes.create!(user: current_user)
+      message = success_message(:success)
     end
 
-    fallback = upvotable.is_a?(Topic) ? dashboard_path : dashboard_path(tab: "services")
-    redirect_back fallback_location: fallback, notice: message
+    redirect_back fallback_location: fallback_path, notice: message
+  end
+
+  private
+
+  def set_upvotable
+    @upvotable = if params[:topic_id] && !params[:comment_id]
+      current_condominium.topics.find(params[:topic_id])
+    elsif params[:service_listing_id]
+      current_condominium.service_listings.find(params[:service_listing_id])
+    elsif params[:comment_id]
+      Comment.joins(:topic)
+             .where(topics: { condominium_id: current_condominium.id })
+             .find(params[:comment_id])
+    end
+  end
+
+  def success_message(action)
+    case @upvotable
+    when Topic
+      t("flash.upvotes.#{action}")
+    when ServiceListing
+      t("flash.service_listings.vouch_#{action}", title: @upvotable.title)
+    when Comment
+      t("flash.comments.upvote_#{action}")
+    end
+  end
+
+  def fallback_path
+    case @upvotable
+    when Topic
+      dashboard_path
+    when ServiceListing
+      dashboard_path(tab: "services")
+    when Comment
+      topic_path(@upvotable.topic, anchor: helpers.dom_id(@upvotable))
+    end
   end
 end

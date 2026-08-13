@@ -194,6 +194,8 @@ pt-BR:
       update_success: "Comentário atualizado com sucesso."
       destroy_success: "Comentário excluído com sucesso."
       not_authorized: "Você só pode alterar seus próprios comentários."
+      upvote_success: "Comentário curtido!"
+      upvote_removed: "Curtida do comentário removida."
     upvotes:
       removed: "Curtida removida."
       success: "Tópico curtido!"

@@ -190,10 +190,12 @@ es:
       destroy_success: "Tema eliminado exitosamente."
       not_authorized: "No tienes autorización para modificar este contenido."
     comments:
-      create_success: "Comentario publicado exitosamente."
-      update_success: "Comentario actualizado exitosamente."
-      destroy_success: "Comentario eliminado exitosamente."
+      create_success: "Comentario publicado con éxito."
+      update_success: "Comentario actualizado con éxito."
+      destroy_success: "Comentario eliminado con éxito."
       not_authorized: "Solo puedes cambiar tus propios comentarios."
+      upvote_success: "¡Comentario votado!"
+      upvote_removed: "Voto del comentario eliminado."
     upvotes:
       removed: "Voto eliminado."
       success: "¡Tema votado!"

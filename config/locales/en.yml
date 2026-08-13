@@ -194,6 +194,8 @@ en:
       update_success: "Comment updated successfully."
       destroy_success: "Comment deleted successfully."
       not_authorized: "You can only change your own comments."
+      upvote_success: "Comment upvoted!"
+      upvote_removed: "Comment upvote removed."
     upvotes:
       removed: "Upvote removed."
       success: "Topic upvoted!"
