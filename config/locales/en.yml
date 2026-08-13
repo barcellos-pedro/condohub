@@ -49,6 +49,7 @@ en:
       no_services: "No recommended services listed yet. Feel free to list yours!"
       no_announcements: "No official announcements posted yet."
       condo_settings: "⚙️ Condo Settings"
+      metrics: "📊 Condo Metrics"
 
   landing:
     index:
@@ -256,6 +257,17 @@ en:
     ko: "한국어"
 
   condominiums:
+    unauthorized: "You are not authorized to access condominium management."
+    show:
+      title: "Condo Metrics"
+      total_residents: "Total Residents"
+      active_residents: "Active Residents (30 days)"
+      topics_this_month: "Topics This Month"
+      top_services: "🏆 Top Vouched Services"
+      no_services: "No services listed yet."
+      recent_announcements: "📢 Recent Announcements"
+      no_announcements: "No announcements posted yet."
+      back: "← Back to Dashboard"
     edit:
       title: "Condo Settings"
       subtitle: "Manage your condominium's profile and community links."
@@ -268,7 +280,6 @@ en:
       cancel: "Cancel"
     update:
       success: "Condominium settings updated successfully."
-      unauthorized: "You are not authorized to manage condominium settings."
 
   profiles:
     edit:

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
 
     # Condominium Settings (admin only)
-    resource :condominium, only: [ :edit, :update ]
+    resource :condominium, only: [ :show, :edit, :update ]
 
     # Service Listings
     resources :service_listings, only: [ :create, :edit, :update, :destroy ] do
