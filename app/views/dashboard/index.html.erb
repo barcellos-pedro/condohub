@@ -68,21 +68,18 @@
         </div>
 
         <!-- Topics Feed -->
-        <%= turbo_frame_tag "topics_list" do %>
-          <% if @topics.any? %>
-            <% @topics.each do |topic| %>
-              <%= render topic %>
-            <% end %>
-            <%= render "shared/pagination",
-                has_more: @has_more_topics,
-                label: t("load_more"),
-                url_params: dashboard_path(tab: "discussions", page: @next_page, q: @query),
-                frame_id: "topics_list" %>
-          <% else %>
-            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-              <%= t(".no_discussions") %>
-            </div>
+        <% if @topics.any? %>
+          <% @topics.each do |topic| %>
+            <%= render topic %>
           <% end %>
+          <%= render "shared/pagination",
+              has_more: @has_more_topics,
+              label: t("load_more"),
+              url_params: dashboard_path(tab: "discussions", page: @next_page, q: @query) %>
+        <% else %>
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <%= t(".no_discussions") %>
+          </div>
         <% end %>
 
       <% elsif @tab == 'announcements' %>
@@ -111,21 +108,18 @@
         <% end %>
 
         <!-- Announcements Feed -->
-        <%= turbo_frame_tag "topics_list" do %>
-          <% if @topics.any? %>
-            <% @topics.each do |topic| %>
-              <%= render topic %>
-            <% end %>
-            <%= render "shared/pagination",
-                has_more: @has_more_topics,
-                label: t("load_more"),
-                url_params: dashboard_path(tab: "announcements", page: @next_page, q: @query),
-                frame_id: "topics_list" %>
-          <% else %>
-            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-              <%= t(".no_announcements") %>
-            </div>
+        <% if @topics.any? %>
+          <% @topics.each do |topic| %>
+            <%= render topic %>
           <% end %>
+          <%= render "shared/pagination",
+              has_more: @has_more_topics,
+              label: t("load_more"),
+              url_params: dashboard_path(tab: "announcements", page: @next_page, q: @query) %>
+        <% else %>
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <%= t(".no_announcements") %>
+          </div>
         <% end %>
 
       <% elsif @tab == 'services' %>
@@ -156,21 +150,18 @@
         </div>
 
         <!-- Services Feed -->
-        <%= turbo_frame_tag "services_list" do %>
-          <% if @services.any? %>
-            <% @services.each do |service| %>
-              <%= render service %>
-            <% end %>
-            <%= render "shared/pagination",
-                has_more: @has_more_services,
-                label: t("load_more"),
-                url_params: dashboard_path(tab: "services", page: @next_page, q: @query, category: @category),
-                frame_id: "services_list" %>
-          <% else %>
-            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-              <%= t(".no_services") %>
-            </div>
+        <% if @services.any? %>
+          <% @services.each do |service| %>
+            <%= render service %>
           <% end %>
+          <%= render "shared/pagination",
+              has_more: @has_more_services,
+              label: t("load_more"),
+              url_params: dashboard_path(tab: "services", page: @next_page, q: @query, category: @category) %>
+        <% else %>
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <%= t(".no_services") %>
+          </div>
         <% end %>
 
       <% end %>

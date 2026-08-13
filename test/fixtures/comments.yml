@@ -4,8 +4,10 @@ one:
   topic: one
   user: one
   content: MyText
+  upvotes_count: 0
 
 two:
   topic: two
   user: two
   content: MyText
+  upvotes_count: 0

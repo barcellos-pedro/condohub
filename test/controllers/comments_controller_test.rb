@@ -18,11 +18,9 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test "author can edit comment inline" do
     sign_in_as(@author)
 
-    get edit_topic_comment_path(topic_id: @topic, id: @comment), headers: { "Turbo-Frame" => dom_id(@comment) }
+    get edit_topic_comment_path(topic_id: @topic, id: @comment)
 
-    assert_response :success
-    assert_select "turbo-frame##{dom_id(@comment)}"
-    assert_select "textarea[name='comment[content]']", text: @comment.content
+    assert_redirected_to topic_path(@topic, anchor: dom_id(@comment))
   end
 
   test "author can update comment" do
@@ -38,11 +36,9 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     sign_in_as(@author)
 
     patch topic_comment_path(topic_id: @topic, id: @comment),
-          params: { comment: { content: "" } },
-          headers: { "Accept" => "text/vnd.turbo-stream.html" }
+          params: { comment: { content: "" } }
 
-    assert_response :unprocessable_entity
-    assert_match "turbo-stream", response.media_type
+    assert_redirected_to topic_path(@topic, anchor: dom_id(@comment))
     assert_not_equal "", @comment.reload.content
   end
 

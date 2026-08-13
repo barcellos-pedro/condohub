@@ -15,63 +15,23 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    if turbo_frame_request?
-      render partial: "topics/comment_form", locals: { topic: @topic, comment: @comment }
-    else
-      redirect_to topic_path(@topic, anchor: helpers.dom_id(@comment))
-    end
+    redirect_to topic_path(@topic, anchor: helpers.dom_id(@comment))
   end
 
   def update
     if @comment.update(comment_params)
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            @comment,
-            partial: "topics/comment",
-            locals: { topic: @topic, comment: @comment }
-          )
-        end
-        format.html do
-          redirect_to topic_path(@topic, anchor: helpers.dom_id(@comment)),
-                      notice: t("flash.comments.update_success")
-        end
-      end
+      redirect_to topic_path(@topic, anchor: helpers.dom_id(@comment)),
+                  notice: t("flash.comments.update_success")
     else
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            @comment,
-            partial: "topics/comment_form",
-            locals: { topic: @topic, comment: @comment }
-          ), status: :unprocessable_entity
-        end
-        format.html do
-          redirect_to topic_path(@topic, anchor: helpers.dom_id(@comment)),
-                      alert: @comment.errors.full_messages.to_sentence
-        end
-      end
+      redirect_to topic_path(@topic, anchor: helpers.dom_id(@comment)),
+                  alert: @comment.errors.full_messages.to_sentence
     end
   end
 
   def destroy
     @comment.destroy
 
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.remove(helpers.dom_id(@comment)),
-          turbo_stream.replace(
-            "comments_count",
-            partial: "topics/comments_count",
-            locals: { topic: @topic }
-          )
-        ]
-      end
-      format.html do
-        redirect_to topic_path(@topic), notice: t("flash.comments.destroy_success")
-      end
-    end
+    redirect_to topic_path(@topic), notice: t("flash.comments.destroy_success")
   end
 
   private
