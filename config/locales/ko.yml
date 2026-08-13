@@ -49,6 +49,7 @@ ko:
       no_services: "아직 추천된 서비스가 없습니다. 자유롭게 추천해보세요!"
       no_announcements: "아직 게시된 공식 공지사항이 없습니다."
       condo_settings: "⚙️ 콘도 설정"
+      metrics: "📊 콘도 지표"
  
   landing:
     index:
@@ -256,6 +257,17 @@ ko:
     ko: "한국어"
 
   condominiums:
+    unauthorized: "콘도미니엄 관리에 접근할 권한이 없습니다."
+    show:
+      title: "콘도 지표"
+      total_residents: "전체 입주민"
+      active_residents: "활성 입주민 (30일)"
+      topics_this_month: "이번 달 토픽"
+      top_services: "🏆 가장 추천받은 서비스"
+      no_services: "아직 등록된 서비스가 없습니다."
+      recent_announcements: "📢 최근 공지사항"
+      no_announcements: "아직 게시된 공지사항이 없습니다."
+      back: "← 대시보드로 돌아가기"
     edit:
       title: "콘도 설정"
       subtitle: "콘도미니엄의 프로필과 커뮤니티 링크를 관리하세요."
@@ -268,7 +280,6 @@ ko:
       cancel: "취소"
     update:
       success: "콘도미니엄 설정이 성공적으로 업데이트되었습니다."
-      unauthorized: "콘도미니엄 설정을 관리할 권한이 없습니다."
 
   activerecord:
   profiles:

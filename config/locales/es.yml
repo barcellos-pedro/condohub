@@ -49,6 +49,7 @@ es:
       no_services: "Aún no hay servicios recomendados. ¡Siéntete libre de recomendar el tuyo!"
       no_announcements: "Aún no se han publicado anuncios oficiales."
       condo_settings: "⚙️ Config. del Condominio"
+      metrics: "📊 Métricas del Condominio"
  
   landing:
     index:
@@ -256,6 +257,17 @@ es:
     ko: "한국어"
 
   condominiums:
+    unauthorized: "No tienes autorización para acceder a la gestión del condominio."
+    show:
+      title: "Métricas del Condominio"
+      total_residents: "Total de Residentes"
+      active_residents: "Residentes Activos (30 días)"
+      topics_this_month: "Temas Este Mes"
+      top_services: "🏆 Servicios Más Recomendados"
+      no_services: "Aún no hay servicios listados."
+      recent_announcements: "📢 Anuncios Recientes"
+      no_announcements: "Aún no se han publicado anuncios."
+      back: "← Volver al Panel"
     edit:
       title: "Configuración del Condominio"
       subtitle: "Administra el perfil y los enlaces comunitarios de tu condominio."
@@ -268,7 +280,6 @@ es:
       cancel: "Cancelar"
     update:
       success: "Configuración del condominio actualizada correctamente."
-      unauthorized: "No tienes autorización para gestionar la configuración del condominio."
 
   activerecord:
   profiles:

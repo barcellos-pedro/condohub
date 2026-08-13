@@ -19,6 +19,7 @@
 
       <% if current_user.admin? %>
         <p class="condo-card-settings">
+          <%= link_to t(".metrics"), condominium_path, class: "settings-link" %>
           <%= link_to t(".condo_settings"), edit_condominium_path, class: "settings-link" %>
         </p>
       <% end %>
