@@ -1,6 +1,6 @@
 <div class="service-card">
   <div class="service-left">
-    <span class="service-category"><%= t("categories.#{service_listing.category}") %></span>
+    <span class="service-category"><%= t("categories.#{service_listing.category}", default: service_listing.category) %></span>
     <h2 class="service-title"><%= service_listing.title %></h2>
     <p class="service-desc"><%= service_listing.description %></p>
     <div class="service-contact">
