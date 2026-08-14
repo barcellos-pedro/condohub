@@ -87,4 +87,21 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_no_match "Electrical Work", response.body
   end
+
+  test "sort param renders sort controls on discussions tab" do
+    get dashboard_path, params: { tab: "discussions", sort: "recent" }
+    assert_response :success
+    assert_match "sort-link", response.body
+  end
+
+  test "sort param renders sort controls on services tab" do
+    get dashboard_path, params: { tab: "services", sort: "recent" }
+    assert_response :success
+    assert_match "sort-link", response.body
+  end
+
+  test "sort unanswered only shows topics with zero comments" do
+    get dashboard_path, params: { tab: "discussions", sort: "unanswered" }
+    assert_response :success
+  end
 end

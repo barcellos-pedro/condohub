@@ -12,9 +12,9 @@ ko:
   dashboard:
     index:
       no_address: "주소가 지정되지 않음"
-      discussions_tab: "💬 토론"
-      announcements_tab: "📢 공지사항"
-      services_tab: "🛠️ 지역 서비스"
+      discussions_tab: "토론"
+      announcements_tab: "공지사항"
+      services_tab: "지역 서비스"
       sandbox_mode: "샌드박스 모드"
       switch_persona: "← 페르소나 전환"
       resident_discussions: "💬 입주민 토론"
@@ -256,6 +256,11 @@ ko:
 
   load_more: "더 보기"
 
+  sort:
+    popular: "인기"
+    recent: "최신"
+    unanswered: "미답변"
+
   filters:
     all: "전체"
 
@@ -287,7 +292,7 @@ ko:
       total_residents: "전체 입주민"
       active_residents: "활성 입주민 (30일)"
       topics_this_month: "이번 달 토픽"
-      top_services: "🏆 가장 추천받은 서비스"
+      top_services: "가장 추천받은 서비스"
       no_services: "아직 등록된 서비스가 없습니다."
       recent_announcements: "📢 최근 공지사항"
       no_announcements: "아직 게시된 공지사항이 없습니다."

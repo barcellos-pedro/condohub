@@ -46,4 +46,30 @@ class DashboardTest < ActiveSupport::TestCase
     result = Dashboard.query(condominium: condominiums(:one))
     assert result.items.all? { |t| t.condominium_id == condominiums(:one).id }
   end
+
+  test "discussions sort by recent orders by created_at desc" do
+    result = Dashboard.query(condominium: condominiums(:one), sort: "recent")
+    assert result.items.any?
+    dates = result.items.map(&:created_at)
+    assert_equal dates, dates.sort.reverse
+  end
+
+  test "discussions sort by unanswered returns only topics with no comments" do
+    result = Dashboard.query(condominium: condominiums(:one), sort: "unanswered")
+    assert result.items.all? { |t| t.comments_count == 0 }
+  end
+
+  test "discussions default sort is popular (by upvotes_count desc)" do
+    result = Dashboard.query(condominium: condominiums(:one))
+    assert result.items.any?
+    upvotes = result.items.map(&:upvotes_count)
+    assert_equal upvotes, upvotes.sort.reverse
+  end
+
+  test "services sort by recent orders by created_at desc" do
+    result = Dashboard.query(condominium: condominiums(:one), tab: "services", sort: "recent")
+    assert result.items.any?
+    dates = result.items.map(&:created_at)
+    assert_equal dates, dates.sort.reverse
+  end
 end

@@ -12,9 +12,9 @@ en:
   dashboard:
     index:
       no_address: "No address specified"
-      discussions_tab: "💬 Discussions"
-      announcements_tab: "📢 Announcements"
-      services_tab: "🛠️ Local Services"
+      discussions_tab: "Discussions"
+      announcements_tab: "Announcements"
+      services_tab: "Local Services"
       sandbox_mode: "Sandbox Mode"
       switch_persona: "← Switch Persona"
       resident_discussions: "💬 Resident Discussions"
@@ -25,6 +25,9 @@ en:
       posted_by: "Posted by"
       ago: "ago"
       comments: "comments"
+      comments_count:
+        one: "1 comment"
+        other: "%{count} comments"
       no_discussions: "No discussions yet. Be the first to start a conversation!"
       management_announcements: "📢 Management Announcements"
       official_only: "Management Only"
@@ -256,6 +259,11 @@ en:
 
   load_more: "Load more"
 
+  sort:
+    popular: "Popular"
+    recent: "Recent"
+    unanswered: "Unanswered"
+
   filters:
     all: "All"
 
@@ -287,7 +295,7 @@ en:
       total_residents: "Total Residents"
       active_residents: "Active Residents (30 days)"
       topics_this_month: "Topics This Month"
-      top_services: "🏆 Top Vouched Services"
+      top_services: "Top Vouched Services"
       no_services: "No services listed yet."
       recent_announcements: "📢 Recent Announcements"
       no_announcements: "No announcements posted yet."

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_213531) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_14_000000) do
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -55,6 +55,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_213531) do
   end
 
   create_table "topics", force: :cascade do |t|
+    t.integer "comments_count", default: 0, null: false
     t.integer "condominium_id", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false

@@ -21,6 +21,7 @@ class Topic < ApplicationRecord
   # Scopes
   scope :discussions, -> { where(topic_type: :discussion) }
   scope :announcements, -> { where(topic_type: :announcement) }
+
   searchable_fields :title, :content
 
   def editable_by?(user)

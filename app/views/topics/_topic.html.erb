@@ -29,7 +29,8 @@
     <p class="post-body-snippet"<% if is_announcement %> style="color: var(--text-primary);"<% end %>><%= truncate(topic.content, length: truncate_length) %></p>
     <div class="post-footer">
       <%= link_to topic_path(topic), class: "post-footer-link" do %>
-        💬 <%= topic.comments.count %> <%= t("dashboard.index.comments") %>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <%= t("dashboard.index.comments_count", count: topic.comments_count) %>
       <% end %>
       <% if can_manage %>
         <span style="margin-left: auto; display: flex; gap: 0.5rem;">

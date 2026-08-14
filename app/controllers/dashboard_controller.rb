@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
     @tab = params[:tab] || "discussions"
     @query = params[:q].to_s.strip
     @category = params[:category]
+    @sort = params[:sort]
     @page = params[:page].to_i
     @per_page = 20
 
@@ -11,6 +12,7 @@ class DashboardController < ApplicationController
       tab: @tab,
       search: @query,
       category: @category,
+      sort: @sort,
       page: @page,
       per_page: @per_page
     )

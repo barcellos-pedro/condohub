@@ -12,9 +12,9 @@ es:
   dashboard:
     index:
       no_address: "Sin dirección especificada"
-      discussions_tab: "💬 Discusiones"
-      announcements_tab: "📢 Anuncios"
-      services_tab: "🛠️ Servicios Locales"
+      discussions_tab: "Discusiones"
+      announcements_tab: "Anuncios"
+      services_tab: "Servicios Locales"
       sandbox_mode: "Modo Sandbox"
       switch_persona: "← Cambiar Persona"
       resident_discussions: "💬 Discusiones de Residentes"
@@ -25,6 +25,9 @@ es:
       posted_by: "Publicado por"
       ago: "hace"
       comments: "comentarios"
+      comments_count:
+        one: "1 comentario"
+        other: "%{count} comentarios"
       no_discussions: "Aún no hay discusiones. ¡Sé el primero en iniciar una conversación!"
       management_announcements: "📢 Anuncios de la Administración"
       official_only: "Solo administración"
@@ -256,6 +259,11 @@ es:
 
   load_more: "Cargar más"
 
+  sort:
+    popular: "Populares"
+    recent: "Recientes"
+    unanswered: "Sin respuesta"
+
   filters:
     all: "Todos"
 
@@ -287,7 +295,7 @@ es:
       total_residents: "Total de Residentes"
       active_residents: "Residentes Activos (30 días)"
       topics_this_month: "Temas Este Mes"
-      top_services: "🏆 Servicios Más Recomendados"
+      top_services: "Servicios Más Recomendados"
       no_services: "Aún no hay servicios listados."
       recent_announcements: "📢 Anuncios Recientes"
       no_announcements: "Aún no se han publicado anuncios."
