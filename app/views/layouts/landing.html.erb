@@ -54,7 +54,7 @@
                         data: { locale_switcher_target: "select", action: "locale-switcher#change" } %>
                 </div>
             </div>
-            <%= link_to t("landing.index.get_started"), dashboard_path(locale: I18n.locale), class: "btn" %>
+            <%= link_to t("landing.index.sign_in"), new_session_path(locale: I18n.locale), class: "btn" %>
         </div>
     </header>
 

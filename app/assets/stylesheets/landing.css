@@ -127,6 +127,71 @@ header.landing-header {
     max-width: 500px;
 }
 
+.request-access-form {
+    margin-bottom: 0.5rem;
+}
+
+.request-access-field {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 460px;
+}
+
+.request-access-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.request-access-input::placeholder {
+    color: #9a9790;
+}
+
+.request-access-input:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(26, 122, 109, 0.15);
+}
+
+.request-access-hint {
+    font-size: 0.875rem;
+    color: var(--ash);
+    margin-bottom: 1.25rem;
+}
+
+.request-access-success p {
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.sign-in-link {
+    font-size: 0.95rem;
+    color: var(--ash);
+    margin-bottom: 0;
+}
+
+.sign-in-link a {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.sign-in-link a:hover {
+    text-decoration: underline;
+}
+
+.cta-section .request-access-field {
+    margin: 0 auto;
+}
+
 .notice-board {
     position: relative;
     height: 420px;
@@ -613,6 +678,14 @@ footer {
     .btn {
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
+    }
+
+    .request-access-field {
+        flex-direction: column;
+    }
+
+    .request-access-field .btn {
+        width: 100%;
     }
 
     .cta-section {

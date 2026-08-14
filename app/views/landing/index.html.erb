@@ -6,7 +6,8 @@
                 <div class="hero-content">
                     <h1><%= t(".hero_title") %></h1>
                     <p><%= t(".hero_subtitle") %></p>
-                    <a href="<%= dashboard_path(locale: I18n.locale) %>" class="btn"><%= t(".get_started") %></a>
+                    <%= render "request_access", form_id: "request_access_hero" %>
+                    <p class="sign-in-link"><%= link_to t(".sign_in_link"), new_session_path %></p>
                 </div>
                 <div class="notice-board" role="img" aria-label="<%= t(".hero_img_alt") %>">
                     <!-- Discussion Card -->
@@ -193,7 +194,7 @@
         <div class="container">
             <h2><%= t(".cta_title") %></h2>
             <p><%= t(".cta_text") %></p>
-            <a href="<%= dashboard_path(locale: I18n.locale) %>" class="btn"><%= t(".get_started") %></a>
+            <%= render "request_access", form_id: "request_access_cta" %>
         </div>
     </section>
 </main>

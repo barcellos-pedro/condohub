@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_14_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_14_010000) do
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -90,6 +90,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_14_000000) do
     t.datetime "updated_at", null: false
     t.index ["condominium_id"], name: "index_users_on_condominium_id"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+  end
+
+  create_table "waitlist_entries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email_address", null: false
+    t.string "locale"
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_waitlist_entries_on_email_address", unique: true
   end
 
   add_foreign_key "comments", "topics"

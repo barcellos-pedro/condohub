@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
     post "session/impersonate", to: "sessions#impersonate", as: :impersonate_session
 
+    # Waitlist / request access (public)
+    post "request_access", to: "waitlist#create", as: :request_access
+
     # Dashboard
     get "dashboard", to: "dashboard#index"
 

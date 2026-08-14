@@ -1,0 +1,10 @@
+<div id="<%= form_id %>">
+    <%= form_with url: request_access_path, method: :post, class: "request-access-form" do |form| %>
+        <%= hidden_field_tag :form_id, form_id %>
+        <div class="request-access-field">
+            <%= form.email_field :email_address, value: local_assigns.fetch(:email_address, nil), required: true, autocomplete: "email", placeholder: t("landing.index.email_placeholder"), aria: { label: t("landing.index.email_label") }, class: "request-access-input" %>
+            <%= form.submit t("landing.index.request_access"), class: "btn" %>
+        </div>
+    <% end %>
+    <p class="request-access-hint"><%= t("landing.index.request_access_hint") %></p>
+</div>
