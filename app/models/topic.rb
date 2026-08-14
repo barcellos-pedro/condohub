@@ -23,6 +23,12 @@ class Topic < ApplicationRecord
   scope :announcements, -> { where(topic_type: :announcement) }
   searchable_fields :title, :content
 
+  def editable_by?(user)
+    return false if user.nil?
+    return user.admin? if announcement?
+    self.user_id == user.id
+  end
+
   private
 
   def announcements_only_by_admins

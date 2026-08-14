@@ -2,26 +2,7 @@ class CondominiumsController < ApplicationController
   before_action :require_admin
 
   def show
-    @total_residents = current_condominium.users.count
-
-    @active_residents = current_condominium.users
-      .left_joins(:topics, :comments)
-      .where("topics.created_at > ? OR comments.created_at > ?", 30.days.ago, 30.days.ago)
-      .distinct
-      .count
-
-    @topics_this_month = current_condominium.topics
-      .where(created_at: Time.current.beginning_of_month..)
-      .count
-
-    @top_services = current_condominium.service_listings
-      .order(upvotes_count: :desc)
-      .limit(5)
-
-    @recent_announcements = current_condominium.topics
-      .announcements
-      .order(created_at: :desc)
-      .limit(5)
+    @metrics = current_condominium.metrics
   end
 
   def edit

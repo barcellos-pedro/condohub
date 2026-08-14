@@ -42,4 +42,21 @@ class UpvoteTest < ActiveSupport::TestCase
       Upvote.create!(user: users(:two), upvotable: service_listing)
     end
   end
+
+  test "toggle creates upvote when absent" do
+    topic = topics(:one)
+    assert_difference -> { Upvote.where(upvotable: topic).count }, 1 do
+      result = Upvote.toggle(user: users(:two), upvotable: topic)
+      assert_equal :success, result
+    end
+  end
+
+  test "toggle removes upvote when present" do
+    topic = topics(:one)
+    Upvote.create!(user: users(:two), upvotable: topic)
+    assert_difference -> { Upvote.where(upvotable: topic).count }, -1 do
+      result = Upvote.toggle(user: users(:two), upvotable: topic)
+      assert_equal :removed, result
+    end
+  end
 end

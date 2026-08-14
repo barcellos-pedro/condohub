@@ -25,6 +25,11 @@ class ServiceListing < ApplicationRecord
   # Scopes
   searchable_fields :title, :description
 
+  def editable_by?(user)
+    return false if user.nil?
+    self.user_id == user.id || user.admin?
+  end
+
   scope :by_category, ->(category) {
     return all if category.blank?
     where(category: category)

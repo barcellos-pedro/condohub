@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
   end
 
   def require_comment_owner
-    redirect_to topic_path(@topic), alert: t("flash.comments.not_authorized") unless @comment.user == current_user
+    redirect_to topic_path(@topic), alert: t("flash.comments.not_authorized") unless @comment.editable_by?(current_user)
   end
 
   def comment_params

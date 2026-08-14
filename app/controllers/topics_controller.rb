@@ -41,14 +41,7 @@ class TopicsController < ApplicationController
   end
 
   def require_owner
-    if @topic.announcement?
-      unless current_user.admin?
-        redirect_to dashboard_path, alert: t("flash.topics.not_authorized")
-      end
-      return
-    end
-
-    unless @topic.user_id == current_user.id
+    unless @topic.editable_by?(current_user)
       redirect_to dashboard_path, alert: t("flash.topics.not_authorized")
     end
   end

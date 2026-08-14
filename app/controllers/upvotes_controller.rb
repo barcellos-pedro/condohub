@@ -3,17 +3,8 @@ class UpvotesController < ApplicationController
   before_action :set_upvotable
 
   def create
-    upvote = @upvotable.upvotes.find_by(user: current_user)
-
-    if upvote
-      upvote.destroy
-      message = success_message(:removed)
-    else
-      @upvotable.upvotes.create!(user: current_user)
-      message = success_message(:success)
-    end
-
-    redirect_back fallback_location: fallback_path, notice: message
+    result = Upvote.toggle(user: current_user, upvotable: @upvotable)
+    redirect_back fallback_location: fallback_path, notice: success_message(result)
   end
 
   private

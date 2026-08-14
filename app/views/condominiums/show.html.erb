@@ -5,24 +5,24 @@
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
       <div class="post-card" style="align-items: center;">
-        <div style="font-size: 2rem; font-weight: 800; color: var(--primary-accent);"><%= @total_residents %></div>
+        <div style="font-size: 2rem; font-weight: 800; color: var(--primary-accent);"><%= @metrics[:total_residents] %></div>
         <div style="color: var(--text-secondary); font-size: 0.85rem;"><%= t(".total_residents") %></div>
       </div>
 
       <div class="post-card" style="align-items: center;">
-        <div style="font-size: 2rem; font-weight: 800; color: var(--success);"><%= @active_residents %></div>
+        <div style="font-size: 2rem; font-weight: 800; color: var(--success);"><%= @metrics[:active_residents] %></div>
         <div style="color: var(--text-secondary); font-size: 0.85rem;"><%= t(".active_residents") %></div>
       </div>
 
       <div class="post-card" style="align-items: center;">
-        <div style="font-size: 2rem; font-weight: 800; color: var(--warning);"><%= @topics_this_month %></div>
+        <div style="font-size: 2rem; font-weight: 800; color: var(--warning);"><%= @metrics[:topics_this_month] %></div>
         <div style="color: var(--text-secondary); font-size: 0.85rem;"><%= t(".topics_this_month") %></div>
       </div>
     </div>
 
     <h2 class="feed-title" style="font-size: 1.2rem;"><%= t(".top_services") %></h2>
-    <% if @top_services.any? %>
-      <% @top_services.each_with_index do |service, index| %>
+    <% if @metrics[:top_services].any? %>
+      <% @metrics[:top_services].each_with_index do |service, index| %>
         <div class="service-card">
           <div class="service-left">
             <span class="service-category"><%= t("categories.#{service.category}", default: service.category) %></span>
@@ -39,8 +39,8 @@
     <% end %>
 
     <h2 class="feed-title" style="font-size: 1.2rem; margin-top: 2rem;"><%= t(".recent_announcements") %></h2>
-    <% if @recent_announcements.any? %>
-      <% @recent_announcements.each do |announcement| %>
+    <% if @metrics[:recent_announcements].any? %>
+      <% @metrics[:recent_announcements].each do |announcement| %>
         <div class="post-card">
           <%= link_to announcement.title, topic_path(announcement), class: "post-title", style: "color: inherit; text-decoration: none;" %>
           <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">

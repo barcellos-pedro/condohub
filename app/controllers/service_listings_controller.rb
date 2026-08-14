@@ -36,7 +36,7 @@ class ServiceListingsController < ApplicationController
   end
 
   def require_owner
-    unless @service_listing.user_id == current_user.id || current_user.admin?
+    unless @service_listing.editable_by?(current_user)
       redirect_to dashboard_path(tab: "services"), alert: t("flash.service_listings.not_authorized")
     end
   end

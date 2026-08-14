@@ -6,4 +6,9 @@ class Comment < ApplicationRecord
 
   # Validations
   validates :content, presence: true
+
+  def editable_by?(user)
+    return false if user.nil?
+    self.user_id == user.id
+  end
 end
