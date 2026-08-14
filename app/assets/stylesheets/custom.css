@@ -1,37 +1,37 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
 
 :root {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f1f5f9;
-  --border-color: rgba(0, 0, 0, 0.08);
+  --bg-primary: #F6F4F0;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #EDEAE5;
+  --border-color: #E8E6E1;
 
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
+  --text-primary: #1A1D21;
+  --text-secondary: #64615A;
+  --text-muted: #9B9690;
 
-  --primary-accent: #0284c7;
-  --primary-accent-hover: #0369a1;
-  --secondary-accent: #6366f1;
+  --primary-accent: #1A7A6D;
+  --primary-accent-hover: #145A51;
+  --secondary-accent: #E06B4F;
 
   --success: #059669;
   --danger: #dc2626;
   --warning: #d97706;
 
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 2px 8px rgba(26, 29, 33, 0.06);
+  --shadow-md: 0 4px 16px rgba(26, 29, 33, 0.08);
+  --shadow-lg: 0 8px 32px rgba(26, 29, 33, 0.12);
 
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
   --radius-xl: 24px;
 
-  --app-header-bg: rgba(255, 255, 255, 0.8);
+  --app-header-bg: rgba(255, 255, 255, 0.95);
 }
 
 * {
@@ -42,9 +42,6 @@
 
 body {
   background-color: var(--bg-primary);
-  background-image:
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%);
   color: var(--text-primary);
   font-family: var(--font-sans);
   min-height: 100vh;
@@ -65,34 +62,34 @@ a:hover {
 /* App Header styling */
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg-primary: #0b0f19;
-  --bg-secondary: #131a2e;
-  --bg-tertiary: #1b2542;
+  --bg-primary: #1A1D21;
+  --bg-secondary: #24272B;
+  --bg-tertiary: #2E3136;
   --border-color: rgba(255, 255, 255, 0.08);
 
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  --text-primary: #F6F4F0;
+  --text-secondary: #A8A49E;
+  --text-muted: #7A7670;
 
-  --primary-accent: #38bdf8;
-  --primary-accent-hover: #0ea5e9;
-  --secondary-accent: #6366f1;
+  --primary-accent: #2AB3A1;
+  --primary-accent-hover: #1A7A6D;
+  --secondary-accent: #E06B4F;
 
   --success: #10b981;
   --danger: #ef4444;
   --warning: #f59e0b;
 
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
 
-  --app-header-bg: rgba(19, 26, 46, 0.8);
+  --app-header-bg: rgba(26, 29, 33, 0.95);
 }
 
 [data-theme="dark"] body {
   background-image:
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(26, 122, 109, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(224, 107, 79, 0.08) 0px, transparent 50%);
 }
 
 .app-header {
@@ -112,9 +109,7 @@ a:hover {
   font-weight: 700;
   font-size: 1.5rem;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #fff 0%, var(--primary-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary-accent);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -165,15 +160,15 @@ a:hover {
 }
 
 .badge-admin {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: var(--danger);
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background-color: rgba(217, 119, 6, 0.12);
+  color: #92400e;
+  border: 1px solid rgba(217, 119, 6, 0.25);
 }
 
 .badge-resident {
-  background-color: rgba(16, 185, 129, 0.15);
-  color: var(--success);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background-color: rgba(26, 122, 109, 0.12);
+  color: var(--primary-accent);
+  border: 1px solid rgba(26, 122, 109, 0.25);
 }
 
 .badge-announcement {
@@ -198,13 +193,14 @@ a:hover {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--secondary-accent) 0%, var(--primary-accent) 100%);
+  background: var(--secondary-accent);
   color: white;
 }
 
 .btn-primary:hover {
+  background: #D45A3E;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
@@ -263,13 +259,13 @@ a:hover {
 
 .locale-select:hover {
   border-color: var(--primary-accent);
-  background-color: rgba(56, 189, 248, 0.05);
+  background-color: rgba(26, 122, 109, 0.05);
 }
 
 .locale-select:focus-visible {
   outline: none;
   border-color: var(--primary-accent);
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 0 2px rgba(26, 122, 109, 0.15);
 }
 
 /* Switcher / Login styling */
@@ -325,7 +321,7 @@ a:hover {
 .form-input:focus-visible {
   outline: none;
   border-color: var(--primary-accent);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 0 3px rgba(26, 122, 109, 0.15);
 }
 
 .impersonation-section {
@@ -399,7 +395,7 @@ a:hover {
 
 .persona-btn:hover {
   border-color: var(--primary-accent);
-  background: rgba(56, 189, 248, 0.05);
+  background: rgba(26, 122, 109, 0.05);
 }
 
 /* Dashboard Layout */
@@ -497,7 +493,7 @@ a:hover {
 
 .tab-link.active {
   color: var(--primary-accent);
-  background: rgba(56, 189, 248, 0.08);
+  background: rgba(26, 122, 109, 0.08);
   font-weight: 600;
 }
 
@@ -553,7 +549,7 @@ a:hover {
 }
 
 .upvote-btn:hover {
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(26, 122, 109, 0.12);
   color: var(--primary-accent);
   border-color: var(--primary-accent);
 }
@@ -641,8 +637,8 @@ a:hover {
 
 .service-category {
   display: inline-block;
-  background: rgba(99, 102, 241, 0.12);
-  color: #a5b4fc;
+  background: rgba(26, 122, 109, 0.12);
+  color: var(--primary-accent);
   padding: 0.2rem 0.6rem;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -679,18 +675,18 @@ a:hover {
 }
 
 .btn-vouch {
-  background: rgba(16, 185, 129, 0.08);
-  color: var(--success);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(26, 122, 109, 0.08);
+  color: var(--primary-accent);
+  border: 1px solid rgba(26, 122, 109, 0.2);
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
   font-weight: 700;
 }
 
 .btn-vouch:hover {
-  background: var(--success);
+  background: var(--primary-accent);
   color: white;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 12px rgba(26, 122, 109, 0.2);
 }
 
 .btn-vouch.vouched {
@@ -839,9 +835,9 @@ a:hover {
 }
 
 .flash-notice {
-  background-color: rgba(16, 185, 129, 0.15);
-  color: var(--success);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  background-color: rgba(26, 122, 109, 0.12);
+  color: var(--primary-accent);
+  border: 1px solid rgba(26, 122, 109, 0.25);
 }
 
 .flash-alert {
@@ -1134,7 +1130,7 @@ a:hover {
   height: 1px;
   overflow: hidden;
   z-index: 1000;
-  background: var(--primary-accent);
+  background: var(--secondary-accent);
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-md);
@@ -1156,7 +1152,7 @@ a:hover {
 .upvote-btn:focus-visible,
 .persona-btn:focus-visible,
 .tab-link:focus-visible {
-  outline: 3px solid rgba(56, 189, 248, 0.4);
+  outline: 3px solid rgba(224, 107, 79, 0.4);
   outline-offset: 2px;
 }
 
