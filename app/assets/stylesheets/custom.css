@@ -64,6 +64,7 @@ a:hover {
 
 /* App Header styling */
 [data-theme="dark"] {
+  color-scheme: dark;
   --bg-primary: #0b0f19;
   --bg-secondary: #131a2e;
   --bg-tertiary: #1b2542;
@@ -192,7 +193,7 @@ a:hover {
   border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   gap: 0.5rem;
 }
 
@@ -250,7 +251,7 @@ a:hover {
   font-weight: 500;
   padding: 0.35rem 1.75rem 0.35rem 0.5rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: border-color 0.2s, background-color 0.2s;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -265,7 +266,7 @@ a:hover {
   background-color: rgba(56, 189, 248, 0.05);
 }
 
-.locale-select:focus {
+.locale-select:focus-visible {
   outline: none;
   border-color: var(--primary-accent);
   box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
@@ -318,10 +319,10 @@ a:hover {
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 0.95rem;
-  transition: all 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.form-input:focus {
+.form-input:focus-visible {
   outline: none;
   border-color: var(--primary-accent);
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
@@ -391,7 +392,7 @@ a:hover {
   color: var(--text-primary);
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: border-color 0.2s, background 0.2s;
   text-align: left;
   width: 100%;
 }
@@ -486,7 +487,7 @@ a:hover {
   color: var(--text-secondary);
   font-weight: 500;
   border-radius: var(--radius-md);
-  transition: all 0.2s;
+  transition: color 0.2s, background 0.2s;
 }
 
 .tab-link:hover {
@@ -548,7 +549,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .upvote-btn:hover {
@@ -1123,4 +1124,49 @@ a:hover {
 
 .search-form .form-input {
   flex: 1;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 1000;
+  background: var(--primary-accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
+.btn:focus-visible,
+.upvote-btn:focus-visible,
+.persona-btn:focus-visible,
+.tab-link:focus-visible {
+  outline: 3px solid rgba(56, 189, 248, 0.4);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

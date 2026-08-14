@@ -9,6 +9,7 @@
     <% end %>
 
     <div class="form-group">
+      <%= form.label :content, t("topics.show.edit_comment_label"), class: "form-label" %>
       <%= form.text_area :content, required: true, rows: 3, class: "form-input" %>
     </div>
 

@@ -47,6 +47,7 @@
       <h3 class="creator-title" style="font-size: 1rem; margin-bottom: 0.75rem;"><%= t(".add_comment") %></h3>
       <%= form_with model: [ @topic, @comment ], url: topic_comments_path(topic_id: @topic), local: true do |form| %>
         <div class="form-group">
+          <%= form.label :content, t(".comment_label"), class: "form-label" %>
           <%= form.text_area :content, required: true, rows: 3, placeholder: t(".comment_placeholder"), class: "form-input" %>
         </div>
         <div style="display: flex; justify-content: flex-end;">

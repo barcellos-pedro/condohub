@@ -6,7 +6,7 @@
 <div class="post-card" style="<%= card_style %>">
   <div class="upvote-container">
     <% upvoted = topic.upvotes.exists?(user: current_user) %>
-    <%= button_to topic_upvote_path(topic), method: :post, class: "upvote-btn #{upvoted ? 'upvoted' : ''}" do %>
+    <%= button_to topic_upvote_path(topic), method: :post, class: "upvote-btn #{upvoted ? 'upvoted' : ''}", aria: { label: "#{t('topics.show.upvote')} (#{topic.upvotes_count})" } do %>
       ▲
     <% end %>
     <span class="upvote-count"><%= topic.upvotes_count %></span>

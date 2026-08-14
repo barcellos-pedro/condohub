@@ -38,7 +38,7 @@
     <header class="landing-header">
         <div class="container nav-container">
             <div class="nav-left">
-                <a href="<%= root_path %>" class="logo">CondoHub</a>
+                <a href="<%= root_path %>" class="logo"><span translate="no">CondoHub</span></a>
                 <div class="locale-switcher-landing" data-controller="locale-switcher">
                     <%= select_tag nil,
                         options_for_select(
@@ -62,19 +62,8 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 CondoHub. <%= t("landing.index.footer") %></p>
+            <p>&copy; 2026 <span translate="no">CondoHub</span>. <%= t("landing.index.footer") %></p>
         </div>
     </footer>
-
-    <script>
-        function scrollToCTA() {
-            var ctaSection = document.getElementById('join-cta');
-            if (ctaSection) {
-                ctaSection.scrollIntoView({ behavior: 'smooth' });
-                // Prevent browser jump before scrolling completes, focus section cleanly
-                ctaSection.focus({ preventScroll: true });
-            }
-        }
-    </script>
 </body>
 </html>

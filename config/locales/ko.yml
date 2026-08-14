@@ -5,6 +5,9 @@ ko:
       app_name: "CondoHub"
       log_out: "로그아웃"
       description: "콘도미니엄 입주민들이 업데이트를 공유하고, 커뮤니티 주제를 논의하며, 지역 서비스를 추천할 수 있는 웹 애플리케이션입니다."
+      skip_to_content: "콘텐츠로 건너뛰기"
+      toggle_theme: "테마 전환"
+      select_language: "언어 선택"
 
   dashboard:
     index:
@@ -111,6 +114,8 @@ ko:
       content_placeholder: "무슨 생각을 하고 계신가요? 여기에 적어보세요..."
       submit: "저장"
       cancel: "취소"
+      title_label: "제목"
+      content_label: "내용"
     edit:
       title: "토론 수정"
       back: "← 토론으로 돌아가기"
@@ -127,8 +132,10 @@ ko:
       comments_title: "댓글"
       add_comment: "댓글 추가"
       comment_placeholder: "이에 대한 생각을 공유하세요..."
+      comment_label: "댓글"
       post_comment: "댓글 게시"
       edit_comment: "수정"
+      edit_comment_label: "댓글 수정"
       delete_comment: "삭제"
       delete_comment_confirm: "이 댓글을 삭제하시겠습니까?"
       save_comment: "저장"
@@ -160,11 +167,14 @@ ko:
     new:
       title: "비밀번호를 잊으셨나요?"
       email_placeholder: "이메일 주소를 입력하세요"
+      email_label: "이메일 주소"
       submit: "재설정 안내 이메일 보내기"
     edit:
       title: "비밀번호 업데이트"
       password_placeholder: "새 비밀번호 입력"
+      password_label: "새 비밀번호"
       password_confirmation_placeholder: "새 비밀번호 확인"
+      password_confirmation_label: "비밀번호 확인"
       submit: "저장"
 
   errors:
@@ -231,6 +241,7 @@ ko:
   search:
     placeholder: "검색..."
     button: "검색"
+    label: "검색"
 
   load_more: "더 보기"
 

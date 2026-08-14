@@ -5,6 +5,9 @@ en:
       app_name: "CondoHub"
       log_out: "Log Out"
       description: "CondoHub is a web app for condominium residents to share updates, discuss community topics, and recommend local services."
+      skip_to_content: "Skip to content"
+      toggle_theme: "Toggle theme"
+      select_language: "Select language"
 
   dashboard:
     index:
@@ -111,6 +114,8 @@ en:
       content_placeholder: "What's on your mind? Type it here..."
       submit: "Save"
       cancel: "Cancel"
+      title_label: "Title"
+      content_label: "Content"
     edit:
       title: "Edit Topic"
       back: "← Back to Topic"
@@ -127,8 +132,10 @@ en:
       comments_title: "Comments"
       add_comment: "Add a comment"
       comment_placeholder: "Share your thoughts on this..."
+      comment_label: "Your comment"
       post_comment: "Post Comment"
       edit_comment: "Edit"
+      edit_comment_label: "Edit comment"
       delete_comment: "Delete"
       delete_comment_confirm: "Delete this comment?"
       save_comment: "Save"
@@ -160,11 +167,14 @@ en:
     new:
       title: "Forgot your password?"
       email_placeholder: "Enter your email address"
+      email_label: "Email address"
       submit: "Email reset instructions"
     edit:
       title: "Update your password"
       password_placeholder: "Enter new password"
+      password_label: "New password"
       password_confirmation_placeholder: "Repeat new password"
+      password_confirmation_label: "Confirm password"
       submit: "Save"
 
   errors:
@@ -231,6 +241,7 @@ en:
   search:
     placeholder: "Search..."
     button: "Search"
+    label: "Search"
 
   load_more: "Load more"
 

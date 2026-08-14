@@ -8,10 +8,12 @@
   <%= form.hidden_field :topic_type %>
 
   <div class="form-group">
+    <%= form.label :title, t("topics.form.title_label"), class: "form-label" %>
     <%= form.text_field :title, required: true, placeholder: t("topics.form.title_placeholder"), class: "form-input" %>
   </div>
 
   <div class="form-group">
+    <%= form.label :content, t("topics.form.content_label"), class: "form-label" %>
     <%= form.text_area :content, required: true, rows: 4, placeholder: t("topics.form.content_placeholder"), class: "form-input" %>
   </div>
 

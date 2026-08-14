@@ -4,7 +4,7 @@
         <div class="container">
             <h1><%= t(".hero_title") %></h1>
             <p><%= t(".hero_subtitle") %></p>
-            <button class="btn" onclick="scrollToCTA()"><%= t(".join_community") %></button>
+            <a href="#join-cta" class="btn"><%= t(".join_community") %></a>
         </div>
     </section>
 
@@ -135,7 +135,7 @@
     </section>
 
     <!-- Bottom CTA -->
-    <section class="cta-section" id="join-cta" tabindex="-1" style="outline: none;">
+    <section class="cta-section" id="join-cta" tabindex="-1">
         <div class="container">
             <h2><%= t(".cta_title") %></h2>
             <p><%= t(".cta_text") %></p>
@@ -144,6 +144,7 @@
                 <form data-action="submit->cta-signup#submit" class="cta-form">
                     <input type="email" 
                            required 
+                           autocomplete="email"
                            placeholder="<%= t(".email_placeholder") %>" 
                            class="cta-input" 
                            data-cta-signup-target="email"

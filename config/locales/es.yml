@@ -5,6 +5,9 @@ es:
       app_name: "CondoHub"
       log_out: "Cerrar Sesión"
       description: "Aplicación web para que residentes de condominios compartan actualizaciones, discutan temas comunitarios y recomienden servicios locales."
+      skip_to_content: "Saltar al contenido"
+      toggle_theme: "Cambiar tema"
+      select_language: "Seleccionar idioma"
 
   dashboard:
     index:
@@ -111,6 +114,8 @@ es:
       content_placeholder: "¿Qué tienes en mente? Escríbelo aquí..."
       submit: "Guardar"
       cancel: "Cancelar"
+      title_label: "Título"
+      content_label: "Contenido"
     edit:
       title: "Editar Tema"
       back: "← Volver al Tema"
@@ -127,8 +132,10 @@ es:
       comments_title: "Comentarios"
       add_comment: "Añadir comentario"
       comment_placeholder: "Comparte tus pensamientos sobre esto..."
+      comment_label: "Tu comentario"
       post_comment: "Publicar Comentario"
       edit_comment: "Editar"
+      edit_comment_label: "Editar comentario"
       delete_comment: "Eliminar"
       delete_comment_confirm: "¿Eliminar este comentario?"
       save_comment: "Guardar"
@@ -160,11 +167,14 @@ es:
     new:
       title: "¿Olvidaste tu contraseña?"
       email_placeholder: "Ingresa tu dirección de email"
+      email_label: "Dirección de email"
       submit: "Enviar instrucciones de restablecimiento"
     edit:
       title: "Actualizar tu contraseña"
       password_placeholder: "Ingresa la nueva contraseña"
+      password_label: "Nueva contraseña"
       password_confirmation_placeholder: "Repite la nueva contraseña"
+      password_confirmation_label: "Confirmar contraseña"
       submit: "Guardar"
 
   errors:
@@ -231,6 +241,7 @@ es:
   search:
     placeholder: "Buscar..."
     button: "Buscar"
+    label: "Buscar"
 
   load_more: "Cargar más"
 

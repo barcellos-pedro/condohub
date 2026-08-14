@@ -9,7 +9,7 @@
 
     <div class="comment-actions">
       <% upvoted = comment.upvotes.exists?(user: current_user) %>
-      <%= button_to topic_comment_upvote_path(topic_id: topic, comment_id: comment), method: :post, class: "btn btn-secondary btn-comment-action #{upvoted ? 'upvoted' : ''}", style: "padding: 0.25rem 0.5rem; font-size: 0.75rem;" do %>
+      <%= button_to topic_comment_upvote_path(topic_id: topic, comment_id: comment), method: :post, class: "btn btn-secondary btn-comment-action #{upvoted ? 'upvoted' : ''}", style: "padding: 0.25rem 0.5rem; font-size: 0.75rem;", aria: { label: "#{t('topics.show.upvote')} (#{comment.upvotes_count})" } do %>
         ▲ <%= comment.upvotes_count %>
       <% end %>
 

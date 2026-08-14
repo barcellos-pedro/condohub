@@ -5,6 +5,9 @@ pt-BR:
       app_name: "CondoHub"
       log_out: "Sair"
       description: "Aplicativo web para moradores de condomínios compartilharem atualizações, discutirem tópicos da comunidade e recomendarem serviços locais."
+      skip_to_content: "Pular para o conteúdo"
+      toggle_theme: "Alternar tema"
+      select_language: "Selecione o idioma"
 
   dashboard:
     index:
@@ -111,6 +114,8 @@ pt-BR:
       content_placeholder: "O que você está pensando? Escreva aqui..."
       submit: "Salvar"
       cancel: "Cancelar"
+      title_label: "Título"
+      content_label: "Conteúdo"
     edit:
       title: "Editar Tópico"
       back: "← Voltar ao Tópico"
@@ -127,8 +132,10 @@ pt-BR:
       comments_title: "Comentários"
       add_comment: "Adicionar comentário"
       comment_placeholder: "Compartilhe seus pensamentos sobre isso..."
+      comment_label: "Seu comentário"
       post_comment: "Comentar"
       edit_comment: "Editar"
+      edit_comment_label: "Editar comentário"
       delete_comment: "Excluir"
       delete_comment_confirm: "Excluir este comentário?"
       save_comment: "Salvar"
@@ -160,11 +167,14 @@ pt-BR:
     new:
       title: "Esqueceu sua senha?"
       email_placeholder: "Digite seu endereço de email"
+      email_label: "Endereço de email"
       submit: "Enviar instruções de redefinição"
     edit:
       title: "Atualizar sua senha"
       password_placeholder: "Digite a nova senha"
+      password_label: "Nova senha"
       password_confirmation_placeholder: "Repita a nova senha"
+      password_confirmation_label: "Confirmar senha"
       submit: "Salvar"
 
   errors:
@@ -231,6 +241,7 @@ pt-BR:
   search:
     placeholder: "Buscar..."
     button: "Buscar"
+    label: "Buscar"
 
   load_more: "Carregar mais"
 
