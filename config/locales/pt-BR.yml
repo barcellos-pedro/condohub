@@ -56,7 +56,8 @@ pt-BR:
       no_announcements: "Nenhum aviso oficial publicado ainda."
       condo_settings: "⚙️ Config. do Condomínio"
       metrics: "📊 Métricas do Condomínio"
- 
+      invite_resident: "✉️ Convidar Morador"
+
   landing:
     index:
       logo: "CondoHub"
@@ -237,6 +238,13 @@ pt-BR:
       update_success: "Senha redefinida com sucesso."
       update_failure: "As senhas não conferem."
       token_invalid: "O link de redefinição de senha é inválido ou expirou."
+    invitations:
+      create_success: "Convite criado e enviado com sucesso."
+    registrations:
+      create_success: "Bem-vindo ao %{condo}! Sua conta foi criada com sucesso."
+      invalid_token: "Este link de convite é inválido."
+      already_accepted: "Este convite já foi aceito. Por favor, faça login."
+      expired_token: "Este link de convite expirou. Por favor, solicite um novo convite."
     waitlist:
       rate_limit: "Muitas solicitações. Tente novamente mais tarde."
       invalid_email: "Digite um endereço de e-mail válido."
@@ -247,6 +255,57 @@ pt-BR:
       instructions: "Você pode redefinir sua senha na"
       link_text: "página de redefinição de senha"
       expiry: "Este link expirará em %{time}."
+
+  invitation_mailer:
+    invite:
+      subject: "Você foi convidado a entrar no %{condo} no CondoHub"
+      title: "Bem-vindo ao %{condo}"
+      greeting: "Olá!"
+      body: "Você foi convidado para participar do %{condo} no CondoHub. Crie sua conta de morador para conversar com os vizinhos, acompanhar avisos oficiais e encontrar recomendações confiáveis."
+      cta_button: "Aceitar Convite e Criar Conta"
+      alt_link_hint: "Se o botão acima não funcionar, copie e cole o seguinte link no seu navegador:"
+      expiry_notice: "Este link de convite expirará em %{time}."
+
+  invitations:
+    new:
+      title: "Convidar um Morador"
+      subtitle: "Gere um link de convite para um novo morador do %{condo}."
+      back_to_dashboard: "← Voltar ao Painel"
+      email_label: "Endereço de Email do Morador"
+      email_placeholder: "morador@exemplo.com"
+      email_hint: "Um convite com link exclusivo de cadastro será enviado para este endereço de email."
+      cancel: "Cancelar"
+      submit: "Enviar Convite"
+      errors_title:
+        one: "1 erro impediu o envio deste convite:"
+        other: "%{count} erros impediram o envio deste convite:"
+    show:
+      title: "Convite Criado"
+      sent_to: "Um email de convite foi enfileirado para %{email}."
+      back_to_dashboard: "← Voltar ao Painel"
+      link_label: "Link do Convite"
+      expires_in: "Este link expirará em %{time}."
+      invite_another: "Convidar Outro Morador"
+      done: "Concluído"
+
+  registrations:
+    new:
+      title: "Complete seu Perfil"
+      subtitle: "Você foi convidado para participar do %{condo}."
+      email_label: "Endereço de Email"
+      email_locked_hint: "Seu email está vinculado a este convite."
+      first_name_label: "Nome"
+      first_name_placeholder: "Maria"
+      last_name_label: "Sobrenome"
+      last_name_placeholder: "Silva"
+      password_label: "Senha"
+      password_placeholder: "Escolha uma senha segura"
+      password_confirmation_label: "Confirmar Senha"
+      password_confirmation_placeholder: "Digite a senha novamente"
+      submit: "Entrar no Condomínio"
+      errors_title:
+        one: "1 erro impediu o cadastro:"
+        other: "%{count} erros impediram o cadastro:"
 
   pwa:
     manifest:
@@ -363,3 +422,7 @@ pt-BR:
           attributes:
             topic_type:
               admins_only: "Avisos só podem ser criados pela administração."
+        invitation:
+          attributes:
+            email_address:
+              already_registered: "já está cadastrado para um usuário no CondoHub"

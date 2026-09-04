@@ -53,7 +53,8 @@ ko:
       no_announcements: "아직 게시된 공식 공지사항이 없습니다."
       condo_settings: "⚙️ 콘도 설정"
       metrics: "📊 콘도 지표"
- 
+      invite_resident: "✉️ 입주민 초대"
+
   landing:
     index:
       logo: "CondoHub"
@@ -234,6 +235,13 @@ ko:
       update_success: "비밀번호가 재설정되었습니다."
       update_failure: "비밀번호가 일치하지 않습니다."
       token_invalid: "비밀번호 재설정 링크가 유효하지 않거나 만료되었습니다."
+    invitations:
+      create_success: "초대가 생성되어 전송되었습니다."
+    registrations:
+      create_success: "%{condo}에 오신 것을 환영합니다! 계정이 생성되었습니다."
+      invalid_token: "초대 링크가 유효하지 않습니다."
+      already_accepted: "이미 수락된 초대입니다. 로그인해주세요."
+      expired_token: "초대 링크가 만료되었습니다. 새 초대를 요청해주세요."
     waitlist:
       rate_limit: "요청이 너무 많습니다. 나중에 다시 시도하세요."
       invalid_email: "유효한 이메일 주소를 입력하세요."
@@ -244,6 +252,57 @@ ko:
       instructions: "다음 링크에서 비밀번호를 재설정할 수 있습니다:"
       link_text: "비밀번호 재설정 페이지"
       expiry: "이 링크는 %{time} 후에 만료됩니다."
+
+  invitation_mailer:
+    invite:
+      subject: "CondoHub에서 %{condo}에 초대되었습니다"
+      title: "%{condo}에 오신 것을 환영합니다"
+      greeting: "안녕하세요!"
+      body: "CondoHub에서 %{condo} 입주민으로 초대되었습니다. 입주민 계정을 생성하여 이웃과 소통하고 공식 공지사항을 확인하세요."
+      cta_button: "초대 수락 및 계정 생성"
+      alt_link_hint: "위 버튼이 작동하지 않으면 브라우저에 다음 URL을 복사하여 붙여넣으세요:"
+      expiry_notice: "이 초대 링크는 %{time} 후에 만료됩니다."
+
+  invitations:
+    new:
+      title: "입주민 초대"
+      subtitle: "%{condo}의 새 입주민을 위한 초대 링크를 생성합니다."
+      back_to_dashboard: "← 대시보드로 돌아가기"
+      email_label: "입주민 이메일 주소"
+      email_placeholder: "resident@example.com"
+      email_hint: "고유 등록 링크가 포함된 초대가 이 이메일 주소로 전송됩니다."
+      cancel: "취소"
+      submit: "초대장 보내기"
+      errors_title:
+        one: "1개의 오류로 인해 초대를 생성할 수 없습니다:"
+        other: "%{count}개의 오류로 인해 초대를 생성할 수 없습니다:"
+    show:
+      title: "초대장 생성 완료"
+      sent_to: "%{email} 주소로 초대 이메일이 발송 큐에 등록되었습니다."
+      back_to_dashboard: "← 대시보드로 돌아가기"
+      link_label: "초대 링크"
+      expires_in: "이 링크는 %{time} 후에 만료됩니다."
+      invite_another: "다른 입주민 초대"
+      done: "완료"
+
+  registrations:
+    new:
+      title: "프로필 완성하기"
+      subtitle: "%{condo}에 초대되었습니다."
+      email_label: "이메일 주소"
+      email_locked_hint: "이메일은 이 초대에 고정되어 있습니다."
+      first_name_label: "이름"
+      first_name_placeholder: "길동"
+      last_name_label: "성"
+      last_name_placeholder: "홍"
+      password_label: "비밀번호"
+      password_placeholder: "안전한 비밀번호를 선택하세요"
+      password_confirmation_label: "비밀번호 확인"
+      password_confirmation_placeholder: "비밀번호를 다시 입력하세요"
+      submit: "콘도 가입하기"
+      errors_title:
+        one: "1개의 오류로 인해 가입할 수 없습니다:"
+        other: "%{count}개의 오류로 인해 가입할 수 없습니다:"
 
   pwa:
     manifest:
@@ -360,3 +419,7 @@ ko:
           attributes:
             topic_type:
               admins_only: "공지는 관리자만 작성할 수 있습니다."
+        invitation:
+          attributes:
+            email_address:
+              already_registered: "이미 CondoHub에 등록된 사용자입니다"
