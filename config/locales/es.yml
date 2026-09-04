@@ -56,7 +56,8 @@ es:
       no_announcements: "Aún no se han publicado anuncios oficiales."
       condo_settings: "⚙️ Config. del Condominio"
       metrics: "📊 Métricas del Condominio"
- 
+      invite_resident: "✉️ Invitar Residente"
+
   landing:
     index:
       logo: "CondoHub"
@@ -237,6 +238,13 @@ es:
       update_success: "Contraseña restablecida exitosamente."
       update_failure: "Las contraseñas no coinciden."
       token_invalid: "El enlace de restablecimiento de contraseña es inválido o ha expirado."
+    invitations:
+      create_success: "Invitación creada y enviada con éxito."
+    registrations:
+      create_success: "¡Bienvenido a %{condo}! Tu cuenta ha sido creada con éxito."
+      invalid_token: "Este enlace de invitación no es válido."
+      already_accepted: "Esta invitación ya ha sido aceptada. Por favor inicia sesión."
+      expired_token: "Este enlace de invitación ha expirado. Por favor solicita una nueva invitación."
     waitlist:
       rate_limit: "Demasiadas solicitudes. Inténtalo de nuevo más tarde."
       invalid_email: "Ingresa una dirección de correo electrónico válida."
@@ -247,6 +255,57 @@ es:
       instructions: "Puedes restablecer tu contraseña en la"
       link_text: "página de restablecimiento de contraseña"
       expiry: "Este enlace expirará en %{time}."
+
+  invitation_mailer:
+    invite:
+      subject: "Has sido invitado a unirte a %{condo} en CondoHub"
+      title: "Bienvenido a %{condo}"
+      greeting: "¡Hola!"
+      body: "Has sido invitado a unirte a %{condo} en CondoHub. Crea tu cuenta de residente para conectar con tus vecinos, ver avisos oficiales y consultar recomendaciones de confianza."
+      cta_button: "Aceptar Invitación y Crear Cuenta"
+      alt_link_hint: "Si el botón anterior no funciona, copia y pega el siguiente enlace en tu navegador:"
+      expiry_notice: "Este enlace de invitación expirará en %{time}."
+
+  invitations:
+    new:
+      title: "Invitar a un Residente"
+      subtitle: "Genera un enlace de invitación para un nuevo residente de %{condo}."
+      back_to_dashboard: "← Volver al Panel"
+      email_label: "Dirección de Correo Electrónico del Residente"
+      email_placeholder: "residente@ejemplo.com"
+      email_hint: "Se enviará una invitación con un enlace de registro exclusivo a esta dirección."
+      cancel: "Cancelar"
+      submit: "Enviar Invitación"
+      errors_title:
+        one: "1 error impidió enviar esta invitación:"
+        other: "%{count} errores impidieron enviar esta invitación:"
+    show:
+      title: "Invitación Creada"
+      sent_to: "Se ha puesto en cola un correo de invitación para %{email}."
+      back_to_dashboard: "← Volver al Panel"
+      link_label: "Enlace de Invitación"
+      expires_in: "Este enlace expirará en %{time}."
+      invite_another: "Invitar a Otro Residente"
+      done: "Listo"
+
+  registrations:
+    new:
+      title: "Completa tu Perfil"
+      subtitle: "Has sido invitado a unirte a %{condo}."
+      email_label: "Correo Electrónico"
+      email_locked_hint: "Tu correo electrónico está vinculado a esta invitación."
+      first_name_label: "Nombre"
+      first_name_placeholder: "María"
+      last_name_label: "Apellido"
+      last_name_placeholder: "Silva"
+      password_label: "Contraseña"
+      password_placeholder: "Elige una contraseña segura"
+      password_confirmation_label: "Confirmar Contraseña"
+      password_confirmation_placeholder: "Vuelve a ingresar tu contraseña"
+      submit: "Unirse al Condominio"
+      errors_title:
+        one: "1 error impidió el registro:"
+        other: "%{count} errores impidieron el registro:"
 
   pwa:
     manifest:
@@ -363,3 +422,7 @@ es:
           attributes:
             topic_type:
               admins_only: "Los anuncios solo pueden ser creados por la administración."
+        invitation:
+          attributes:
+            email_address:
+              already_registered: "ya está registrado para un usuario en CondoHub"

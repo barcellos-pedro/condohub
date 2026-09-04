@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_14_010000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_03_235141) do
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -28,6 +28,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_14_010000) do
     t.string "name", null: false
     t.datetime "updated_at", null: false
     t.string "whatsapp_group_link"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.datetime "accepted_at"
+    t.integer "condominium_id", null: false
+    t.datetime "created_at", null: false
+    t.string "email_address", null: false
+    t.datetime "expires_at", null: false
+    t.string "token", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["condominium_id", "email_address"], name: "index_invitations_on_condominium_id_and_email_address"
+    t.index ["condominium_id"], name: "index_invitations_on_condominium_id"
+    t.index ["token"], name: "index_invitations_on_token", unique: true
+    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "service_listings", force: :cascade do |t|
@@ -102,6 +117,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_14_010000) do
 
   add_foreign_key "comments", "topics"
   add_foreign_key "comments", "users"
+  add_foreign_key "invitations", "condominiums"
+  add_foreign_key "invitations", "users"
   add_foreign_key "service_listings", "condominiums"
   add_foreign_key "service_listings", "users"
   add_foreign_key "sessions", "users"

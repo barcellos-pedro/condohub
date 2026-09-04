@@ -1,0 +1,50 @@
+<div class="login-card" style="max-width: 480px;">
+  <div style="text-align: center; margin-bottom: 1.5rem;">
+    <span class="badge badge-resident" style="font-size: 0.8rem; padding: 0.3rem 0.6rem; margin-bottom: 0.5rem; display: inline-block;"><%= @invitation.condominium.name %></span>
+    <h1 class="login-title" style="font-size: 1.5rem; margin-top: 0.25rem;"><%= t(".title") %></h1>
+    <p class="login-subtitle" style="margin-bottom: 0;"><%= t(".subtitle", condo: @invitation.condominium.name) %></p>
+  </div>
+
+  <%= form_with model: @user, url: register_path(token: @invitation.token), local: true do |form| %>
+    <% if @user.errors.any? %>
+      <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem;">
+        <h3 style="color: var(--danger); margin: 0 0 0.5rem 0; font-size: 0.9rem;"><%= t(".errors_title", count: @user.errors.count) %></h3>
+        <ul style="margin: 0; padding-left: 1.5rem; color: var(--danger); font-size: 0.85rem;">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :email_address, t(".email_label"), class: "form-label" %>
+      <%= form.email_field :email_address, value: @invitation.email_address, readonly: true, class: "form-input", style: "background-color: var(--bg-surface-subtle, rgba(0,0,0,0.05)); cursor: not-allowed;" %>
+      <span style="display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;"><%= t(".email_locked_hint") %></span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="form-group">
+        <%= form.label :first_name, t(".first_name_label"), class: "form-label" %>
+        <%= form.text_field :first_name, required: true, autofocus: true, autocomplete: "given-name", placeholder: t(".first_name_placeholder"), class: "form-input" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :last_name, t(".last_name_label"), class: "form-label" %>
+        <%= form.text_field :last_name, required: true, autocomplete: "family-name", placeholder: t(".last_name_placeholder"), class: "form-input" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password, t(".password_label"), class: "form-label" %>
+      <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: t(".password_placeholder"), maxlength: 72, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password_confirmation, t(".password_confirmation_label"), class: "form-label" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: t(".password_confirmation_placeholder"), maxlength: 72, class: "form-input" %>
+    </div>
+
+    <%= form.submit t(".submit"), class: "btn btn-primary", style: "width: 100%; margin-top: 1rem; padding: 0.8rem;" %>
+  <% end %>
+</div>

@@ -1,0 +1,34 @@
+<div class="container" style="max-width: 600px;">
+  <div style="margin-bottom: 1.5rem;">
+    <%= link_to t(".back_to_dashboard"), dashboard_path, class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" %>
+  </div>
+
+  <article class="thread-card">
+    <h1 class="thread-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;"><%= t(".title") %></h1>
+    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;"><%= t(".subtitle", condo: current_condominium.name) %></p>
+
+    <%= form_with model: @invitation, url: invitations_path, local: true do |form| %>
+      <% if @invitation.errors.any? %>
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem;">
+          <h3 style="color: var(--danger); margin: 0 0 0.5rem 0; font-size: 0.9rem;"><%= t(".errors_title", count: @invitation.errors.count) %></h3>
+          <ul style="margin: 0; padding-left: 1.5rem; color: var(--danger); font-size: 0.85rem;">
+            <% @invitation.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :email_address, t(".email_label"), class: "form-label" %>
+        <%= form.email_field :email_address, class: "form-input", placeholder: t(".email_placeholder"), required: true, autofocus: true, autocomplete: "email" %>
+        <span style="display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;"><%= t(".email_hint") %></span>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+        <%= link_to t(".cancel"), dashboard_path, class: "btn btn-secondary" %>
+        <%= form.submit t(".submit"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </article>
+</div>
