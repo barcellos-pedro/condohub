@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :upvotes, dependent: :destroy
   has_many :service_listings, dependent: :destroy
+  has_many :sent_invitations, class_name: "Invitation", dependent: :destroy
 
   # Normalization
   normalizes :email_address, with: ->(e) { e.strip.downcase }

@@ -1,0 +1,27 @@
+<div class="container" style="max-width: 600px;">
+  <div style="margin-bottom: 1.5rem;">
+    <%= link_to t(".back_to_dashboard"), dashboard_path, class: "btn btn-secondary", style: "padding: 0.5rem 1rem; font-size: 0.85rem;" %>
+  </div>
+
+  <article class="thread-card">
+    <h1 class="thread-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;"><%= t(".title") %></h1>
+    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+      <%= t(".sent_to", email: @invitation.email_address) %>
+    </p>
+
+    <div style="background: var(--bg-surface-subtle, rgba(0,0,0,0.03)); border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem;">
+      <label class="form-label" style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);"><%= t(".link_label") %></label>
+      <div style="display: flex; gap: 0.5rem; margin-top: 0.25rem;">
+        <input type="text" readonly value="<%= register_url(token: @invitation.token, locale: I18n.locale) %>" class="form-input" style="font-family: monospace; font-size: 0.85rem;" id="invite-url-input">
+      </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 0;">
+        <%= t(".expires_in", time: distance_of_time_in_words(Time.current, @invitation.expires_at)) %>
+      </p>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <%= link_to t(".invite_another"), new_invitation_path, class: "btn btn-primary" %>
+      <%= link_to t(".done"), dashboard_path, class: "btn btn-secondary" %>
+    </div>
+  </article>
+</div>

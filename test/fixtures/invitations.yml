@@ -1,0 +1,21 @@
+pending_one:
+  condominium: one
+  invited_by: one
+  email_address: pending@example.com
+  token: <%= SecureRandom.hex(16) %>
+  expires_at: <%= 5.days.from_now %>
+
+expired_one:
+  condominium: one
+  invited_by: one
+  email_address: expired@example.com
+  token: <%= SecureRandom.hex(16) %>
+  expires_at: <%= 2.days.ago %>
+
+accepted_one:
+  condominium: one
+  invited_by: one
+  email_address: accepted@example.com
+  token: <%= SecureRandom.hex(16) %>
+  expires_at: <%= 3.days.from_now %>
+  accepted_at: <%= 1.day.ago %>

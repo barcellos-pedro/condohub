@@ -1,0 +1,18 @@
+<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #1e293b;">
+  <h2 style="color: #0f172a;"><%= t(".title", condo: @condominium.name) %></h2>
+  <p><%= t(".greeting") %></p>
+  <p><%= t(".body", condo: @condominium.name) %></p>
+
+  <p style="margin: 2rem 0;">
+    <%= link_to t(".cta_button"), register_url(token: @invitation.token, locale: I18n.locale), style: "background-color: #2563eb; color: #ffffff; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 0.375rem; font-weight: 600; display: inline-block;" %>
+  </p>
+
+  <p style="font-size: 0.875rem; color: #64748b;">
+    <%= t(".alt_link_hint") %><br>
+    <%= link_to register_url(token: @invitation.token, locale: I18n.locale), register_url(token: @invitation.token, locale: I18n.locale), style: "color: #2563eb; word-break: break-all;" %>
+  </p>
+
+  <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1rem;">
+    <%= t(".expiry_notice", time: distance_of_time_in_words(Time.current, @invitation.expires_at)) %>
+  </p>
+</div>

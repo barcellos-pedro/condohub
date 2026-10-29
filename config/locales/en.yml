@@ -56,6 +56,7 @@ en:
       no_announcements: "No official announcements posted yet."
       condo_settings: "⚙️ Condo Settings"
       metrics: "📊 Condo Metrics"
+      invite_resident: "✉️ Invite Resident"
 
   landing:
     index:
@@ -237,6 +238,13 @@ en:
       update_success: "Password has been reset."
       update_failure: "Passwords did not match."
       token_invalid: "Password reset link is invalid or has expired."
+    invitations:
+      create_success: "Invitation created and sent successfully."
+    registrations:
+      create_success: "Welcome to %{condo}! Your account has been created."
+      invalid_token: "This invitation link is invalid."
+      already_accepted: "This invitation has already been accepted. Please sign in."
+      expired_token: "This invitation link has expired. Please request a new invitation."
     waitlist:
       rate_limit: "Too many requests. Please try again later."
       invalid_email: "Please enter a valid email address."
@@ -247,6 +255,57 @@ en:
       instructions: "You can reset your password on"
       link_text: "this password reset page"
       expiry: "This link will expire in %{time}."
+
+  invitation_mailer:
+    invite:
+      subject: "You're invited to join %{condo} on CondoHub"
+      title: "Welcome to %{condo}"
+      greeting: "Hello!"
+      body: "You've been invited to join %{condo} on CondoHub. Set up your resident account to connect with neighbors, view official announcements, and explore trusted recommendations."
+      cta_button: "Accept Invitation & Create Account"
+      alt_link_hint: "If the button above doesn't work, copy and paste this URL into your browser:"
+      expiry_notice: "This invitation link will expire in %{time}."
+
+  invitations:
+    new:
+      title: "Invite a Resident"
+      subtitle: "Generate an invitation link for a new resident to join %{condo}."
+      back_to_dashboard: "← Back to Dashboard"
+      email_label: "Resident's Email Address"
+      email_placeholder: "resident@example.com"
+      email_hint: "An invitation with a unique setup link will be sent to this email address."
+      cancel: "Cancel"
+      submit: "Send Invitation"
+      errors_title:
+        one: "1 error prevented this invitation:"
+        other: "%{count} errors prevented this invitation:"
+    show:
+      title: "Invitation Created"
+      sent_to: "An invitation email has been queued for %{email}."
+      back_to_dashboard: "← Back to Dashboard"
+      link_label: "Invitation Link"
+      expires_in: "This link will expire in %{time}."
+      invite_another: "Invite Another Resident"
+      done: "Done"
+
+  registrations:
+    new:
+      title: "Complete Your Profile"
+      subtitle: "You've been invited to join %{condo}."
+      email_label: "Email Address"
+      email_locked_hint: "Your email is locked to this invitation."
+      first_name_label: "First Name"
+      first_name_placeholder: "Maria"
+      last_name_label: "Last Name"
+      last_name_placeholder: "Silva"
+      password_label: "Password"
+      password_placeholder: "Choose a secure password"
+      password_confirmation_label: "Confirm Password"
+      password_confirmation_placeholder: "Re-enter your password"
+      submit: "Join Condominium"
+      errors_title:
+        one: "1 error prevented registration:"
+        other: "%{count} errors prevented registration:"
 
   pwa:
     manifest:
@@ -362,3 +421,7 @@ en:
           attributes:
             topic_type:
               admins_only: "Announcements can only be created by management (admins)."
+        invitation:
+          attributes:
+            email_address:
+              already_registered: "is already registered to a user in CondoHub"

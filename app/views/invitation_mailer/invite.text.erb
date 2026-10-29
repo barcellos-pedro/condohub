@@ -1,0 +1,9 @@
+<%= t(".title", condo: @condominium.name) %>
+
+<%= t(".greeting") %>
+
+<%= t(".body", condo: @condominium.name) %>
+
+<%= register_url(token: @invitation.token, locale: I18n.locale) %>
+
+<%= t(".expiry_notice", time: distance_of_time_in_words(Time.current, @invitation.expires_at)) %>

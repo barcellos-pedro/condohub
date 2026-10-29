@@ -27,6 +27,11 @@ Rails.application.routes.draw do
 
     # Condominium Settings (admin only)
     resource :condominium, only: [ :show, :edit, :update ]
+    resources :invitations, only: [ :new, :create, :show ]
+
+    # Registration via invitation token (public)
+    get "register/:token", to: "registrations#new", as: :register
+    post "register/:token", to: "registrations#create"
 
     # Service Listings
     resources :service_listings, only: [ :create, :edit, :update, :destroy ] do
